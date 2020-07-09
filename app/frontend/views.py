@@ -30,13 +30,49 @@ class Index(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse_lazy('home'))
 
 class Home(LoginRequiredMixin, View):
-    template = 'examples/dashboard.html'
+    template = 'base.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Dashboard(LoginRequiredMixin, View):
+    template = 'dashboard.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Icons(LoginRequiredMixin, View):
+    template = 'icons.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Tables(LoginRequiredMixin, View):
+    template = 'tables.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Typography(LoginRequiredMixin, View):
+    template = 'typography.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Maps(LoginRequiredMixin, View):
+    template = 'maps.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+class Notifications(LoginRequiredMixin, View):
+    template = 'notifications.html'
 
     def get(self, request):
         return render(request, self.template)
 
 class User(LoginRequiredMixin, View):
-    template = 'examples/user.html'
+    template = 'user.html'
 
     def get(self, request):
         return render(request, self.template)
