@@ -1,0 +1,13 @@
+Base
+
+Módulo Base contém tudo que é em comum com todos os outros módulos.
+
+Esse Módulo contém:
+
+Models:
+
+  - BaseModel, um modelo abstrato com meta campos (data de criação, modificação, ultimo usuario a modificar)
+
+Middleware:
+
+  - BaseMiddleware, responsável por pegar o usuário em um thread para posteriormente usá-lo quando ele alterar algum modelo

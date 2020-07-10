@@ -1,0 +1,5 @@
+Customer
+
+Módulo responsável por administrar tudo relacionado a cliente, contendo os seguintes modelos:
+  - Customer, com dados referentes a um cliente
+  - Address, com dados referentes ao endereço
