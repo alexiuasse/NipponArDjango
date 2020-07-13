@@ -1,0 +1,20 @@
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">{{view.TITLE}}</h4>
+          <p class="card-category">Configuração de marcas</p>
+        </div>
+        <div class="card-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

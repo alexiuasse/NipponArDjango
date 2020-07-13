@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
+# BASE_MODEL = ''
 
 # CUSTOMIZATION DEFINITIONS
 NAME_OF_ENTERPRISE = "Nippon Ar"
@@ -51,7 +52,9 @@ INSTALLED_APPS = [
     'users',
     'frontend',
     'base',
-    'customer'
+    'customer',
+    'config',
+    'device',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="text-center">
+    <form method="post">
+      {% csrf_token %}
+      <p class="lead text-gray-800 mb-2">Você tem certeza que quer deletar "{{ object }}" ?</p>
+      <p>Todos os itens abaixo serão excluidos!</p>
+      {% for model_name in extra_object %}
+        {{ model_name }}
+      {% endfor %}
+      <div class="mt-5">
+        <button type="submit" class="btn btn-sm btn-danger mr-4">Confirmar</button>
+        <a href="{{ view.get_success_url }}" class="btn btn-sm btn-primary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+Config (Configuration)
+
+Módulo responsável por ter todas as configurações do sistema.
+
+Modelos:
+  - Brand, repositório dos nomes das marcas
+  - Model, repositório dos nomes dos modelos
+  - Type, repositório dos tipos
+  - Unit, repositório de unidades de capacidade
+  - Capacity, repositório da capacidade
