@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load crispy_forms_tags %}
+  {% load static %}
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" src="{% static 'assets/img/favicon.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>{{NAME_OF_ENTERPRISE}}</title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/google-font-icon.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+  <!-- CSS Files -->
+  <link href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
+</head>
+<body class="login-page">
+  <div class="page-header login-card" style="background-image: url('{% static 'assets/img/bg-login.jpg' %}'); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login">
+            <form method="post">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">Login</h4>
+              </div>
+              <div class="card-body">
+                {% csrf_token %}
+                {% if form.errors %} <p class="text-danger text-center font-weight-bold mb-2">Usuário ou senha errado*</p> {% endif %}
+                {{form.username|as_crispy_field}}
+                {{form.password|as_crispy_field}}
+                <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="copyright">
+          <p class="text-center">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, feito com <i class="material-icons">favorite</i> por
+            <a href="https://www.iuasse.com.br" target="_blank">Iuasse</a>.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

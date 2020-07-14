@@ -25,7 +25,7 @@ SECRET_KEY = 'xj7o!^3d43#@0f9*ac#x(me59xtz*1y_2fggoamvpz$_c))!1x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.18.16']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
