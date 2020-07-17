@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 11:42.
+  ~ Last modified 17/07/2020 19:36.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -11,7 +11,7 @@
       Tip 2: you can also add an image using data-image tag
   -->
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a class="simple-text logo-normal" href="{% url 'dashboard' %}">
             {{NAME_OF_ENTERPRISE}}
         </a>
     </div>
@@ -23,10 +23,10 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {% if request.resolver_match.url_name == 'config-brand' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'config-brand' %}">
+            <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">
+                <a class="nav-link" href="{% url 'config' %}">
                     <i class="material-icons">settings</i>
-                    <p>Brand</p>
+                    <p>Configurações</p>
                 </a>
             </li>
             <li class="nav-item {% if request.resolver_match.url_name == 'user' %}active{% endif %}">

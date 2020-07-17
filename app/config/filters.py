@@ -1,13 +1,19 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 11:56.
+#  Last modified 17/07/2020 19:30.
 
-import django_filters
+from django_filters import FilterSet
 
 from .models import *
 
 
-class BrandFilter(django_filters.FilterSet):
+class BrandFilter(FilterSet):
     class Meta:
         model = Brand
+        fields = {'name': ['icontains'], }
+
+
+class ModelFilter(FilterSet):
+    class Meta:
+        model = Model
         fields = {'name': ['icontains'], }
