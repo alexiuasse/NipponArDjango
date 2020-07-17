@@ -1,3 +1,7 @@
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 08/07/2020 10:19.
+
 # users/admin.py
 from django.contrib import admin
 from django.contrib.auth import get_user_model

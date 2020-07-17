@@ -1,3 +1,7 @@
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 12/07/2020 21:07.
+
 from django.contrib.admin.utils import NestedObjects
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin

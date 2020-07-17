@@ -1,3 +1,7 @@
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 10/07/2020 09:17.
+
 from django.db import models
 from .middleware import local
 from django.conf import settings

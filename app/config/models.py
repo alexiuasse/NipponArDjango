@@ -1,3 +1,7 @@
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 12/07/2020 21:20.
+
 from django.db import models
 from base.models import BaseModel
 

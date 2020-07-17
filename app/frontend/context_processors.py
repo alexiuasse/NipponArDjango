@@ -1,3 +1,7 @@
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 09/07/2020 09:54.
+
 from django.conf import settings # import the settings file
 
 def enterprise_name(request):

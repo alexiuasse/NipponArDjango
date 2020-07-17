@@ -7,6 +7,10 @@ For more information on this file, see
 https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/
 """
 
+#  Created by Alex Matos Iuasse.
+#  Copyright (c) 2020.  All rights reserved.
+#  Last modified 08/07/2020 10:17.
+
 import os
 
 from django.core.asgi import get_asgi_application
