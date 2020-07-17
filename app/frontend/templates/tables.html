@@ -1,19 +1,21 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 09/07/2020 10:02.
+  ~ Last modified 17/07/2020 10:28.
   -->
 
+{% extends 'base.html' %}
+{% block content %}
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header card-header-primary">
-          <h4 class="card-title ">Simple Table</h4>
-          <p class="card-category"> Here is a subtitle for this table</p>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title ">Simple Table</h4>
+                    <p class="card-category"> Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
             <table class="table">
               <thead class=" text-primary">
                 <th>
@@ -276,5 +278,6 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/07/2020 21:20.
+  ~ Last modified 17/07/2020 10:28.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -17,53 +17,54 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item active  ">
-        <a class="nav-link dashboardClick" href="#dashboard">
+      <li class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        <a class="nav-link dashboardClick" href="{% url 'dashboard' %}">
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link configBrandClick" href="#configBrand">
+      <li class="nav-item {% if request.resolver_match.url_name == 'brand' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'config-brand' %}">
           <i class="material-icons">settings</i>
           <p>Brand</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link userClick" href="#user">
+      <li class="nav-item {% if request.resolver_match.url_name == 'user' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'user' %}">
           <i class="material-icons">person</i>
           <p>User Profile</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link tablesClick" href="#tables">
+      <li class="nav-item {% if request.resolver_match.url_name == 'tables' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'tables' %}">
           <i class="material-icons">content_paste</i>
           <p>Table List</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link typographyClick" href="#typography">
+      <li class="nav-item {% if request.resolver_match.url_name == 'typography' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'typography' %}">
           <i class="material-icons">library_books</i>
           <p>Typography</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link iconsClick" href="#icons">
+      <li class="nav-item {% if request.resolver_match.url_name == 'icons' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'icons' %}">
           <i class="material-icons">bubble_chart</i>
           <p>Icons</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link mapsClick" href="#maps">
-          <i class="material-icons">location_ons</i>
-          <p>Maps</p>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link notificationsClick" href="#notifications">
-          <i class="material-icons">notifications</i>
-          <p>Notifications</p>
-        </a>
+      <!--      <li class="nav-item ">-->
+      <!--        <a class="nav-link mapsClick" href="#maps">-->
+      <!--          <i class="material-icons">location_ons</i>-->
+      <!--          <p>Maps</p>-->
+      <!--        </a>-->
+      <!--      </li>-->
+      <li class="nav-item {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}"
+      ">
+      <a class="nav-link" href="{% url 'notifications' %}">
+        <i class="material-icons">notifications</i>
+        <p>Notifications</p>
+      </a>
       </li>
       <!-- <li class="nav-item ">
         <a class="nav-link" href="./rtl.html">

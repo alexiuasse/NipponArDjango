@@ -1,17 +1,19 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/07/2020 10:08.
+#  Last modified 17/07/2020 10:09.
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.views import View
-from django.conf import settings
+import logging
+
 from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-import datetime, logging
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import View
 
 logger = logging.getLogger(__name__)
+
+
 # def error_400(request, exception):
 #     logger.error("Error 400: [%s]"%(exception))
 #     return render(request, '400.html', {}, status=400)
@@ -33,11 +35,13 @@ class Index(LoginRequiredMixin, View):
     def get(self, request):
         return HttpResponseRedirect(reverse_lazy('home'))
 
+
 class Home(LoginRequiredMixin, View):
     template = 'base.html'
 
     def get(self, request):
         return render(request, self.template)
+
 
 class Dashboard(LoginRequiredMixin, View):
     template = 'dashboard.html'
@@ -45,11 +49,13 @@ class Dashboard(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, self.template)
 
+
 class Icons(LoginRequiredMixin, View):
     template = 'icons.html'
 
     def get(self, request):
         return render(request, self.template)
+
 
 class Tables(LoginRequiredMixin, View):
     template = 'tables.html'
@@ -57,11 +63,13 @@ class Tables(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, self.template)
 
+
 class Typography(LoginRequiredMixin, View):
     template = 'typography.html'
 
     def get(self, request):
         return render(request, self.template)
+
 
 class Maps(LoginRequiredMixin, View):
     template = 'maps.html'
@@ -69,17 +77,20 @@ class Maps(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, self.template)
 
+
 class Notifications(LoginRequiredMixin, View):
     template = 'notifications.html'
 
     def get(self, request):
         return render(request, self.template)
 
+
 class User(LoginRequiredMixin, View):
     template = 'user.html'
 
     def get(self, request):
         return render(request, self.template)
+
 
 class Logout(View):
 

@@ -1,11 +1,12 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 10:14.
+  ~ Last modified 17/07/2020 10:28.
   -->
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="utf-8"/>
@@ -21,18 +22,17 @@
     <link href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <!-- <link href="/static/assets/demo/demo.css" rel="stylesheet" /> -->
-    <!--  Block of links  -->
-    {% block links %}{% endblock %}
 </head>
 <body class="">
 <div class="wrapper ">
-    {% block sidebar %}{% include "sidebar.html" %}{% endblock %}
+    {% block sidebar %}{% include "sidebar.html"%}{% endblock %}
     <div class="main-panel">
         {% block topbar %}{% include "topbar.html" %}{% endblock %}
         <div class="content" id="content">{% block content %}{% include "dashboard.html" %}{% endblock %}</div>
         {% block footer %}{% include "footer.html" %}{% endblock %}
     </div>
 </div>
-{% block javascript %}{% endblock %}
+{% block javascript %}{% include "javascript.html" %}{% endblock %}
 </body>
+
 </html>
