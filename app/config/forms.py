@@ -1,14 +1,15 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 21:08.
+#  Last modified 17/07/2020 11:56.
 
-from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Column, Div, HTML
+from crispy_forms.layout import Layout, Column, Div, HTML
+from django import forms
+
 from .models import *
 
-class BaseConfigForm(forms.ModelForm):
 
+class BaseConfigForm(forms.ModelForm):
     layout = Layout(
         Div(
             Column('name', css_class='form-group col-md'),
@@ -18,8 +19,8 @@ class BaseConfigForm(forms.ModelForm):
                 HTML(
                     '<a href="{{ view.success_url }}" class="btn btn-danger btn-sm mr-2">Cancelar</a>'
                     '<button type="submit" class="btn btn-primary btn-sm">Finalizar</button>'),
-                    css_class='pull-right'
-                ),
+                css_class='pull-right'
+            ),
             css_class='row'
         ),
     )
@@ -29,29 +30,30 @@ class BaseConfigForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.layout = self.layout
 
-class BrandForm(BaseConfigForm):
 
+class BrandForm(BaseConfigForm):
     class Meta:
         model = Brand
         fields = '__all__'
 
-class ModelForm(BaseConfigForm):
 
+class ModelForm(BaseConfigForm):
     class Meta:
         model = Model
         fields = '__all__'
 
-class TypeForm(BaseConfigForm):
 
+class TypeForm(BaseConfigForm):
     class Meta:
         model = Type
         fields = '__all__'
 
-class UnitForm(BaseConfigForm):
 
+class UnitForm(BaseConfigForm):
     class Meta:
         model = Unit
         fields = '__all__'
+
 
 class CapacityForm(BaseConfigForm):
     layout = Layout(
@@ -64,8 +66,8 @@ class CapacityForm(BaseConfigForm):
                 HTML(
                     '<a href="{{ redirect_success }}" class="btn btn-danger mr-2">Cancelar</a>'
                     '<button type="submit" class="btn btn-primary">Finalizar</button>'),
-                    css_class='mb-3 mb-sm-0'
-                ),
+                css_class='mb-3 mb-sm-0'
+            ),
             css_class='row'
         ),
     )

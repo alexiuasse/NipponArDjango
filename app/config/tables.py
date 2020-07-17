@@ -1,9 +1,11 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 20:21.
+#  Last modified 17/07/2020 11:56.
 
 from django_tables2 import tables, TemplateColumn
+
 from .models import *
+
 
 class BrandTable(tables.Table):
     ações = TemplateColumn(template_name='config/table/buttons.html')

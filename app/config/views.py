@@ -1,18 +1,19 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 21:07.
+#  Last modified 17/07/2020 11:56.
 
 from django.contrib.admin.utils import NestedObjects
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django_filters.views import FilterView
-from django_tables2.views import SingleTableMixin
 from django_tables2.paginators import LazyPaginator
-from .models import *
-from .tables import *
+from django_tables2.views import SingleTableMixin
+
 from .filters import *
 from .forms import *
+from .tables import *
+
 
 class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
     model = Brand
@@ -24,6 +25,7 @@ class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     TITLE = "Marca"
     NOVO = reverse_lazy('config-brand-create')
 
+
 class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Brand
     form_class = BrandForm
@@ -31,6 +33,7 @@ class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_brand'
     success_url = reverse_lazy('config-brand')
     TITLE = "Nova Marca"
+
 
 class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Brand
@@ -40,6 +43,7 @@ class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = 'config.edit_brand'
     success_url = reverse_lazy('config-brand')
 
+
 class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Brand
     template_name = "config/confirm_delete.html"
@@ -48,7 +52,7 @@ class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        collector = NestedObjects(using='default') # or specific database
+        collector = NestedObjects(using='default')  # or specific database
         collector.collect([context['object']])
         to_delete = collector.nested()
         context['extra_object'] = to_delete

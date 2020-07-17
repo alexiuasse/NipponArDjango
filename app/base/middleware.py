@@ -1,11 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 10/07/2020 08:59.
+#  Last modified 17/07/2020 11:56.
 
 # base/middleware.py
 import threading
 
 local = threading.local()
+
 
 class BaseMiddleware(object):
 

@@ -1,9 +1,10 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 21:20.
+#  Last modified 17/07/2020 11:56.
 
-from django.db import models
 from base.models import BaseModel
+from django.db import models
+
 
 class BaseConfigModel(BaseModel):
     name = models.CharField("nome", max_length=128)
@@ -13,6 +14,7 @@ class BaseConfigModel(BaseModel):
 
     class Meta:
         abstract = True
+
 
 class Brand(BaseConfigModel):
 
@@ -24,14 +26,18 @@ class Brand(BaseConfigModel):
     def edit_url(self):
         return 'config-brand-edit'
 
+
 class Model(BaseConfigModel):
     pass
+
 
 class Type(BaseConfigModel):
     pass
 
+
 class Unit(BaseConfigModel):
     pass
+
 
 class Capacity(BaseConfigModel):
     unit = models.ForeignKey(Unit, verbose_name="Unidade", on_delete=models.CASCADE, null=True)

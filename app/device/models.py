@@ -1,9 +1,10 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 20:01.
+#  Last modified 17/07/2020 11:56.
 
-from django.db import models
 from base.models import BaseModel
+from django.db import models
+
 
 class Device(BaseModel):
     name = models.CharField("nome", max_length=128, blank=True)

@@ -1,9 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 19:59.
-
-from django.urls import path
-from django.contrib.auth import views as auth_views
+#  Last modified 17/07/2020 11:56.
 
 urlpatterns = [
     # path('', Index.as_view(), name='index'),

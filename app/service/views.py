@@ -1,7 +1,5 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/07/2020 19:42.
-
-from django.shortcuts import render
+#  Last modified 17/07/2020 11:56.
 
 # Create your views here.

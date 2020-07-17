@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 10:28.
+  ~ Last modified 17/07/2020 11:56.
   -->
 
 {% extends 'base.html' %}
@@ -18,15 +18,15 @@
                 </div>
                 <div class="card-body">
                     {% if filter %}
-            <form action="" method="get" class="form form-group">
-              {% bootstrap_form filter.form size='small' show_label=False %}
-              {% bootstrap_button 'Pesquisar' button_class='btn btn-primary btn-sm' %}
-            </form>
-          {% endif %}
-          <button type="button" rel="tooltip" title="Novo" class="btn btn-primary btn-sm novoClick">
-            Novo
-          </button>
-          {% render_table table %}
+                    <form action="" method="get" class="form form-group">
+                        {% bootstrap_form filter.form size='small' show_label=False %}
+                        {% bootstrap_button 'Pesquisar' button_class='btn btn-primary btn-sm' %}
+                    </form>
+                    {% endif %}
+                    <button type="button" rel="tooltip" title="Novo" class="btn btn-primary btn-sm novoClick">
+                        Novo
+                    </button>
+                    {% render_table table %}
                 </div>
             </div>
         </div>
@@ -36,6 +36,7 @@
   $(document).ready(function() {
     $(".novoClick").click(function () {$('#content').load("{% url 'config-brand-create' %}");});
   });
+
 
 </script>
 {% endblock %}

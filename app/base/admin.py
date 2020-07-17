@@ -1,7 +1,5 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 10/07/2020 08:38.
-
-from django.contrib import admin
+#  Last modified 17/07/2020 11:56.
 
 # Register your models here.
