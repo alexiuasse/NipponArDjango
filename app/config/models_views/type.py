@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 13:57.
+#  Last modified 18/07/2020 14:50.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects

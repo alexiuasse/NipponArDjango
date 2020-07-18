@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:08.
+#  Last modified 18/07/2020 14:50.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Div, HTML

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:18.
+#  Last modified 18/07/2020 14:50.
 
 from base.models import BaseModel
 from django.db import models
