@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 11:56.
+#  Last modified 17/07/2020 21:11.
 
 import os
 
@@ -36,6 +36,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # CUSTOMIZATION DEFINITIONS
 NAME_OF_ENTERPRISE = "Nippon Ar"
+DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 # Application definition
 
@@ -125,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
-TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True

@@ -1,12 +1,15 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 11:56.
+#  Last modified 17/07/2020 23:30.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Div, HTML
 from django import forms
 
 from .models import *
+
+
+# REMEMBER: ALWAYS set the fields or the form will not save correctly.
 
 
 class BaseConfigForm(forms.ModelForm):
@@ -27,6 +30,7 @@ class BaseConfigForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.disable_csrf = True
         self.helper = FormHelper()
         self.helper.layout = self.layout
 
@@ -34,25 +38,25 @@ class BaseConfigForm(forms.ModelForm):
 class BrandForm(BaseConfigForm):
     class Meta:
         model = Brand
-        fields = '__all__'
+        fields = ['name']
 
 
 class ModelForm(BaseConfigForm):
     class Meta:
         model = Model
-        fields = '__all__'
+        fields = ['name']
 
 
 class TypeForm(BaseConfigForm):
     class Meta:
         model = Type
-        fields = '__all__'
+        fields = ['name']
 
 
 class UnitForm(BaseConfigForm):
     class Meta:
         model = Unit
-        fields = '__all__'
+        fields = ['name']
 
 
 class CapacityForm(BaseConfigForm):
@@ -74,4 +78,4 @@ class CapacityForm(BaseConfigForm):
 
     class Meta:
         model = Capacity
-        fields = '__all__'
+        fields = ['name', 'unit']

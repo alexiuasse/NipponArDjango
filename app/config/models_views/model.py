@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:36.
+#  Last modified 17/07/2020 20:23.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -13,7 +13,6 @@ from django_tables2.views import SingleTableMixin
 
 from ..filters import *
 from ..forms import *
-from ..models import Model
 from ..tables import *
 
 
@@ -45,7 +44,7 @@ class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'config/form.html'
     permission_required = 'config.edit_model'
     success_url = reverse_lazy('config-model')
-    title = "Editar Modelo - "
+    title = "Editar Modelo"
     subtitle = "Configuração de modelos"
 
 

@@ -1,14 +1,16 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:36.
+#  Last modified 17/07/2020 23:30.
 
 from base.models import BaseModel
 from django.db import models
+from django.urls import reverse
 
 
 class BaseConfigModel(BaseModel):
     name = models.CharField("nome", max_length=128)
-    quantity = models.IntegerField("quantidade", default=0)
+
+    # quantity = models.IntegerField("quantidade", default=0)
 
     def __str__(self):
         return self.name
@@ -18,6 +20,9 @@ class BaseConfigModel(BaseModel):
 
 
 class Brand(BaseConfigModel):
+
+    def get_absolute_url(self):
+        return reverse('config-brand-edit', kwargs={'pk': self.pk})
 
     @property
     def del_url(self):

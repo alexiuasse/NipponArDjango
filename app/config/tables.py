@@ -1,29 +1,37 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:30.
-
-from django_tables2 import tables
+#  Last modified 17/07/2020 20:34.
+from django.utils.html import format_html
+from django_tables2 import tables, Column, TemplateColumn
 
 from .models import *
 
 
 class BrandTable(tables.Table):
-    # acoes = TemplateColumn(template_name='config/table/buttons.html')
+    name = Column(linkify=True)
+    _ = TemplateColumn(template_name='config/table/buttons.html')
 
     class Meta:
         model = Brand
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        order_by = '-id'
-        fields = ['id', 'name', 'quantity', ]
+        fields = ['id', 'name', 'created_by', 'updated_by', 'created_in', 'updated_in']
+
+    @staticmethod
+    def render_name(value):
+        return format_html('<span class="name text-primary font-weight-bold">{}</span>', value)
 
 
 class ModelTable(tables.Table):
-    # acoes = TemplateColumn(template_name='config/table/buttons.html')
+    name = Column(linkify=True)
+    _ = TemplateColumn(template_name='config/table/buttons.html')
 
     class Meta:
         model = Model
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        order_by = '-id'
-        fields = ['id', 'name', 'quantity', ]
+        fields = ['id', 'name', 'created_by', 'updated_by', 'created_in', 'updated_in']
+
+    @staticmethod
+    def render_name(value):
+        return format_html('<span class="name text-primary font-weight-bold">{}</span>', value)
