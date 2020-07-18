@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 21:11.
+#  Last modified 18/07/2020 10:52.
 
 import os
 
@@ -30,16 +30,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.18.16']
 
+# CUSTOMIZATION DEFINITIONS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
-# BASE_MODEL = ''
-
-# CUSTOMIZATION DEFINITIONS
 NAME_OF_ENTERPRISE = "Nippon Ar"
 DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'simple_history',
     'background_task',
     'bootstrap4',
     'crispy_forms',
@@ -70,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+    'simple_history.middleware.HistoryRequestMiddleware',
     'base.middleware.BaseMiddleware',
 ]
 
