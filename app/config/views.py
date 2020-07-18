@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:31.
+#  Last modified 18/07/2020 12:09.
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
@@ -19,5 +19,6 @@ class Config(LoginRequiredMixin, View):
             'subtitle': self.subtitle,
             'brand': Brand.objects.all().count(),
             'model': Model.objects.all().count(),
+            'type': Type.objects.all().count(),
         }
         return render(request, self.template, context)

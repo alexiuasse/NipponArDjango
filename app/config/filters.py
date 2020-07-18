@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:30.
+#  Last modified 18/07/2020 12:17.
 
 from django_filters import FilterSet
 
@@ -16,4 +16,10 @@ class BrandFilter(FilterSet):
 class ModelFilter(FilterSet):
     class Meta:
         model = Model
+        fields = {'name': ['icontains'], }
+
+
+class TypeFilter(FilterSet):
+    class Meta:
+        model = Type
         fields = {'name': ['icontains'], }

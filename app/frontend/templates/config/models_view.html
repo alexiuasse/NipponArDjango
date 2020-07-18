@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 18:54.
+  ~ Last modified 18/07/2020 12:20.
   -->
 
 {% extends 'base.html' %}
@@ -25,9 +25,11 @@
                 </div>
                 <div class="card-body">
                     {% if filter %}
-                    <form action="" class="form form-group" method="get">
-                        {% bootstrap_form filter.form size='small' show_label=False %}
-                        {% bootstrap_button 'Pesquisar' button_class='btn btn-primary btn-sm' %}
+                    <form action="" class="form form-inline" method="get">
+                        {% bootstrap_form filter.form show_label=False layout='inline' %}
+                        <button class="btn btn-primary btn-fab btn-fab-mini btn-round submit">
+                            <i class="material-icons">search</i>
+                        </button>
                     </form>
                     {% endif %}
                     <div class="table-responsive">{% render_table table %}</div>

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 11:57.
+#  Last modified 18/07/2020 12:09.
 
 from base.models import BaseModel
 from django.db import models
@@ -46,7 +46,17 @@ class Model(BaseConfigModel):
 
 
 class Type(BaseConfigModel):
-    pass
+
+    def get_absolute_url(self):
+        return reverse('config-type-edit', kwargs={'pk': self.pk})
+
+    @property
+    def del_url(self):
+        return 'config-type-del'
+
+    @property
+    def edit_url(self):
+        return 'config-type-edit'
 
 
 class Unit(BaseConfigModel):

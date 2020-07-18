@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 20:34.
+#  Last modified 18/07/2020 13:50.
 from django.utils.html import format_html
 from django_tables2 import tables, Column, TemplateColumn
 
@@ -15,7 +15,7 @@ class BrandTable(tables.Table):
         model = Brand
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'updated_by', 'created_in', 'updated_in']
+        fields = ['id', 'name', 'created_by', 'created_in']
 
     @staticmethod
     def render_name(value):
@@ -30,7 +30,22 @@ class ModelTable(tables.Table):
         model = Model
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'updated_by', 'created_in', 'updated_in']
+        fields = ['id', 'name', 'created_by', 'created_in']
+
+    @staticmethod
+    def render_name(value):
+        return format_html('<span class="name text-primary font-weight-bold">{}</span>', value)
+
+
+class TypeTable(tables.Table):
+    name = Column(linkify=True)
+    _ = TemplateColumn(template_name='config/table/buttons.html')
+
+    class Meta:
+        model = Type
+        attrs = {'class': 'table table-striped table-hover'}
+        per_page = 10
+        fields = ['id', 'name', 'created_by', 'created_in']
 
     @staticmethod
     def render_name(value):

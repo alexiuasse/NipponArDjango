@@ -1,11 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 19:36.
+#  Last modified 18/07/2020 12:09.
 
 from django.urls import path
 
 from .models_views.brand import *
 from .models_views.model import *
+from .models_views.type import *
 from .views import *
 
 urlpatterns = [
@@ -20,4 +21,9 @@ urlpatterns = [
     path('model/create/', ModelCreate.as_view(), name='config-model-create'),
     path('model/edit/<int:pk>/', ModelEdit.as_view(), name='config-model-edit'),
     path('model/del/<int:pk>/', ModelDel.as_view(), name='config-model-del'),
+    # type url views
+    path('type/', TypeView.as_view(), name='config-type'),
+    path('type/create/', TypeCreate.as_view(), name='config-type-create'),
+    path('type/edit/<int:pk>/', TypeEdit.as_view(), name='config-type-edit'),
+    path('type/del/<int:pk>/', TypeDel.as_view(), name='config-type-del'),
 ]

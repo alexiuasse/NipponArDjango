@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 18:41.
+  ~ Last modified 18/07/2020 12:09.
   -->
 
 {% extends 'base.html' %}
@@ -27,6 +27,12 @@
                                 Modelos
                             </a>
                             <span class="badge badge-primary badge-pill">{{model}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a class="list-group-item list-group-item-action" href="{% url 'config-type' %}">
+                                Tipos
+                            </a>
+                            <span class="badge badge-primary badge-pill">{{type}}</span>
                         </li>
                     </ul>
                 </div>
