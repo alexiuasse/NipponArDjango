@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 18/07/2020 14:57.
+  ~ Last modified 18/07/2020 15:19.
   -->
 
 {% extends 'base.html' %}
@@ -16,32 +16,15 @@
                 </div>
                 <div class="card-body">
                     <div class="list-group">
-                        <a class="list-group-item list-group-item-action list-group-item-primary"
-                           href="{% url 'config-brand' %}">
+                        <!-- Making automatically generation of list -->
+                        {% for k,v in links.items %}
+                        <a class="list-group-item list-group-item-action" href="{{v.link}}">
                             <div class="d-flex justify-content-between align-items-center">
-                                Marcas
-                                <span class="badge badge-primary badge-pill">{{brand}}</span>
+                                {{v.name}}
+                                <span class="badge badge-primary badge-pill">{{v.quantity}}</span>
                             </div>
                         </a>
-                        <a class="list-group-item list-group-item-action list-group-item-secondary"
-                           href="{% url 'config-model' %}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                Modelos
-                                <span class="badge badge-primary badge-pill">{{model}}</span>
-                            </div>
-                        </a>
-                        <a class="list-group-item list-group-item-action" href="{% url 'config-type' %}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                Tipos
-                                <span class="badge badge-primary badge-pill">{{type}}</span>
-                            </div>
-                        </a>
-                        <a class="list-group-item list-group-item-action" href="{% url 'config-capacity' %}">
-                            <div class="d-flex justify-content-between align-items-center">
-                                Capacidades
-                                <span class="badge badge-primary badge-pill">{{capacity}}</span>
-                            </div>
-                        </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
