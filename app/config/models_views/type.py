@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 12:09.
+#  Last modified 18/07/2020 13:57.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -21,7 +21,7 @@ class TypeView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     table_class = TypeTable
     filterset_class = TypeFilter
     paginator_class = LazyPaginator
-    permission_required = 'config.view_model'
+    permission_required = 'config.view_type'
     template_name = 'config/models_view.html'
     title = "Tipo"
     subtitle = "Configuração de tipos"

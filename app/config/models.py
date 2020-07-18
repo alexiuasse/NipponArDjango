@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 12:09.
+#  Last modified 18/07/2020 14:18.
 
 from base.models import BaseModel
 from django.db import models
@@ -59,9 +59,15 @@ class Type(BaseConfigModel):
         return 'config-type-edit'
 
 
-class Unit(BaseConfigModel):
-    pass
-
-
 class Capacity(BaseConfigModel):
-    unit = models.ForeignKey(Unit, verbose_name="Unidade", on_delete=models.CASCADE, null=True)
+
+    def get_absolute_url(self):
+        return reverse('config-capacity-edit', kwargs={'pk': self.pk})
+
+    @property
+    def del_url(self):
+        return 'config-capacity-del'
+
+    @property
+    def edit_url(self):
+        return 'config-capacity-edit'

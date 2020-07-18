@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 12:17.
+#  Last modified 18/07/2020 14:07.
 
 from django_filters import FilterSet
 
@@ -22,4 +22,10 @@ class ModelFilter(FilterSet):
 class TypeFilter(FilterSet):
     class Meta:
         model = Type
+        fields = {'name': ['icontains'], }
+
+
+class CapacityFilter(FilterSet):
+    class Meta:
+        model = Capacity
         fields = {'name': ['icontains'], }

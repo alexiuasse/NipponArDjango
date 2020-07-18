@@ -1,10 +1,11 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 12:09.
+#  Last modified 18/07/2020 14:46.
 
 from django.urls import path
 
 from .models_views.brand import *
+from .models_views.capacity import *
 from .models_views.model import *
 from .models_views.type import *
 from .views import *
@@ -26,4 +27,9 @@ urlpatterns = [
     path('type/create/', TypeCreate.as_view(), name='config-type-create'),
     path('type/edit/<int:pk>/', TypeEdit.as_view(), name='config-type-edit'),
     path('type/del/<int:pk>/', TypeDel.as_view(), name='config-type-del'),
+    # capacity url views
+    path('capacity/', CapacityView.as_view(), name='config-capacity'),
+    path('capacity/create/', CapacityCreate.as_view(), name='config-capacity-create'),
+    path('capacity/edit/<int:pk>/', CapacityEdit.as_view(), name='config-capacity-edit'),
+    path('capacity/del/<int:pk>/', CapacityDel.as_view(), name='config-capacity-del'),
 ]

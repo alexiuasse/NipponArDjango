@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 23:30.
+#  Last modified 18/07/2020 14:08.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Div, HTML
@@ -53,29 +53,8 @@ class TypeForm(BaseConfigForm):
         fields = ['name']
 
 
-class UnitForm(BaseConfigForm):
-    class Meta:
-        model = Unit
-        fields = ['name']
-
-
 class CapacityForm(BaseConfigForm):
-    layout = Layout(
-        Div(
-            Column('name', css_class='form-group col-md-3 mb-0 font-weight-bold'),
-            Column('unit', css_class='form-group col-md-3 mb-0 font-weight-bold'),
-        ),
-        Div(
-            Column(
-                HTML(
-                    '<a href="{{ redirect_success }}" class="btn btn-danger mr-2">Cancelar</a>'
-                    '<button type="submit" class="btn btn-primary">Finalizar</button>'),
-                css_class='mb-3 mb-sm-0'
-            ),
-            css_class='row'
-        ),
-    )
 
     class Meta:
         model = Capacity
-        fields = ['name', 'unit']
+        fields = ['name']
