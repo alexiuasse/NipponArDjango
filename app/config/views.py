@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 15:10.
+#  Last modified 22/07/2020 16:44.
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -16,25 +16,33 @@ class Config(LoginRequiredMixin, View):
 
     def get(self, request):
         links = {
-            'brand': {
-                'name': "Marcas",
-                'link': reverse_lazy('config-brand'),
-                'quantity': Brand.objects.all().count(),
+            'Geral': {
+
             },
-            'model': {
-                'name': "Modelos",
-                'link': reverse_lazy('config-model'),
-                'quantity': Model.objects.all().count(),
+            'Assistência Técnica': {
+                'brand': {
+                    'name': "Marcas",
+                    'link': reverse_lazy('config-brand'),
+                    'quantity': Brand.objects.all().count(),
+                },
+                'model': {
+                    'name': "Modelos",
+                    'link': reverse_lazy('config-model'),
+                    'quantity': Model.objects.all().count(),
+                },
+                'type': {
+                    'name': "Tipos",
+                    'link': reverse_lazy('config-type'),
+                    'quantity': Type.objects.all().count(),
+                },
+                'capacity': {
+                    'name': "Capacidades",
+                    'link': reverse_lazy('config-capacity'),
+                    'quantity': Capacity.objects.all().count(),
+                },
             },
-            'type': {
-                'name': "Tipos",
-                'link': reverse_lazy('config-type'),
-                'quantity': Type.objects.all().count(),
-            },
-            'capacity': {
-                'name': "Capacidades",
-                'link': reverse_lazy('config-capacity'),
-                'quantity': Capacity.objects.all().count(),
+            'Financeiro': {
+
             },
         }
         context = {

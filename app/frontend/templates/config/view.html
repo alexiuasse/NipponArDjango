@@ -1,23 +1,23 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 18/07/2020 15:19.
+  ~ Last modified 22/07/2020 16:41.
   -->
 
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md">
+        {% for kk, vv in links.items %}
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">{{title}}</h4>
-                    <p class="card-category">{{subtitle}}</p>
+                    <h4 class="card-title">{{kk}}</h4>
                 </div>
                 <div class="card-body">
-                    <div class="list-group">
+                    <div class="list-group collapse" id="collapse{{kk}}">
                         <!-- Making automatically generation of list -->
-                        {% for k,v in links.items %}
+                        {% for k,v in vv.items %}
                         <a class="list-group-item list-group-item-action" href="{{v.link}}">
                             <div class="d-flex justify-content-between align-items-center">
                                 {{v.name}}
@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
