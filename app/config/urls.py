@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:50.
+#  Last modified 22/07/2020 17:27.
 
 from django.urls import path
 
@@ -8,6 +8,7 @@ from .models_views.brand import *
 from .models_views.capacity import *
 from .models_views.model import *
 from .models_views.type import *
+from .models_views.city import *
 from .views import *
 
 urlpatterns = [
@@ -32,4 +33,9 @@ urlpatterns = [
     path('capacity/create/', CapacityCreate.as_view(), name='config-capacity-create'),
     path('capacity/edit/<int:pk>/', CapacityEdit.as_view(), name='config-capacity-edit'),
     path('capacity/del/<int:pk>/', CapacityDel.as_view(), name='config-capacity-del'),
+    # city url views
+    path('city/', CityView.as_view(), name='config-city'),
+    path('city/create/', CityCreate.as_view(), name='config-city-create'),
+    path('city/edit/<int:pk>/', CityEdit.as_view(), name='config-city-edit'),
+    path('city/del/<int:pk>/', CityDel.as_view(), name='config-city-del'),
 ]

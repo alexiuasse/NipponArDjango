@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:50.
+#  Last modified 22/07/2020 17:23.
 from django.utils.html import format_html
 from django_tables2 import tables, Column, TemplateColumn
 
@@ -58,6 +58,21 @@ class CapacityTable(tables.Table):
 
     class Meta:
         model = Capacity
+        attrs = {'class': 'table table-striped table-hover'}
+        per_page = 10
+        fields = ['id', 'name', 'created_by', 'created_in']
+
+    @staticmethod
+    def render_name(value):
+        return format_html('<span class="name text-primary font-weight-bold">{}</span>', value)
+
+
+class CityTable(tables.Table):
+    name = Column(linkify=True)
+    _ = TemplateColumn(template_name='config/table/buttons.html')
+
+    class Meta:
+        model = City
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
         fields = ['id', 'name', 'created_by', 'created_in']

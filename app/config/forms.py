@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:50.
+#  Last modified 22/07/2020 17:26.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Div, HTML
@@ -54,7 +54,12 @@ class TypeForm(BaseConfigForm):
 
 
 class CapacityForm(BaseConfigForm):
-
     class Meta:
         model = Capacity
+        fields = ['name']
+
+
+class CityForm(BaseConfigForm):
+    class Meta:
+        model = City
         fields = ['name']

@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 19:36.
+  ~ Last modified 22/07/2020 22:57.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -23,60 +23,48 @@
                     <p>Dashboard</p>
                 </a>
             </li>
+            <li class="nav-item {% if 'customer' in request.resolver_match.url_name %}active{% endif %}">
+                <a class="nav-link" href="{% url 'customer' %}">
+                    <i class="material-icons">person</i>
+                    <p>Clientes</p>
+                </a>
+            </li>
+            <li class="nav-item {% if 'address' in request.resolver_match.url_name %}active{% endif %}">
+                <a class="nav-link" href="{% url 'customer-address' %}">
+                    <i class="material-icons">person</i>
+                    <p>Endereços</p>
+                </a>
+            </li>
             <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">
                 <a class="nav-link" href="{% url 'config' %}">
                     <i class="material-icons">settings</i>
                     <p>Configurações</p>
                 </a>
             </li>
-            <li class="nav-item {% if request.resolver_match.url_name == 'user' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'user' %}">
-                    <i class="material-icons">person</i>
-                    <p>User Profile</p>
-                </a>
-            </li>
-            <li class="nav-item {% if request.resolver_match.url_name == 'tables' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'tables' %}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Table List</p>
-                </a>
-            </li>
-            <li class="nav-item {% if request.resolver_match.url_name == 'typography' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'typography' %}">
-                    <i class="material-icons">library_books</i>
-                    <p>Typography</p>
-                </a>
-            </li>
-            <li class="nav-item {% if request.resolver_match.url_name == 'icons' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'icons' %}">
-                    <i class="material-icons">bubble_chart</i>
-                    <p>Icons</p>
-                </a>
-            </li>
-            <!--      <li class="nav-item ">-->
-            <!--        <a class="nav-link mapsClick" href="#maps">-->
-            <!--          <i class="material-icons">location_ons</i>-->
-            <!--          <p>Maps</p>-->
-            <!--        </a>-->
-            <!--      </li>-->
-            <li class="nav-item {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}">
-                <a class="nav-link" href="{% url 'notifications' %}">
-                    <i class="material-icons">notifications</i>
-                    <p>Notifications</p>
-                </a>
-            </li>
-            <!-- <li class="nav-item ">
-              <a class="nav-link" href="./rtl.html">
-                <i class="material-icons">language</i>
-                <p>RTL Support</p>
-              </a>
-            </li> -->
-            <!-- <li class="nav-item active-pro ">
-              <a class="nav-link" href="./upgrade.html">
-                <i class="material-icons">unarchive</i>
-                <p>Upgrade to PRO</p>
-              </a>
-            </li> -->
+            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'tables' %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'tables' %}">-->
+            <!--                    <i class="material-icons">content_paste</i>-->
+            <!--                    <p>Table List</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'typography' %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'typography' %}">-->
+            <!--                    <i class="material-icons">library_books</i>-->
+            <!--                    <p>Typography</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'icons' %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'icons' %}">-->
+            <!--                    <i class="material-icons">bubble_chart</i>-->
+            <!--                    <p>Icons</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'notifications' %}">-->
+            <!--                    <i class="material-icons">notifications</i>-->
+            <!--                    <p>Notifications</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
         </ul>
     </div>
 </div>

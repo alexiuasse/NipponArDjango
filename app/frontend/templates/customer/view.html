@@ -1,0 +1,40 @@
+<!--
+  ~ Created by Alex Matos Iuasse.
+  ~ Copyright (c) 2020.  All rights reserved.
+  ~ Last modified 22/07/2020 18:13.
+  -->
+{% extends 'base.html' %}
+{% load render_table from django_tables2 %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">
+                        {{view.title}}
+                        <span>
+                            <a href="{{ view.new }}" rel="tooltip" title="Novo" type="button">
+                                <i class="material-icons">library_add</i>
+                            </a>
+                        </span>
+                    </h4>
+                    <p class="card-category">{{view.subtitle}}</p>
+                </div>
+                <div class="card-body">
+                    {% if filter %}
+                    <form action="" class="form form-inline" method="get">
+                        {% bootstrap_form filter.form show_label=False layout='inline' %}
+                        <button class="btn btn-primary btn-fab btn-fab-mini btn-round submit">
+                            <i class="material-icons">search</i>
+                        </button>
+                    </form>
+                    {% endif %}
+                    <div class="table-responsive">{% render_table table %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

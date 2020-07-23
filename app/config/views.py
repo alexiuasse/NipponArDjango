@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 16:44.
+#  Last modified 22/07/2020 17:26.
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -17,7 +17,11 @@ class Config(LoginRequiredMixin, View):
     def get(self, request):
         links = {
             'Geral': {
-
+                'city': {
+                    'name': "Cidades",
+                    'link': reverse_lazy('config-city'),
+                    'quantity': City.objects.all().count(),
+                }
             },
             'Assistência Técnica': {
                 'brand': {

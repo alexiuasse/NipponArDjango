@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:50.
+#  Last modified 22/07/2020 17:23.
 
 from base.models import BaseModel
 from django.db import models
@@ -71,3 +71,17 @@ class Capacity(BaseConfigModel):
     @property
     def edit_url(self):
         return 'config-capacity-edit'
+
+
+class City(BaseConfigModel):
+
+    def get_absolute_url(self):
+        return reverse('config-city-edit', kwargs={'pk': self.pk})
+
+    @property
+    def del_url(self):
+        return 'config-city-del'
+
+    @property
+    def edit_url(self):
+        return 'config-city-edit'
