@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 22/07/2020 22:57.
+  ~ Last modified 24/07/2020 15:54.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -27,12 +27,6 @@
                 <a class="nav-link" href="{% url 'customer' %}">
                     <i class="material-icons">person</i>
                     <p>Clientes</p>
-                </a>
-            </li>
-            <li class="nav-item {% if 'address' in request.resolver_match.url_name %}active{% endif %}">
-                <a class="nav-link" href="{% url 'customer-address' %}">
-                    <i class="material-icons">person</i>
-                    <p>Endereços</p>
                 </a>
             </li>
             <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">

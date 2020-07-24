@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 17:26.
+#  Last modified 24/07/2020 11:43.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Column, Div, HTML
@@ -33,6 +33,8 @@ class BaseConfigForm(forms.ModelForm):
         self.disable_csrf = True
         self.helper = FormHelper()
         self.helper.layout = self.layout
+        self.helper.form_class = 'form-control'
+        self.helper.label_class = 'bmd-label-floating'
 
 
 class BrandForm(BaseConfigForm):

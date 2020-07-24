@@ -1,8 +1,8 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 22:53.
+#  Last modified 24/07/2020 18:57.
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Column, Div, HTML, Row
+from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
 
 from .models import *
@@ -10,20 +10,54 @@ from .models import *
 
 class CustomerForm(forms.ModelForm):
     layout = Layout(
-        'name',
-        'email',
-        Row(
-            Column('phone_1', css_class='col-md-6'),
-            Column('phone_2', css_class='col-md-6'),
-        ),
-        Row(
-            Column(
-                HTML(
-                    '<a href="{{ view.success_url }}" class="btn btn-danger btn-sm mr-2">Cancelar</a>'
-                    '<button type="submit" class="btn btn-primary btn-sm">Finalizar</button>'),
-                css_class='pull-right'
+        Div(
+            # card for customer rows
+            Div(
+                Div(
+                    Div(
+                        HTML('<h6 class="card-title">Dados do Cliente</h6>'),
+                        css_class='card-header'
+                    ),
+                    Div(
+                        Row(
+                            Field('name', wrapper_class='col-md-12'),
+                            Field('email', wrapper_class='col-md-12'),
+                            Field('phone_1', wrapper_class='col-md-12'),
+                            Field('phone_2', wrapper_class='col-md-12'),
+                            Field('parent_company', wrapper_class='col-md-12'),
+                        ),
+                        css_class='card-body'
+                    ),
+                    css_class='card'
+                ),
+                css_class='col-md-6'
             ),
-            css_class='row'
+            # card for address
+            Div(
+                Div(
+                    Div(
+                        HTML('<h6 class="card-title">Endereço do Cliente</h6>'),
+                        css_class='card-header'
+                    ),
+                    Div(
+                        Row(
+                            Field('street', wrapper_class='col-md-12'),
+                            Field('number', wrapper_class='col-md-12'),
+                            Field('neighborhood', wrapper_class='col-md-12'),
+                            Field('apartment', wrapper_class='col-md-12'),
+                            Field('block', wrapper_class='col-md-12'),
+                            Field('cep', wrapper_class='col-md-12'),
+                            Field('city', wrapper_class='col-md-12'),
+                            Field('state', wrapper_class='col-md-12'),
+                            Field('address_line', wrapper_class='col-md-12'),
+                        ),
+                        css_class='card-body'
+                    ),
+                    css_class='card'
+                ),
+                css_class='col-md-6'
+            ),
+            css_class="row"
         ),
     )
 
@@ -31,51 +65,15 @@ class CustomerForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.disable_csrf = True
         self.helper = FormHelper()
+        self.helper.form_tag = False
         self.helper.layout = self.layout
+        self.helper.form_class = 'form-control'
+        self.helper.label_class = 'bmd-label-floating'
 
     class Meta:
         model = Customer
-        fields = ['name', 'email', 'phone_1', 'phone_2']
-
-
-class CustomerAddressForm(forms.ModelForm):
-    layout = Layout(
-        # Row(
-        #     Column('customer', css_class='col-md'),
-        #     Column('street', css_class='col-md'),
-        #     Column('number', css_class='col-md'),
-        #     Column('city', css_class='col-md'),
-        #     Column('state', css_class='col-md'),
-        #     Column('cep', css_class='col-md'),
-        #     Column('address_line', css_class='col-md'),
-        # ),
-        'customer',
-        Row(
-            Column('street', css_class='col-md-4'),
-            Column('number', css_class='col-md-4'),
-            Column('cep', css_class='col-md-4'),
-        ),
-        Row(
-            Column('city', css_class='col-md-6'),
-            Column('state', css_class='col-md-6'),
-        ),
-        'address_line',
-        Row(
-            Column(
-                HTML(
-                    '<a href="{{ view.success_url }}" class="btn btn-danger btn-sm mr-2">Cancelar</a>'
-                    '<button type="submit" class="btn btn-primary btn-sm">Finalizar</button>'),
-                css_class='pull-right'
-            ),
-        ),
-    )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.disable_csrf = True
-        self.helper = FormHelper()
-        self.helper.layout = self.layout
-
-    class Meta:
-        model = CustomerAddress
-        fields = ['customer', 'street', 'number', 'city', 'state', 'cep', 'address_line']
+        fields = ['name', 'email', 'phone_1',
+                  'phone_2', 'street', 'number',
+                  'neighborhood', 'apartment', 'block',
+                  'city', 'state', 'cep',
+                  'address_line', 'parent_company']

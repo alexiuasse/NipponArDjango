@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 22:57.
+#  Last modified 24/07/2020 15:54.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -22,7 +22,7 @@ class CustomerView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin
     filterset_class = CustomerFilter
     paginator_class = LazyPaginator
     permission_required = 'customer.view_customer'
-    template_name = 'customer/view.html'
+    template_name = 'base/view.html'
     title = "Cliente"
     subtitle = "Configuração de clientes"
     new = reverse_lazy('customer-create')
@@ -31,7 +31,7 @@ class CustomerView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin
 class CustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Customer
     form_class = CustomerForm
-    template_name = 'customer/form.html'
+    template_name = 'base/form.html'
     permission_required = 'customer.create_customer'
     success_url = reverse_lazy('customer')
     title = "Novo Cliente"
@@ -41,7 +41,7 @@ class CustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class CustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Customer
     form_class = CustomerForm
-    template_name = 'customer/form.html'
+    template_name = 'base/form.html'
     permission_required = 'customer.edit_customer'
     success_url = reverse_lazy('customer')
     title = "Editar Cliente"
@@ -50,60 +50,11 @@ class CustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class CustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Customer
-    template_name = "customer/confirm_delete.html"
+    template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_customer'
     success_url = reverse_lazy('customer')
     title = "Deletar Cliente"
     subtitle = "Configuração de clientes"
-
-    def get_context_data(self, **kwargs):
-        context: Dict[str, Any] = super().get_context_data(**kwargs)
-        collector = NestedObjects(using='default')  # or specific database
-        collector.collect([context['object']])
-        to_delete = collector.nested()
-        context['extra_object'] = to_delete
-        return context
-
-
-class CustomerAddressView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
-    model = CustomerAddress
-    table_class = CustomerAddressTable
-    filterset_class = CustomerAddressFilter
-    paginator_class = LazyPaginator
-    permission_required = 'customer.view_customeraddress'
-    template_name = 'customer/view.html'
-    title = "Endereço de Cliente"
-    subtitle = "Configuração de endereço de cliente"
-    new = reverse_lazy('customer-address-create')
-
-
-class CustomerAddressCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    model = CustomerAddress
-    form_class = CustomerAddressForm
-    template_name = 'customer/form.html'
-    permission_required = 'customer.create_customeraddress'
-    success_url = reverse_lazy('customer-address')
-    title = "Novo Endereço de Cliente"
-    subtitle = "Configuração de endereço de cliente"
-
-
-class CustomerAddressEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    model = CustomerAddress
-    form_class = CustomerAddressForm
-    template_name = 'customer/form.html'
-    permission_required = 'customer.edit_customeraddress'
-    success_url = reverse_lazy('customer-address')
-    title = "Endereço de Cliente"
-    subtitle = "Configuração de endereço de cliente"
-
-
-class CustomerAddressDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
-    model = CustomerAddress
-    template_name = "customer/confirm_delete.html"
-    permission_required = 'customer.del_customeraddress'
-    success_url = reverse_lazy('customer-address')
-    title = "Deletar Endereço de Cliente"
-    subtitle = "Configuração de endereço de cliente"
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
