@@ -1,9 +1,9 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/07/2020 11:43.
+#  Last modified 25/07/2020 15:18.
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Column, Div, HTML
+from crispy_forms.layout import Layout, Row, Field
 from django import forms
 
 from .models import *
@@ -14,17 +14,8 @@ from .models import *
 
 class BaseConfigForm(forms.ModelForm):
     layout = Layout(
-        Div(
-            Column('name', css_class='form-group col-md'),
-        ),
-        Div(
-            Column(
-                HTML(
-                    '<a href="{{ view.success_url }}" class="btn btn-danger btn-sm mr-2">Cancelar</a>'
-                    '<button type="submit" class="btn btn-primary btn-sm">Finalizar</button>'),
-                css_class='pull-right'
-            ),
-            css_class='row'
+        Row(
+            Field('name', wrapper_class='col-md'),
         ),
     )
 

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 22:49.
+#  Last modified 25/07/2020 15:17.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -22,7 +22,7 @@ class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     filterset_class = BrandFilter
     paginator_class = LazyPaginator
     permission_required = 'config.view_brand'
-    template_name = 'config/models_view.html'
+    template_name = 'base/view.html'
     title = "Marca"
     subtitle = "Configuração de marcas"
     new = reverse_lazy('config-brand-create')
@@ -31,7 +31,7 @@ class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
 class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Brand
     form_class = BrandForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.create_brand'
     success_url = reverse_lazy('config-brand')
     title = "Nova Marca"
@@ -41,7 +41,7 @@ class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Brand
     form_class = BrandForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.edit_brand'
     success_url = reverse_lazy('config-brand')
     title = "Editar Marca"
@@ -50,7 +50,7 @@ class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Brand
-    template_name = "config/confirm_delete.html"
+    template_name = "base/confirm_delete.html"
     permission_required = 'config.del_brand'
     success_url = reverse_lazy('config-brand')
     title = "Deletar Marca"

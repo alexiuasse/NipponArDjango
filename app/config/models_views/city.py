@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 22:57.
+#  Last modified 25/07/2020 15:19.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -22,7 +22,7 @@ class CityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     filterset_class = CityFilter
     paginator_class = LazyPaginator
     permission_required = 'config.view_city'
-    template_name = 'config/models_view.html'
+    template_name = 'base/view.html'
     title = "Cidade"
     subtitle = "Configuração de cidades"
     new = reverse_lazy('config-city-create')
@@ -31,7 +31,7 @@ class CityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
 class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = City
     form_class = CityForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.create_city'
     success_url = reverse_lazy('config-city')
     title = "Nova Cidade"
@@ -41,7 +41,7 @@ class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = City
     form_class = CityForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.edit_city'
     success_url = reverse_lazy('config-city')
     title = "Editar Cidade"
@@ -50,7 +50,7 @@ class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class CityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = City
-    template_name = "config/confirm_delete.html"
+    template_name = "base/confirm_delete.html"
     permission_required = 'config.del_city'
     success_url = reverse_lazy('config-city')
     title = "Deletar Cidade"

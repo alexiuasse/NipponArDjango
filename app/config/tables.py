@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 17:23.
+#  Last modified 25/07/2020 15:21.
 from django.utils.html import format_html
 from django_tables2 import tables, Column, TemplateColumn
 
@@ -9,13 +9,13 @@ from .models import *
 
 class BrandTable(tables.Table):
     name = Column(linkify=True)
-    _ = TemplateColumn(template_name='config/table/buttons.html')
+    _ = TemplateColumn(template_name='base/table/buttons.html')
 
     class Meta:
         model = Brand
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'created_in']
+        fields = ['id', 'name']
 
     @staticmethod
     def render_name(value):
@@ -24,13 +24,13 @@ class BrandTable(tables.Table):
 
 class ModelTable(tables.Table):
     name = Column(linkify=True)
-    _ = TemplateColumn(template_name='config/table/buttons.html')
+    _ = TemplateColumn(template_name='base/table/buttons.html')
 
     class Meta:
         model = Model
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'created_in']
+        fields = ['id', 'name']
 
     @staticmethod
     def render_name(value):
@@ -39,13 +39,13 @@ class ModelTable(tables.Table):
 
 class TypeTable(tables.Table):
     name = Column(linkify=True)
-    _ = TemplateColumn(template_name='config/table/buttons.html')
+    _ = TemplateColumn(template_name='base/table/buttons.html')
 
     class Meta:
         model = Type
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'created_in']
+        fields = ['id', 'name']
 
     @staticmethod
     def render_name(value):
@@ -54,13 +54,13 @@ class TypeTable(tables.Table):
 
 class CapacityTable(tables.Table):
     name = Column(linkify=True)
-    _ = TemplateColumn(template_name='config/table/buttons.html')
+    _ = TemplateColumn(template_name='base/table/buttons.html')
 
     class Meta:
         model = Capacity
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'created_in']
+        fields = ['id', 'name']
 
     @staticmethod
     def render_name(value):
@@ -69,13 +69,14 @@ class CapacityTable(tables.Table):
 
 class CityTable(tables.Table):
     name = Column(linkify=True)
-    _ = TemplateColumn(template_name='config/table/buttons.html')
+    _ = TemplateColumn(template_name='base/table/buttons.html')
 
     class Meta:
         model = City
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['id', 'name', 'created_by', 'created_in']
+        fields = ['id', 'name']
+        # fields = ['id', 'name', 'created_by', 'created_in']
 
     @staticmethod
     def render_name(value):

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 20:23.
+#  Last modified 25/07/2020 15:19.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -22,7 +22,7 @@ class ModelView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     filterset_class = ModelFilter
     paginator_class = LazyPaginator
     permission_required = 'config.view_model'
-    template_name = 'config/models_view.html'
+    template_name = 'base/view.html'
     title = "Modelo"
     subtitle = "Configuração de modelos"
     new = reverse_lazy('config-model-create')
@@ -31,7 +31,7 @@ class ModelView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
 class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Model
     form_class = ModelForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.create_model'
     success_url = reverse_lazy('config-model')
     title = "Novo Modelo"
@@ -41,7 +41,7 @@ class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Model
     form_class = ModelForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.edit_model'
     success_url = reverse_lazy('config-model')
     title = "Editar Modelo"
@@ -50,7 +50,7 @@ class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class ModelDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Model
-    template_name = "config/confirm_delete.html"
+    template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
     success_url = reverse_lazy('config-model')
     title = "Deletar Modelo"

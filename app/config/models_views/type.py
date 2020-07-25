@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 14:50.
+#  Last modified 25/07/2020 15:19.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -22,7 +22,7 @@ class TypeView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     filterset_class = TypeFilter
     paginator_class = LazyPaginator
     permission_required = 'config.view_type'
-    template_name = 'config/models_view.html'
+    template_name = 'base/view.html'
     title = "Tipo"
     subtitle = "Configuração de tipos"
     new = reverse_lazy('config-type-create')
@@ -31,7 +31,7 @@ class TypeView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
 class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Type
     form_class = TypeForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.create_model'
     success_url = reverse_lazy('config-type')
     title = "Novo Tipo"
@@ -41,7 +41,7 @@ class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Type
     form_class = TypeForm
-    template_name = 'config/form.html'
+    template_name = 'base/form.html'
     permission_required = 'config.edit_model'
     success_url = reverse_lazy('config-type')
     title = "Editar Tipo"
@@ -50,7 +50,7 @@ class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
 class TypeDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Type
-    template_name = "config/confirm_delete.html"
+    template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
     success_url = reverse_lazy('config-type')
     title = "Deletar Tipo"
