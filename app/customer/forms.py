@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/07/2020 18:57.
+#  Last modified 25/07/2020 16:28.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -24,6 +24,8 @@ class CustomerForm(forms.ModelForm):
                             Field('email', wrapper_class='col-md-12'),
                             Field('phone_1', wrapper_class='col-md-12'),
                             Field('phone_2', wrapper_class='col-md-12'),
+                            Field('cpf', wrapper_class='col-md-12'),
+                            Field('cnpj', wrapper_class='col-md-12'),
                             Field('parent_company', wrapper_class='col-md-12'),
                         ),
                         css_class='card-body'
@@ -73,6 +75,7 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['name', 'email', 'phone_1',
+                  'cpf', 'cnpj',
                   'phone_2', 'street', 'number',
                   'neighborhood', 'apartment', 'block',
                   'city', 'state', 'cep',

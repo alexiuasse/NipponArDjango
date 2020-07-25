@@ -1,14 +1,9 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 17:27.
+#  Last modified 25/07/2020 15:28.
 
 from django.urls import path
 
-from .models_views.brand import *
-from .models_views.capacity import *
-from .models_views.model import *
-from .models_views.type import *
-from .models_views.city import *
 from .views import *
 
 urlpatterns = [

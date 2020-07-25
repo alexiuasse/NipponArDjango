@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/07/2020 16:01.
+#  Last modified 25/07/2020 16:27.
 
 from base.models import BaseModel
 from django.db import models
@@ -19,6 +19,8 @@ class Customer(BaseModel):
     email = models.EmailField(max_length=254, blank=True)
     phone_1 = models.CharField("telefone 1", max_length=15, blank=True)
     phone_2 = models.CharField("telefone 2", max_length=15, blank=True)
+    cpf = models.CharField("CPF", max_length=14, blank=True)
+    cnpj = models.CharField("CNPJ", max_length=18, blank=True)
 
     street = models.CharField("Rua", max_length=128, blank=True)
     number = models.CharField("Número", max_length=10, blank=True)
