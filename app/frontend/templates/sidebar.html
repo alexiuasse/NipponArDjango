@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 24/07/2020 15:54.
+  ~ Last modified 25/07/2020 23:18.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -29,6 +29,18 @@
                     <p>Clientes</p>
                 </a>
             </li>
+            <!--            <li class="nav-item {% if 'customer-individual' in request.resolver_match.url_name %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'customer-individual' %}">-->
+            <!--                    <i class="material-icons">person</i>-->
+            <!--                    <p>Clientes - Físicos</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item {% if 'customer-juridical' in request.resolver_match.url_name %}active{% endif %}">-->
+            <!--                <a class="nav-link" href="{% url 'customer-juridical' %}">-->
+            <!--                    <i class="material-icons">person</i>-->
+            <!--                    <p>Clientes - Jurídicos</p>-->
+            <!--                </a>-->
+            <!--            </li>-->
             <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">
                 <a class="nav-link" href="{% url 'config' %}">
                     <i class="material-icons">settings</i>

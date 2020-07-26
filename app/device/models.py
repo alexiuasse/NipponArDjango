@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 11:56.
+#  Last modified 25/07/2020 22:45.
 
 from base.models import BaseModel
 from django.db import models
@@ -13,7 +13,7 @@ class Device(BaseModel):
     departure_date = models.DateField("data de saída", blank=True)
     observation = models.TextField("observações", blank=True)
 
-    customer = models.ForeignKey("customer.Customer", verbose_name="Cliente", on_delete=models.CASCADE)
+    # customer = models.ForeignKey("customer.Customer", verbose_name="Cliente", on_delete=models.CASCADE)
     brand = models.ForeignKey("config.Brand", verbose_name="Marca", on_delete=models.SET_NULL, null=True)
     model = models.ForeignKey("config.Model", verbose_name="Modelo", on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey("config.Type", verbose_name="Tipo", on_delete=models.SET_NULL, null=True)

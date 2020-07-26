@@ -1,9 +1,10 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/07/2020 15:54.
+#  Last modified 25/07/2020 22:44.
 
 from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Customer)
+admin.site.register(IndividualCustomer)
+admin.site.register(JuridicalCustomer)

@@ -1,7 +1,16 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 22:18.
+#  Last modified 25/07/2020 20:49.
 from enum import Enum
+
+
+class TypeCustomerEnum(Enum):
+    FISICA = "PF"
+    JURIDICA = "PJ"
+
+    @classmethod
+    def choices(cls):
+        return [(key.value, key.name) for key in cls]
 
 
 class StateEnum(Enum):

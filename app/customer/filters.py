@@ -1,12 +1,18 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/07/2020 15:54.
+#  Last modified 25/07/2020 22:44.
 from django_filters import FilterSet
 
 from .models import *
 
 
-class CustomerFilter(FilterSet):
+class IndividualCustomerFilter(FilterSet):
     class Meta:
-        model = Customer
+        model = IndividualCustomer
+        fields = {'name': ['icontains'], }
+
+
+class JuridicalCustomerFilter(FilterSet):
+    class Meta:
+        model = JuridicalCustomer
         fields = {'name': ['icontains'], }
