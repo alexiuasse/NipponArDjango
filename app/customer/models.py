@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 22:44.
+#  Last modified 26/07/2020 16:07.
 
 from base.models import BaseModel
 from django.db import models
@@ -57,7 +57,7 @@ class JuridicalCustomer(CustomerAddress):
     phone_1 = models.CharField("telefone 1", max_length=15, blank=True)
     phone_2 = models.CharField("telefone 2", max_length=15, blank=True)
     cnpj = models.CharField("CNPJ", max_length=18, blank=True)
-    parent_company = models.ForeignKey("customer.JuridicalCustomer", verbose_name="Matriz", on_delete=models.SET_NULL,
+    parent_company = models.ForeignKey("customer.JuridicalCustomer", verbose_name="Matriz", on_delete=models.CASCADE,
                                        null=True, blank=True, help_text="Qual a matriz dessa empresa?")
 
     def __str__(self):

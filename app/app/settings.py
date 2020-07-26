@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 26/07/2020 13:17.
+#  Last modified 26/07/2020 17:31.
 
 import os
 
@@ -33,6 +33,40 @@ ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.18.16']
 # CUSTOMIZATION DEFINITIONS
 # GENERAL
 NAME_OF_ENTERPRISE = "Nippon Ar"
+# CONFIG CUSTOMIZATION
+HEADER_CLASS_CONFIG_GENERAL = "card-header-primary"
+HEADER_CLASS_CONFIG_TECHNICAL = "card-header-primary"
+HEADER_CLASS_CONFIG_FINANTIAL = "card-header-primary"
+# CONFIG BRAND CUSTOMIZATION
+TITLE_VIEW_CONFIG_BRAND = "Marcas"
+TITLE_CREATE_CONFIG_BRAND = "Nova Marca"
+TITLE_EDIT_CONFIG_BRAND = "Editar Marca"
+TITLE_DEL_CONFIG_BRAND = "Deletar Marca"
+SUBTITLE_VIEW_CONFIG_BRAND = "Configuração de marcas"
+# CONFIG CAPACITY CUSTOMIZATION
+TITLE_VIEW_CONFIG_CAPACITY = "Capacidades"
+TITLE_CREATE_CONFIG_CAPACITY = "Nova Capacidade"
+TITLE_EDIT_CONFIG_CAPACITY = "Editar Capacidade"
+TITLE_DEL_CONFIG_CAPACITY = "Deletar Capacidade"
+SUBTITLE_VIEW_CONFIG_CAPACITY = "Configuração de capacidades"
+# CONFIG MODEL CUSTOMIZATION
+TITLE_VIEW_CONFIG_MODEL = "Modelos"
+TITLE_CREATE_CONFIG_MODEL = "Novo Modelo"
+TITLE_EDIT_CONFIG_MODEL = "Editar Modelo"
+TITLE_DEL_CONFIG_MODEL = "Deletar Modelo"
+SUBTITLE_VIEW_CONFIG_MODEL = "Configuração de modelos"
+# CONFIG TYPE CUSTOMIZATION
+TITLE_VIEW_CONFIG_TYPE = "Tipos"
+TITLE_CREATE_CONFIG_TYPE = "Novo Tipo"
+TITLE_EDIT_CONFIG_TYPE = "Editar Tipo"
+TITLE_DEL_CONFIG_TYPE = "Deletar Tipo"
+SUBTITLE_VIEW_CONFIG_TYPE = "Configuração de tipos"
+# CONFIG CITY CUSTOMIZATION
+TITLE_VIEW_CONFIG_CITY = "Cidades"
+TITLE_CREATE_CONFIG_CITY = "Nova Cidade"
+TITLE_EDIT_CONFIG_CITY = "Editar Cidade"
+TITLE_DEL_CONFIG_CITY = "Deletar Cidade"
+SUBTITLE_VIEW_CONFIG_CITY = "Configuração de cidades"
 # CUSTOMER APP CUSTOMIZATION
 # INDIVIDUAL CUSTOMER
 TITLE_VIEW_INDIVIDUAL_CUSTOMER = "Cliente - Pessoa Física"
@@ -79,6 +113,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
