@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 15:49.
+#  Last modified 26/07/2020 13:28.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -29,29 +29,29 @@ class Config(LoginRequiredMixin, View):
                 'city': {
                     'name': "Cidades",
                     'link': reverse_lazy('config-city'),
-                    # 'quantity': City.objects.all().count(),
+                    'quantity': City.objects.count(),
                 }
             },
             'Assistência Técnica': {
                 'brand': {
                     'name': "Marcas",
                     'link': reverse_lazy('config-brand'),
-                    # 'quantity': Brand.objects.all().count(),
+                    'quantity': Brand.objects.count(),
                 },
                 'model': {
                     'name': "Modelos",
                     'link': reverse_lazy('config-model'),
-                    # 'quantity': Model.objects.all().count(),
+                    'quantity': Model.objects.count(),
                 },
                 'type': {
                     'name': "Tipos",
                     'link': reverse_lazy('config-type'),
-                    # 'quantity': Type.objects.all().count(),
+                    'quantity': Type.objects.count(),
                 },
                 'capacity': {
                     'name': "Capacidades",
                     'link': reverse_lazy('config-capacity'),
-                    # 'quantity': Capacity.objects.all().count(),
+                    'quantity': Capacity.objects.count(),
                 },
             },
             'Financeiro': {

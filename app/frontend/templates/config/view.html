@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 25/07/2020 15:51.
+  ~ Last modified 25/07/2020 23:23.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -20,6 +20,7 @@
                         <a class="list-group-item list-group-item-action" href="{{vv.link}}">
                             <i class="material-icons mr-2">settings</i>
                             {{vv.name}}
+                            <span class="badge badge-success">{{vv.quantity}}</span>
                         </a>
                         {% endfor %}
                     </div>

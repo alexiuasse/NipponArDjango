@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 18/07/2020 10:52.
+#  Last modified 26/07/2020 13:17.
 
 import os
 
@@ -31,9 +31,26 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.18.16']
 
 # CUSTOMIZATION DEFINITIONS
+# GENERAL
+NAME_OF_ENTERPRISE = "Nippon Ar"
+# CUSTOMER APP CUSTOMIZATION
+# INDIVIDUAL CUSTOMER
+TITLE_VIEW_INDIVIDUAL_CUSTOMER = "Cliente - Pessoa Física"
+TITLE_CREATE_INDIVIDUAL_CUSTOMER = "Novo Cliente - Pessoa Física"
+TITLE_EDIT_INDIVIDUAL_CUSTOMER = "Editar Cliente - Pessoa Física"
+TITLE_DEL_INDIVIDUAL_CUSTOMER = "Deletar Cliente - Pessoa Física"
+SUBTITLE_INDIVIDUAL_CUSTOMER = "Configuração de clientes"
+HEADER_CLASS_INDIVIDUAL_CUSTOMER = "card-header-rose"  # class of card header, basically just change the color
+# JURIDICAL CUSTOMER
+TITLE_VIEW_JURIDICAL_CUSTOMER = "Cliente - Pessoa Jurídica"
+TITLE_CREATE_JURIDICAL_CUSTOMER = "Novo Cliente - Pessoa Jurídica"
+TITLE_EDIT_JURIDICAL_CUSTOMER = "Editar Cliente - Pessoa Jurídica"
+TITLE_DEL_JURIDICAL_CUSTOMER = "Deletar Cliente - Pessoa Jurídica"
+SUBTITLE_JURIDICAL_CUSTOMER = "Configuração de clientes"
+HEADER_CLASS_JURIDICAL_CUSTOMER = "card-header-danger"
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
-NAME_OF_ENTERPRISE = "Nippon Ar"
 DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 # Application definition
