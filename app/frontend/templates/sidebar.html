@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 28/07/2020 08:44.
+  ~ Last modified 28/07/2020 14:07.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -21,10 +21,11 @@
                 <a class="nav-link dashboardClick" href="{% url 'dashboard' %}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
+                    {{request.path}}
                 </a>
             </li>
-            <li class="nav-item {% if 'customer' in request.resolver_match.url_name %}active{% endif %}">
-                <a class="nav-link" href="{% url 'customer' %}">
+            <li class="nav-item {% if 'customer' in request.path %}active{% endif %}">
+                <a class="nav-link" href="{% url 'customer:view' %}">
                     <i class="material-icons">person</i>
                     <p>Clientes</p>
                 </a>
@@ -35,48 +36,12 @@
                     <p>Equipamentos</p>
                 </a>
             </li>
-            <!--            <li class="nav-item {% if 'customer-individual' in request.resolver_match.url_name %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'customer-individual' %}">-->
-            <!--                    <i class="material-icons">person</i>-->
-            <!--                    <p>Clientes - Físicos</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item {% if 'customer-juridical' in request.resolver_match.url_name %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'customer-juridical' %}">-->
-            <!--                    <i class="material-icons">person</i>-->
-            <!--                    <p>Clientes - Jurídicos</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
             <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">
                 <a class="nav-link" href="{% url 'config' %}">
                     <i class="material-icons">settings</i>
                     <p>Configurações</p>
                 </a>
             </li>
-            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'tables' %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'tables' %}">-->
-            <!--                    <i class="material-icons">content_paste</i>-->
-            <!--                    <p>Table List</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'typography' %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'typography' %}">-->
-            <!--                    <i class="material-icons">library_books</i>-->
-            <!--                    <p>Typography</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'icons' %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'icons' %}">-->
-            <!--                    <i class="material-icons">bubble_chart</i>-->
-            <!--                    <p>Icons</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
-            <!--            <li class="nav-item {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}">-->
-            <!--                <a class="nav-link" href="{% url 'notifications' %}">-->
-            <!--                    <i class="material-icons">notifications</i>-->
-            <!--                    <p>Notifications</p>-->
-            <!--                </a>-->
-            <!--            </li>-->
         </ul>
     </div>
 </div>

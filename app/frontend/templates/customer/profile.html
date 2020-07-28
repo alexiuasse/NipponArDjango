@@ -1,0 +1,93 @@
+<!--
+  ~ Created by Alex Matos Iuasse.
+  ~ Copyright (c) 2020.  All rights reserved.
+  ~ Last modified 28/07/2020 20:43.
+  -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-plain">
+                <div class="card-header {{config.header}}">
+                    <h4 class="card-title">
+                        {{customer.name}}
+                        <span>
+                            <a href="{% url customer.edit_url pk=customer.id %}" rel="tooltip" title="Editar"
+                               type="button">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <a href="{% url customer.del_url pk=customer.id %}" rel="tooltip" title="Deletar"
+                               type="button">
+                                <i class="material-icons">delete_forever</i>
+                            </a>
+                            <a href="{% url 'device' %}" rel="tooltip" title="Novo Equipamento" type="button">
+                                <i class="material-icons">ac_unit</i>
+                                <span class="badge badge-primary">Novo Equipamento</span>
+                            </a>
+                        </span>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6>Dados Pessoais</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            {% for k, v in customer.get_personal_to_dict.items %}
+                                            <tr>
+                                                <td>{{k}}</td>
+                                                <td>{{v}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6>Dados de Endereço</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            {% for k, v in customer.get_address_to_dict.items %}
+                                            <tr>
+                                                <td>{{k}}</td>
+                                                <td>{{v}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6>Equipamentos</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        {% for v in customer.devices.all %}
+                                        <a class="list-group-item list-group-item-action" href="{{v.get_absolute_url}}">
+                                            <i class="material-icons mr-2">ac_unit</i>
+                                            {{v}}
+                                            <span class="badge badge-success">2</span>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!--
+  ~ Created by Alex Matos Iuasse.
+  ~ Copyright (c) 2020.  All rights reserved.
+  ~ Last modified 28/07/2020 13:26.
+  -->
+
+<a class="btn btn-primary btn-link btn-sm" href="{% url record.edit_url pk=record.id %}" rel="tooltip" title="Editar"
+   type="button">
+    <i class="material-icons">edit</i>
+</a>
+<a class="btn btn-danger btn-link btn-sm" href="{% url record.del_url pk=record.id %}" rel="tooltip" title="Deletar"
+   type="button">
+    <i class="material-icons">delete_forever</i>
+</a>
+<a class="btn btn-success btn-link btn-sm" href="{% url 'customer:profile' pk=record.id flag=record.type %}"
+   rel="tooltip" title="Perfil" type="button">
+    <i class="material-icons">person</i>
+</a>

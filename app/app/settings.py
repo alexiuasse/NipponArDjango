@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 08:46.
+#  Last modified 28/07/2020 11:46.
 
 import os
 
@@ -68,6 +68,9 @@ TITLE_EDIT_CONFIG_CITY = "Editar Cidade"
 TITLE_DEL_CONFIG_CITY = "Deletar Cidade"
 SUBTITLE_VIEW_CONFIG_CITY = "Configuração de cidades"
 # CUSTOMER APP CUSTOMIZATION
+# CUSTOMER
+TITLE_VIEW_CUSTOMER = "Clientes"
+SUBTITLE_VIEW_CUSTOMER = "Manejamento de clientes"
 # INDIVIDUAL CUSTOMER
 TITLE_VIEW_INDIVIDUAL_CUSTOMER = "Cliente - Pessoa Física"
 TITLE_CREATE_INDIVIDUAL_CUSTOMER = "Novo Cliente - Pessoa Física"

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 22:44.
+#  Last modified 28/07/2020 13:02.
 from django_tables2 import tables, Column, TemplateColumn
 
 from .models import *
@@ -10,7 +10,7 @@ class IndividualCustomerTable(tables.Table):
     # name = Column(linkify=True)
     # parent_company = Column(linkify=True)
     # all = Column(accessor='get_address', verbose_name='Endereço')
-    _ = TemplateColumn(template_name='base/table/buttons.html')
+    _ = TemplateColumn(template_name='customer/table/buttons.html')
 
     class Meta:
         model = IndividualCustomer
@@ -27,7 +27,7 @@ class JuridicalCustomerTable(tables.Table):
     # name = Column(linkify=True)
     parent_company = Column(linkify=True)
     # all = Column(accessor='get_address', verbose_name='Endereço')
-    _ = TemplateColumn(template_name='base/table/buttons.html')
+    _ = TemplateColumn(template_name='customer/table/buttons.html')
 
     class Meta:
         model = JuridicalCustomer

@@ -1,20 +1,29 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 22:44.
-from django.urls import path
+#  Last modified 28/07/2020 13:52.
+from django.urls import path, include
 
 from .views import *
 
+app_name = "customer"
+
+individual_patterns = ([
+                           path('', IndividualCustomerView.as_view(), name='index'),
+                           path('create/', IndividualCustomerCreate.as_view(), name='create'),
+                           path('<int:pk>/edit/', IndividualCustomerEdit.as_view(), name='edit'),
+                           path('<int:pk>/del', IndividualCustomerDel.as_view(), name='delete'),
+                       ], 'individual')
+
+juridical_patterns = ([
+                          path('', JuridicalCustomerView.as_view(), name='index'),
+                          path('create/', JuridicalCustomerCreate.as_view(), name='create'),
+                          path('<int:pk>/edit/', JuridicalCustomerEdit.as_view(), name='edit'),
+                          path('<int:pk>/del', JuridicalCustomerDel.as_view(), name='delete'),
+                      ], 'juridical')
+
 urlpatterns = [
-    path('', Customer.as_view(), name='customer'),
-    # individual customer
-    path('individual', IndividualCustomerView.as_view(), name='customer-individual'),
-    path('individual/create/', IndividualCustomerCreate.as_view(), name='customer-individual-create'),
-    path('individual/edit/<int:pk>/', IndividualCustomerEdit.as_view(), name='customer-individual-edit'),
-    path('individual/del/<int:pk>/', IndividualCustomerDel.as_view(), name='customer-individual-del'),
-    # juridical customer
-    path('juridical', JuridicalCustomerView.as_view(), name='customer-juridical'),
-    path('juridical/create/', JuridicalCustomerCreate.as_view(), name='customer-juridical-create'),
-    path('juridical/edit/<int:pk>/', JuridicalCustomerEdit.as_view(), name='customer-juridical-edit'),
-    path('juridical/del/<int:pk>/', JuridicalCustomerDel.as_view(), name='customer-juridical-del'),
+    path('', Customer.as_view(), name='view'),
+    path('profile/<int:pk>/<int:flag>/', CustomerProfile.as_view(), name='profile'),
+    path('individual/', include(individual_patterns)),
+    path('juridical/', include(juridical_patterns)),
 ]

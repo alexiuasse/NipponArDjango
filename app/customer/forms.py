@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 23:18.
+#  Last modified 28/07/2020 19:28.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -73,11 +73,9 @@ class IndividualCustomerForm(forms.ModelForm):
     class Meta:
         model = IndividualCustomer
         fields = ['name', 'email', 'phone_1',
-                  'cpf',
-                  'phone_2', 'street', 'number',
+                  'cpf', 'phone_2', 'street', 'number',
                   'neighborhood', 'apartment', 'block',
-                  'city', 'state', 'cep',
-                  'address_line']
+                  'city', 'state', 'cep', 'address_line']
 
 
 class JuridicalCustomerForm(forms.ModelForm):
