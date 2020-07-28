@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 26/07/2020 17:31.
+#  Last modified 28/07/2020 08:46.
 
 import os
 
@@ -82,6 +82,13 @@ TITLE_EDIT_JURIDICAL_CUSTOMER = "Editar Cliente - Pessoa Jurídica"
 TITLE_DEL_JURIDICAL_CUSTOMER = "Deletar Cliente - Pessoa Jurídica"
 SUBTITLE_JURIDICAL_CUSTOMER = "Configuração de clientes"
 HEADER_CLASS_JURIDICAL_CUSTOMER = "card-header-danger"
+# DEVICE
+TITLE_VIEW_DEVICE = "Equipamentos"
+TITLE_CREATE_DEVICE = "Novo Equipamento"
+TITLE_EDIT_DEVICE = "Editar Equipamento"
+TITLE_DEL_DEVICE = "Deletar Equipamento"
+SUBTITLE_DEVICE = "Configuração de equipamentos"
+HEADER_CLASS_DEVICE = "card-header-rose"  # class of card header, basically just change the color
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
