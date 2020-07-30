@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 19:28.
+#  Last modified 30/07/2020 17:26.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -48,7 +48,7 @@ class Customer(LoginRequiredMixin, View):
                 },
                 'Pessoa Física': {
                     'name': "Pessoa Física",
-                    'link': reverse_lazy('customer:individual:index'),
+                    'link': reverse_lazy('customer:individual:view'),
                     'badge_text': IndividualCustomer.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'person',
@@ -67,7 +67,7 @@ class Customer(LoginRequiredMixin, View):
                 },
                 'Pessoa Jurídica': {
                     'name': "Pessoa Jurídica",
-                    'link': reverse_lazy('customer:juridical:index'),
+                    'link': reverse_lazy('customer:juridical:view'),
                     'badge_text': JuridicalCustomer.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'person',
@@ -108,7 +108,7 @@ class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Crea
     form_class = IndividualCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_individualcustomer'
-    success_url = reverse_lazy('customer:individual:index')
+    success_url = reverse_lazy('customer:individual:view')
     title = settings.TITLE_CREATE_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
@@ -119,7 +119,7 @@ class IndividualCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, Update
     form_class = IndividualCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.edit_individualcustomer'
-    success_url = reverse_lazy('customer:individual:index')
+    success_url = reverse_lazy('customer:individual:view')
     title = settings.TITLE_EDIT_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
@@ -129,7 +129,7 @@ class IndividualCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteV
     model = IndividualCustomer
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_individualcustomer'
-    success_url = reverse_lazy('customer:individual:index')
+    success_url = reverse_lazy('customer:individual:view')
     title = settings.TITLE_DEL_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
@@ -162,7 +162,7 @@ class JuridicalCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = JuridicalCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_juridicalcustomer'
-    success_url = reverse_lazy('customer:juridical:index')
+    success_url = reverse_lazy('customer:juridical:view')
     title = settings.TITLE_CREATE_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
@@ -173,7 +173,7 @@ class JuridicalCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateV
     form_class = JuridicalCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.edit_juridicalcustomer'
-    success_url = reverse_lazy('customer:juridical:index')
+    success_url = reverse_lazy('customer:juridical:view')
     title = settings.TITLE_EDIT_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
@@ -183,7 +183,7 @@ class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteVi
     model = JuridicalCustomer
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_juridicalcustomer'
-    success_url = reverse_lazy('customer:juridical:index')
+    success_url = reverse_lazy('customer:juridical:view')
     title = settings.TITLE_DEL_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER

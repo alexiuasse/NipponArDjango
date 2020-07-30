@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 09:04.
+#  Last modified 30/07/2020 17:21.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -33,7 +33,7 @@ class DeviceIndex(LoginRequiredMixin, View):
                 },
                 'Equipamentos': {
                     'name': "Equipamentos",
-                    'link': reverse_lazy('device-view'),
+                    'link': reverse_lazy('device:view'),
                     'badge_text': Device.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'person',
@@ -59,7 +59,7 @@ class DeviceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, 
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
-    new = reverse_lazy('device-create')
+    new = reverse_lazy('device:create')
     header_class = settings.HEADER_CLASS_DEVICE
 
 
@@ -68,7 +68,7 @@ class DeviceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.create_device'
-    success_url = reverse_lazy('device-view')
+    success_url = reverse_lazy('device:view')
     title = settings.TITLE_CREATE_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
@@ -79,7 +79,7 @@ class DeviceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.edit_device'
-    success_url = reverse_lazy('device-view')
+    success_url = reverse_lazy('device:view')
     title = settings.TITLE_EDIT_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
@@ -89,7 +89,7 @@ class DeviceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Device
     template_name = "base/confirm_delete.html"
     permission_required = 'device.del_device'
-    success_url = reverse_lazy('device-view')
+    success_url = reverse_lazy('device:view')
     title = settings.TITLE_DEL_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE

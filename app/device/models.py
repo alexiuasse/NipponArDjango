@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 10:04.
+#  Last modified 30/07/2020 17:29.
 
 from datetime import datetime
 
@@ -25,12 +25,12 @@ class Device(BaseModel):
         return self.patrimony
 
     def get_absolute_url(self):
-        return reverse('device-edit', kwargs={'pk': self.pk})
+        return reverse('device:edit', kwargs={'pk': self.pk})
 
     @property
     def del_url(self):
-        return 'device-del'
+        return 'device:delete'
 
     @property
     def edit_url(self):
-        return 'device-edit'
+        return 'device:edit'

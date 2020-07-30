@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 13:52.
+#  Last modified 30/07/2020 17:25.
 from django.urls import path, include
 
 from .views import *
@@ -8,21 +8,21 @@ from .views import *
 app_name = "customer"
 
 individual_patterns = ([
-                           path('', IndividualCustomerView.as_view(), name='index'),
+                           path('', IndividualCustomerView.as_view(), name='view'),
                            path('create/', IndividualCustomerCreate.as_view(), name='create'),
                            path('<int:pk>/edit/', IndividualCustomerEdit.as_view(), name='edit'),
                            path('<int:pk>/del', IndividualCustomerDel.as_view(), name='delete'),
                        ], 'individual')
 
 juridical_patterns = ([
-                          path('', JuridicalCustomerView.as_view(), name='index'),
+                          path('', JuridicalCustomerView.as_view(), name='view'),
                           path('create/', JuridicalCustomerCreate.as_view(), name='create'),
                           path('<int:pk>/edit/', JuridicalCustomerEdit.as_view(), name='edit'),
                           path('<int:pk>/del', JuridicalCustomerDel.as_view(), name='delete'),
                       ], 'juridical')
 
 urlpatterns = [
-    path('', Customer.as_view(), name='view'),
+    path('', Customer.as_view(), name='index'),
     path('profile/<int:pk>/<int:flag>/', CustomerProfile.as_view(), name='profile'),
     path('individual/', include(individual_patterns)),
     path('juridical/', include(juridical_patterns)),
