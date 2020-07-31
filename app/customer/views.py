@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 13:52.
+#  Last modified 31/07/2020 14:31.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -48,14 +48,14 @@ class Customer(LoginRequiredMixin, View):
                 },
                 'Pessoa Física': {
                     'name': "Pessoa Física",
-                    'link': reverse_lazy('customer:individual:view'),
+                    'link': reverse_lazy('customer:individualcustomer:view'),
                     'badge_text': IndividualCustomer.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'person',
                 },
                 'Novo Cadastro': {
                     'name': "Novo Cadastro",
-                    'link': reverse_lazy('customer:individual:create'),
+                    'link': reverse_lazy('customer:individualcustomer:create'),
                     'badge_text': "Novo",
                     'badge_class': 'badge-primary',
                     'icon': 'add',
@@ -67,14 +67,14 @@ class Customer(LoginRequiredMixin, View):
                 },
                 'Pessoa Jurídica': {
                     'name': "Pessoa Jurídica",
-                    'link': reverse_lazy('customer:juridical:view'),
+                    'link': reverse_lazy('customer:juridicalcustomer:view'),
                     'badge_text': JuridicalCustomer.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'person',
                 },
                 'Novo Cadastro': {
                     'name': "Novo Cadastro",
-                    'link': reverse_lazy('customer:juridical:create'),
+                    'link': reverse_lazy('customer:juridicalcustomer:create'),
                     'badge_text': "Novo",
                     'badge_class': 'badge-primary',
                     'icon': 'add',
@@ -99,7 +99,7 @@ class IndividualCustomerView(LoginRequiredMixin, PermissionRequiredMixin, Single
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
-    new = reverse_lazy('customer:individual:create')
+    new = reverse_lazy('customer:individualcustomer:create')
     back_url = reverse_lazy('customer:index')
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
@@ -110,7 +110,7 @@ class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Crea
     template_name = 'base/form.html'
     permission_required = 'customer.create_individualcustomer'
     # success_url = reverse_lazy('customer:individual:view')
-    back_url = reverse_lazy('customer:individual:view')
+    back_url = reverse_lazy('customer:individualcustomer:view')
     title = settings.TITLE_CREATE_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
@@ -130,7 +130,7 @@ class IndividualCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteV
     model = IndividualCustomer
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_individualcustomer'
-    success_url = reverse_lazy('customer:individual:view')
+    success_url = reverse_lazy('customer:individualcustomer:view')
     title = settings.TITLE_DEL_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
@@ -154,7 +154,7 @@ class JuridicalCustomerView(LoginRequiredMixin, PermissionRequiredMixin, SingleT
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
-    new = reverse_lazy('customer:juridical:create')
+    new = reverse_lazy('customer:juridicalcustomer:create')
     back_url = reverse_lazy('customer:index')
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
 
@@ -165,7 +165,7 @@ class JuridicalCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Creat
     template_name = 'base/form.html'
     permission_required = 'customer.create_juridicalcustomer'
     # success_url = reverse_lazy('customer:juridical:view')
-    back_url = reverse_lazy('customer:juridical:view')
+    back_url = reverse_lazy('customer:juridicalcustomer:view')
     title = settings.TITLE_CREATE_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
@@ -185,7 +185,7 @@ class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteVi
     model = JuridicalCustomer
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_juridicalcustomer'
-    success_url = reverse_lazy('customer:juridical:view')
+    success_url = reverse_lazy('customer:juridicalcustomer:view')
     title = settings.TITLE_DEL_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER

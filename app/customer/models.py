@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 13:14.
+#  Last modified 31/07/2020 14:34.
 
 from base.models import BaseModel
 from django.db import models
@@ -32,6 +32,9 @@ class Customer(BaseModel):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         self.address_line = "{}, {}, {}, {}, {}, {} - {}, {}".format(self.street, self.number, self.neighborhood,
                                                                      self.apartment, self.block, self.city, self.state,
@@ -60,30 +63,14 @@ class Customer(BaseModel):
             'CEP': self.cep,
         }
 
+    def get_absolute_url(self):
+        return reverse('{}:profile'.format(self._meta.app_label), kwargs={'pk': self.pk, 'tp': self.type})
+
 
 class IndividualCustomer(Customer):
     name = models.CharField("nome", max_length=128)
     cpf = models.CharField("CPF", max_length=14, blank=True)
     type = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        # return reverse('customer:individual:edit', kwargs={'pk': self.pk})
-        return reverse('customer:profile', kwargs={'pk': self.pk, 'tp': self.type})
-
-    @property
-    def get_delete_url(self):
-        return 'customer:individual:delete'
-
-    @property
-    def get_edit_url(self):
-        return 'customer:individual:edit'
-
-    @property
-    def get_back_url(self):
-        return reverse('customer:individual:view')
 
 
 class JuridicalCustomer(Customer):
@@ -92,22 +79,3 @@ class JuridicalCustomer(Customer):
     parent_company = models.ForeignKey("customer.JuridicalCustomer", verbose_name="Matriz", on_delete=models.CASCADE,
                                        null=True, blank=True, help_text="Qual a matriz dessa empresa?")
     type = models.IntegerField(default=1)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        # return reverse('customer:juridical:edit', kwargs={'pk': self.pk})
-        return reverse('customer:profile', kwargs={'pk': self.pk, 'tp': self.type})
-
-    @property
-    def get_delete_url(self):
-        return 'customer:juridical:delete'
-
-    @property
-    def get_edit_url(self):
-        return 'customer:juridical:edit'
-
-    @property
-    def get_back_url(self):
-        return reverse('customer:juridical:view')
