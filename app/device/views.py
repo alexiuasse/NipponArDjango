@@ -1,8 +1,9 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 30/07/2020 17:21.
+#  Last modified 31/07/2020 09:12.
 from typing import Dict, Any
 
+from customer.models import JuridicalCustomer, IndividualCustomer
 from django.conf import settings
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -17,7 +18,6 @@ from django_tables2.views import SingleTableMixin
 from .filters import *
 from .forms import *
 from .tables import *
-from .models import *
 
 
 class DeviceIndex(LoginRequiredMixin, View):
@@ -59,7 +59,8 @@ class DeviceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, 
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
-    new = reverse_lazy('device:create')
+    new = reverse_lazy('device:index')
+    # new = reverse_lazy('device:create')
     header_class = settings.HEADER_CLASS_DEVICE
 
 
@@ -68,10 +69,20 @@ class DeviceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.create_device'
-    success_url = reverse_lazy('device:view')
     title = settings.TITLE_CREATE_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
+
+    def get_success_url(self):
+        return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
+
+    def form_valid(self, form):
+        response = super(DeviceCreate, self).form_valid(form)
+        if self.object:
+            customer = IndividualCustomer.objects.get(pk=self.kwargs['cpk']) if self.kwargs['ctp'] == 0 \
+                else JuridicalCustomer.objects.get(pk=self.kwargs['cpk'])
+            customer.devices.add(self.object)
+        return response
 
 
 class DeviceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -79,20 +90,31 @@ class DeviceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.edit_device'
-    success_url = reverse_lazy('device:view')
     title = settings.TITLE_EDIT_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
+
+    def get_success_url(self):
+        return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
+
+    def get_delete_url(self):
+        return reverse_lazy('device:delete',
+                            kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        return super(DeviceEdit, self).get_context_data(**kwargs)
 
 
 class DeviceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Device
     template_name = "base/confirm_delete.html"
     permission_required = 'device.del_device'
-    success_url = reverse_lazy('device:view')
     title = settings.TITLE_DEL_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
+
+    def get_success_url(self):
+        return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)

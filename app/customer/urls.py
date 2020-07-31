@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 30/07/2020 17:25.
+#  Last modified 30/07/2020 20:54.
 from django.urls import path, include
 
 from .views import *
@@ -23,7 +23,7 @@ juridical_patterns = ([
 
 urlpatterns = [
     path('', Customer.as_view(), name='index'),
-    path('profile/<int:pk>/<int:flag>/', CustomerProfile.as_view(), name='profile'),
+    path('profile/<int:pk>/<int:tp>/', CustomerProfile.as_view(), name='profile'),
     path('individual/', include(individual_patterns)),
     path('juridical/', include(juridical_patterns)),
 ]

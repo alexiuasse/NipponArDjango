@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 10:04.
+#  Last modified 31/07/2020 09:05.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -62,10 +62,14 @@ class DeviceForm(forms.ModelForm):
         self.helper.form_tag = False
         self.helper.layout = self.layout
         self.helper.form_class = 'form-control'
-        self.helper.label_class = 'bmd-label-floating'
+        # self.helper.label_class = 'bmd-label-floating'
 
     class Meta:
         model = Device
+        widgets = {
+            'entry_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+            'departure_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+        }
         fields = ['name', 'patrimony', 'entry_date',
                   'departure_date', 'observation', 'location',
                   'brand', 'model', 'type', 'capacity', ]

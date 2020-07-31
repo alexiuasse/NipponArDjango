@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 30/07/2020 17:25.
+  ~ Last modified 30/07/2020 21:36.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -28,12 +28,6 @@
                 <a class="nav-link" href="{% url 'customer:index' %}">
                     <i class="material-icons">person</i>
                     <p>Clientes</p>
-                </a>
-            </li>
-            <li class="nav-item {% if 'device' in request.path %}active{% endif %}">
-                <a class="nav-link" href="{% url 'device:index' %}">
-                    <i class="material-icons">ac_unit</i>
-                    <p>Equipamentos</p>
                 </a>
             </li>
             <li class="nav-item {% if 'config' in request.resolver_match.url_name %}active{% endif %}">

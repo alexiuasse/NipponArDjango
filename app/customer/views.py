@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 30/07/2020 17:26.
+#  Last modified 30/07/2020 20:54.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -22,9 +22,9 @@ from .tables import *
 class CustomerProfile(LoginRequiredMixin, View):
     template = 'customer/profile.html'
 
-    def get(self, request, pk, flag):
-        customer = IndividualCustomer.objects.get(pk=pk) if flag == 0 else JuridicalCustomer.objects.get(pk=pk)
-        header = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER if flag == 0 else settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+    def get(self, request, pk, tp):
+        customer = IndividualCustomer.objects.get(pk=pk) if tp == 0 else JuridicalCustomer.objects.get(pk=pk)
+        header = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER if tp == 0 else settings.HEADER_CLASS_JURIDICAL_CUSTOMER
 
         context = {
             'config': {
