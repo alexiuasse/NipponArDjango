@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 20:31.
+#  Last modified 31/07/2020 13:14.
 
 from base.models import BaseModel
 from django.db import models
@@ -16,8 +16,8 @@ from .enums import StateEnum
 
 class Customer(BaseModel):
     email = models.EmailField(max_length=254, blank=True)
-    phone_1 = models.CharField("telefone 1", max_length=15, blank=True)
-    phone_2 = models.CharField("telefone 2", max_length=15, blank=True)
+    phone_1 = models.CharField("telefone", max_length=15, blank=True)
+    phone_2 = models.CharField("celular", max_length=15, blank=True)
     street = models.CharField("Rua", max_length=128, blank=True)
     number = models.CharField("Número", max_length=10, blank=True)
     neighborhood = models.CharField("Bairro", max_length=128, blank=True)
@@ -32,7 +32,12 @@ class Customer(BaseModel):
     class Meta:
         abstract = True
 
-    @property
+    def save(self, *args, **kwargs):
+        self.address_line = "{}, {}, {}, {}, {}, {} - {}, {}".format(self.street, self.number, self.neighborhood,
+                                                                     self.apartment, self.block, self.city, self.state,
+                                                                     self.cep)
+        super(Customer, self).save(*args, **kwargs)
+
     def get_personal_to_dict(self):
         return {
             'Nome': self.name,
@@ -42,9 +47,9 @@ class Customer(BaseModel):
             'E-mail': self.email,
         }
 
-    @property
     def get_address_to_dict(self):
         return {
+            'Endereço': self.address_line,
             'Rua': self.street,
             'Número': self.number,
             'Bairro': self.neighborhood,
@@ -53,7 +58,6 @@ class Customer(BaseModel):
             'Cidade': self.city,
             'Estado': self.state,
             'CEP': self.cep,
-            'Endereço': self.address_line,
         }
 
 
@@ -66,15 +70,20 @@ class IndividualCustomer(Customer):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('customer:individual:edit', kwargs={'pk': self.pk})
+        # return reverse('customer:individual:edit', kwargs={'pk': self.pk})
+        return reverse('customer:profile', kwargs={'pk': self.pk, 'tp': self.type})
 
     @property
-    def del_url(self):
+    def get_delete_url(self):
         return 'customer:individual:delete'
 
     @property
-    def edit_url(self):
+    def get_edit_url(self):
         return 'customer:individual:edit'
+
+    @property
+    def get_back_url(self):
+        return reverse('customer:individual:view')
 
 
 class JuridicalCustomer(Customer):
@@ -88,12 +97,17 @@ class JuridicalCustomer(Customer):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('customer:juridical:edit', kwargs={'pk': self.pk})
+        # return reverse('customer:juridical:edit', kwargs={'pk': self.pk})
+        return reverse('customer:profile', kwargs={'pk': self.pk, 'tp': self.type})
 
     @property
-    def del_url(self):
+    def get_delete_url(self):
         return 'customer:juridical:delete'
 
     @property
-    def edit_url(self):
+    def get_edit_url(self):
         return 'customer:juridical:edit'
+
+    @property
+    def get_back_url(self):
+        return reverse('customer:juridical:view')

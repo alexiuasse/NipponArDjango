@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 30/07/2020 21:10.
+  ~ Last modified 31/07/2020 13:49.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -11,23 +11,29 @@
             <div class="card card-plain">
                 <div class="card-header {{config.header}}">
                     <h4 class="card-title">
-                        {{customer.name}}
                         <span>
-                            <a href="{% url customer.edit_url pk=customer.pk %}" rel="tooltip" title="Editar"
+                            <a href="{{obj.get_back_url}}" rel="tooltip" title="Voltar" type="button">
+                                <i class="material-icons">arrow_back</i>
+                            </a>
+                        </span>
+                        {{obj.name}}
+                        <span>
+                            <a href="{% url obj.get_edit_url pk=obj.pk %}" rel="tooltip" title="Editar"
                                type="button">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <a href="{% url customer.del_url pk=customer.pk %}" rel="tooltip" title="Deletar"
+                            <a href="{% url obj.get_delete_url pk=obj.pk %}" rel="tooltip" title="Deletar"
                                type="button">
                                 <i class="material-icons">delete_forever</i>
                             </a>
-                            <a href="{% url 'device:create' cpk=customer.pk ctp=customer.type %}" rel="tooltip"
+                            <a href="{% url 'device:create' cpk=obj.pk ctp=obj.type %}" rel="tooltip"
                                title="Novo Equipamento" type="button">
                                 <i class="material-icons">ac_unit</i>
                                 <span class="badge badge-primary">Novo Equipamento</span>
                             </a>
                         </span>
                     </h4>
+                    <p class="card-category">{{obj.address_line}}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -39,7 +45,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-striped">
-                                            {% for k, v in customer.get_personal_to_dict.items %}
+                                            {% for k, v in obj.get_personal_to_dict.items %}
                                             <tr>
                                                 <td>{{k}}</td>
                                                 <td>{{v}}</td>
@@ -56,7 +62,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-striped">
-                                            {% for k, v in customer.get_address_to_dict.items %}
+                                            {% for k, v in obj.get_address_to_dict.items %}
                                             <tr>
                                                 <td>{{k}}</td>
                                                 <td>{{v}}</td>
@@ -74,13 +80,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="list-group">
-                                        {% for v in customer.devices.all %}
+                                        {% for v in obj.devices.all %}
                                         <a class="list-group-item list-group-item-action"
-                                           href="{% url v.edit_url cpk=customer.pk ctp=customer.type pk=v.pk%}">
+                                           href="{{v.get_absolute_url}}">
                                             <i class="material-icons mr-2">ac_unit</i>
-                                            {{v}}
+                                            {{v.get_full_name}}
                                             <!-- Numero de ordens de serviços -->
-                                            <span class="badge badge-success">2</span>
+                                            <span class="badge badge-success">Finalizado</span>
                                         </a>
                                         {% endfor %}
                                     </div>

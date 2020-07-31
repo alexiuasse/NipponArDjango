@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 09:05.
+#  Last modified 31/07/2020 13:06.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -19,7 +19,7 @@ class DeviceForm(forms.ModelForm):
                     ),
                     Div(
                         Row(
-                            Field('name', wrapper_class='col-md-12'),
+                            Field('identifier', wrapper_class='col-md-12'),
                             Field('patrimony', wrapper_class='col-md-12'),
                             Field('brand', wrapper_class='col-md-12'),
                             Field('model', wrapper_class='col-md-12'),
@@ -70,6 +70,6 @@ class DeviceForm(forms.ModelForm):
             'entry_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
             'departure_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         }
-        fields = ['name', 'patrimony', 'entry_date',
+        fields = ['identifier', 'patrimony', 'entry_date',
                   'departure_date', 'observation', 'location',
                   'brand', 'model', 'type', 'capacity', ]

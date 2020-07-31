@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 30/07/2020 21:36.
+  ~ Last modified 31/07/2020 12:58.
   -->
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
@@ -21,7 +21,6 @@
                 <a class="nav-link dashboardClick" href="{% url 'dashboard' %}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
-                    {{request.path}}
                 </a>
             </li>
             <li class="nav-item {% if 'customer' in request.path %}active{% endif %}">

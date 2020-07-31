@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 09:14.
+  ~ Last modified 31/07/2020 13:47.
   -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
@@ -12,12 +12,20 @@
             <div class="card">
                 <div class="card-header {% if view.header_class %} {{view.header_class}} {% else %} card-header-primary {% endif %}">
                     <h4 class="card-title">
+                        <span>
+                            <a href="{% if object %} {{object.get_absolute_url}} {% else %} {{view.back_url}} {% endif %}"
+                               rel="tooltip" title="Voltar" type="button">
+                                <i class="material-icons">arrow_back</i>
+                            </a>
+                        </span>
                         {{view.title}}
+                        {% if object %}
                         <span>
                             <a href="{{ view.get_delete_url }}" rel="tooltip" title="Deletar" type="button">
                                 <i class="material-icons">delete_forever</i>
                             </a>
                         </span>
+                        {% endif %}
                     </h4>
                     <p class="card-category">{{view.subtitle}}</p>
                 </div>
@@ -27,7 +35,7 @@
                         {% crispy form %}
                         <div class="form-row">
                             <div class="pull-right">
-                                <a class="btn btn-danger btn-sm mr-2" href="{{ view.get_success_url }}">Cancelar</a>
+                                <a class="btn btn-danger btn-sm mr-2" href="{{ object.get_absolute_url }}">Cancelar</a>
                                 <button class="btn btn-primary btn-sm" type="submit">Finalizar</button>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 09:12.
+#  Last modified 31/07/2020 10:56.
 from typing import Dict, Any
 
 from customer.models import JuridicalCustomer, IndividualCustomer
@@ -18,6 +18,25 @@ from django_tables2.views import SingleTableMixin
 from .filters import *
 from .forms import *
 from .tables import *
+
+
+class DeviceProfile(LoginRequiredMixin, View):
+    template = 'device/profile.html'
+    title = settings.TITLE_VIEW_DEVICE
+    subtitle = settings.SUBTITLE_DEVICE
+
+    def get(self, request, cpk, ctp, pk):
+        header = settings.HEADER_CLASS_DEVICE
+
+        context = {
+            'config': {
+                'header': header
+            },
+            'obj': Device.objects.get(pk=pk),
+            'cpk': cpk,
+            'ctp': ctp,
+        }
+        return render(request, self.template, context)
 
 
 class DeviceIndex(LoginRequiredMixin, View):
@@ -93,9 +112,6 @@ class DeviceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     title = settings.TITLE_EDIT_DEVICE
     subtitle = settings.SUBTITLE_DEVICE
     header_class = settings.HEADER_CLASS_DEVICE
-
-    def get_success_url(self):
-        return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
 
     def get_delete_url(self):
         return reverse_lazy('device:delete',
