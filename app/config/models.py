@@ -1,10 +1,10 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 17:23.
+#  Last modified 31/07/2020 14:45.
 
 from base.models import BaseModel
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class BaseConfigModel(BaseModel):
@@ -16,72 +16,25 @@ class BaseConfigModel(BaseModel):
     class Meta:
         abstract = True
 
+    def get_absolute_url(self):
+        return reverse_lazy('{}:{}:view'.format(self._meta.app_label, self._meta.model_name))
+
 
 class Brand(BaseConfigModel):
-
-    def get_absolute_url(self):
-        return reverse('config-brand-edit', kwargs={'pk': self.pk})
-
-    @property
-    def del_url(self):
-        return 'config-brand-del'
-
-    @property
-    def edit_url(self):
-        return 'config-brand-edit'
+    pass
 
 
 class Model(BaseConfigModel):
-
-    def get_absolute_url(self):
-        return reverse('config-model-edit', kwargs={'pk': self.pk})
-
-    @property
-    def del_url(self):
-        return 'config-model-del'
-
-    @property
-    def edit_url(self):
-        return 'config-model-edit'
+    pass
 
 
 class Type(BaseConfigModel):
-
-    def get_absolute_url(self):
-        return reverse('config-type-edit', kwargs={'pk': self.pk})
-
-    @property
-    def del_url(self):
-        return 'config-type-del'
-
-    @property
-    def edit_url(self):
-        return 'config-type-edit'
+    pass
 
 
 class Capacity(BaseConfigModel):
-
-    def get_absolute_url(self):
-        return reverse('config-capacity-edit', kwargs={'pk': self.pk})
-
-    @property
-    def del_url(self):
-        return 'config-capacity-del'
-
-    @property
-    def edit_url(self):
-        return 'config-capacity-edit'
+    pass
 
 
 class City(BaseConfigModel):
-
-    def get_absolute_url(self):
-        return reverse('config-city-edit', kwargs={'pk': self.pk})
-
-    @property
-    def del_url(self):
-        return 'config-city-del'
-
-    @property
-    def edit_url(self):
-        return 'config-city-edit'
+    pass

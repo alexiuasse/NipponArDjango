@@ -1,36 +1,48 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 25/07/2020 15:28.
+#  Last modified 31/07/2020 14:42.
 
-from django.urls import path
+from django.urls import path, include
 
 from .views import *
 
+app_name = "config"
+
+brand_patterns = ([
+                      path('', BrandView.as_view(), name='view'),
+                      path('create/', BrandCreate.as_view(), name='create'),
+                      path('<int:pk>/edit/', BrandEdit.as_view(), name='edit'),
+                      path('<int:pk>/del', BrandDel.as_view(), name='delete'),
+                  ], 'brand')
+model_patterns = ([
+                      path('', ModelView.as_view(), name='view'),
+                      path('create/', ModelCreate.as_view(), name='create'),
+                      path('<int:pk>/edit/', ModelEdit.as_view(), name='edit'),
+                      path('<int:pk>/del', ModelDel.as_view(), name='delete'),
+                  ], 'model')
+type_patterns = ([
+                     path('', TypeView.as_view(), name='view'),
+                     path('create/', TypeCreate.as_view(), name='create'),
+                     path('<int:pk>/edit/', TypeEdit.as_view(), name='edit'),
+                     path('<int:pk>/del', TypeDel.as_view(), name='delete'),
+                 ], 'type')
+capacity_patterns = ([
+                         path('', CapacityView.as_view(), name='view'),
+                         path('create/', CapacityCreate.as_view(), name='create'),
+                         path('<int:pk>/edit/', CapacityEdit.as_view(), name='edit'),
+                         path('<int:pk>/del', CapacityDel.as_view(), name='delete'),
+                     ], 'capacity')
+city_patterns = ([
+                     path('', CityView.as_view(), name='view'),
+                     path('create/', CityCreate.as_view(), name='create'),
+                     path('<int:pk>/edit/', CityEdit.as_view(), name='edit'),
+                     path('<int:pk>/del', CityDel.as_view(), name='delete'),
+                 ], 'city')
 urlpatterns = [
-    path('', Config.as_view(), name='config'),
-    # brand url views
-    path('brand/', BrandView.as_view(), name='config-brand'),
-    path('brand/create/', BrandCreate.as_view(), name='config-brand-create'),
-    path('brand/edit/<int:pk>/', BrandEdit.as_view(), name='config-brand-edit'),
-    path('brand/del/<int:pk>/', BrandDel.as_view(), name='config-brand-del'),
-    # model url views
-    path('model/', ModelView.as_view(), name='config-model'),
-    path('model/create/', ModelCreate.as_view(), name='config-model-create'),
-    path('model/edit/<int:pk>/', ModelEdit.as_view(), name='config-model-edit'),
-    path('model/del/<int:pk>/', ModelDel.as_view(), name='config-model-del'),
-    # type url views
-    path('type/', TypeView.as_view(), name='config-type'),
-    path('type/create/', TypeCreate.as_view(), name='config-type-create'),
-    path('type/edit/<int:pk>/', TypeEdit.as_view(), name='config-type-edit'),
-    path('type/del/<int:pk>/', TypeDel.as_view(), name='config-type-del'),
-    # capacity url views
-    path('capacity/', CapacityView.as_view(), name='config-capacity'),
-    path('capacity/create/', CapacityCreate.as_view(), name='config-capacity-create'),
-    path('capacity/edit/<int:pk>/', CapacityEdit.as_view(), name='config-capacity-edit'),
-    path('capacity/del/<int:pk>/', CapacityDel.as_view(), name='config-capacity-del'),
-    # city url views
-    path('city/', CityView.as_view(), name='config-city'),
-    path('city/create/', CityCreate.as_view(), name='config-city-create'),
-    path('city/edit/<int:pk>/', CityEdit.as_view(), name='config-city-edit'),
-    path('city/del/<int:pk>/', CityDel.as_view(), name='config-city-del'),
+    path('', Config.as_view(), name='index'),
+    path('brand/', include(brand_patterns)),
+    path('model/', include(model_patterns)),
+    path('type/', include(type_patterns)),
+    path('capacity/', include(capacity_patterns)),
+    path('city/', include(city_patterns)),
 ]

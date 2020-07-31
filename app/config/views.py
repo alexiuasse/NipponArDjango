@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 26/07/2020 15:56.
+#  Last modified 31/07/2020 15:23.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -32,7 +32,7 @@ class Config(LoginRequiredMixin, View):
                 },
                 'city': {
                     'name': "Cidades",
-                    'link': reverse_lazy('config-city'),
+                    'link': reverse_lazy('config:city:view'),
                     'badge_text': City.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
@@ -44,28 +44,28 @@ class Config(LoginRequiredMixin, View):
                 },
                 'brand': {
                     'name': "Marcas",
-                    'link': reverse_lazy('config-brand'),
+                    'link': reverse_lazy('config:brand:view'),
                     'badge_text': Brand.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
                 },
                 'model': {
                     'name': "Modelos",
-                    'link': reverse_lazy('config-model'),
+                    'link': reverse_lazy('config:model:view'),
                     'badge_text': Model.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
                 },
                 'type': {
                     'name': "Tipos",
-                    'link': reverse_lazy('config-type'),
+                    'link': reverse_lazy('config:type:view'),
                     'badge_text': Type.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
                 },
                 'capacity': {
                     'name': "Capacidades",
-                    'link': reverse_lazy('config-capacity'),
+                    'link': reverse_lazy('config:capacity:view'),
                     'badge_text': Capacity.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
@@ -96,7 +96,8 @@ class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_CONFIG_BRAND
     subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
-    new = reverse_lazy('config-brand-create')
+    new = reverse_lazy('config:brand:create')
+    back_url = reverse_lazy('config:index')
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
 
 
@@ -105,7 +106,8 @@ class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = BrandForm
     template_name = 'base/form.html'
     permission_required = 'config.create_brand'
-    success_url = reverse_lazy('config-brand')
+    # success_url = reverse_lazy('config:brand:view')
+    back_url = reverse_lazy('config:brand:view')
     title = settings.TITLE_CREATE_CONFIG_BRAND
     subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -116,7 +118,7 @@ class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = BrandForm
     template_name = 'base/form.html'
     permission_required = 'config.edit_brand'
-    success_url = reverse_lazy('config-brand')
+    success_url = reverse_lazy('config:brand:view')
     title = settings.TITLE_EDIT_CONFIG_BRAND
     subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -126,7 +128,7 @@ class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Brand
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_brand'
-    success_url = reverse_lazy('config-brand')
+    success_url = reverse_lazy('config:brand:view')
     title = settings.TITLE_DEL_CONFIG_BRAND
     subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -151,7 +153,8 @@ class CapacityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_CONFIG_CAPACITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
-    new = reverse_lazy('config-capacity-create')
+    new = reverse_lazy('config:capacity:create')
+    back_url = reverse_lazy('config:index')
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
 
 
@@ -160,7 +163,8 @@ class CapacityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = CapacityForm
     template_name = 'base/form.html'
     permission_required = 'config.create_capacity'
-    success_url = reverse_lazy('config-capacity')
+    # success_url = reverse_lazy('config:capacity:view')
+    back_url = reverse_lazy('config:capacity:view')
     title = settings.TITLE_CREATE_CONFIG_CAPACITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -171,7 +175,8 @@ class CapacityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = CapacityForm
     template_name = 'base/form.html'
     permission_required = 'config.edit_capacity'
-    success_url = reverse_lazy('config-capacity')
+    # success_url = reverse_lazy('config:capacity:view')
+    back_url = reverse_lazy('config:capacity:view')
     title = settings.TITLE_EDIT_CONFIG_CAPACITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -181,7 +186,7 @@ class CapacityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Capacity
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_capacity'
-    success_url = reverse_lazy('config-capacity')
+    success_url = reverse_lazy('config:capacity:view')
     title = settings.TITLE_DEL_CONFIG_CAPACITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -206,7 +211,8 @@ class ModelView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_CONFIG_MODEL
     subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
-    new = reverse_lazy('config-model-create')
+    new = reverse_lazy('config:model:create')
+    back_url = reverse_lazy('config:index')
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
 
 
@@ -215,7 +221,8 @@ class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ModelForm
     template_name = 'base/form.html'
     permission_required = 'config.create_model'
-    success_url = reverse_lazy('config-model')
+    # success_url = reverse_lazy('config:model:view')
+    back_url = reverse_lazy('config:model:view')
     title = settings.TITLE_CREATE_CONFIG_MODEL
     subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -226,7 +233,7 @@ class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = ModelForm
     template_name = 'base/form.html'
     permission_required = 'config.edit_model'
-    success_url = reverse_lazy('config-model')
+    success_url = reverse_lazy('config:model:view')
     title = settings.TITLE_EDIT_CONFIG_MODEL
     subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -236,7 +243,7 @@ class ModelDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Model
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
-    success_url = reverse_lazy('config-model')
+    success_url = reverse_lazy('config:model:view')
     title = settings.TITLE_DEL_CONFIG_MODEL
     subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -261,7 +268,8 @@ class TypeView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_CONFIG_TYPE
     subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
-    new = reverse_lazy('config-type-create')
+    new = reverse_lazy('config:type:create')
+    back_url = reverse_lazy('config:index')
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
 
 
@@ -270,7 +278,8 @@ class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = TypeForm
     template_name = 'base/form.html'
     permission_required = 'config.create_model'
-    success_url = reverse_lazy('config-type')
+    # success_url = reverse_lazy('config:type:view')
+    back_url = reverse_lazy('config:type:view')
     title = settings.TITLE_CREATE_CONFIG_TYPE
     subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -281,7 +290,7 @@ class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = TypeForm
     template_name = 'base/form.html'
     permission_required = 'config.edit_model'
-    success_url = reverse_lazy('config-type')
+    success_url = reverse_lazy('config:type:view')
     title = settings.TITLE_EDIT_CONFIG_TYPE
     subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -291,7 +300,7 @@ class TypeDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Type
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
-    success_url = reverse_lazy('config-type')
+    success_url = reverse_lazy('config:type:view')
     title = settings.TITLE_DEL_CONFIG_TYPE
     subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
     header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
@@ -316,7 +325,8 @@ class CityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     template_name = 'base/view.html'
     title = settings.TITLE_VIEW_CONFIG_CITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
-    new = reverse_lazy('config-city-create')
+    new = reverse_lazy('config:city:create')
+    back_url = reverse_lazy('config:index')
     header_class = settings.HEADER_CLASS_CONFIG_GENERAL
 
 
@@ -325,7 +335,8 @@ class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = CityForm
     template_name = 'base/form.html'
     permission_required = 'config.create_city'
-    success_url = reverse_lazy('config-city')
+    # success_url = reverse_lazy('config:city:view')
+    back_url = reverse_lazy('config:city:view')
     title = settings.TITLE_CREATE_CONFIG_CITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
     header_class = settings.HEADER_CLASS_CONFIG_GENERAL
@@ -336,7 +347,7 @@ class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = CityForm
     template_name = 'base/form.html'
     permission_required = 'config.edit_city'
-    success_url = reverse_lazy('config-city')
+    success_url = reverse_lazy('config:city:view')
     title = settings.TITLE_EDIT_CONFIG_CITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
     header_class = settings.HEADER_CLASS_CONFIG_GENERAL
@@ -346,7 +357,7 @@ class CityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = City
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_city'
-    success_url = reverse_lazy('config-city')
+    success_url = reverse_lazy('config:city:view')
     title = settings.TITLE_DEL_CONFIG_CITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
     header_class = settings.HEADER_CLASS_CONFIG_GENERAL
