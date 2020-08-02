@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 14:31.
+#  Last modified 02/08/2020 13:30.
 from typing import Dict, Any
 
 from django.conf import settings
@@ -25,12 +25,11 @@ class CustomerProfile(LoginRequiredMixin, View):
     def get(self, request, pk, tp):
         obj = IndividualCustomer.objects.get(pk=pk) if tp == 0 else JuridicalCustomer.objects.get(pk=pk)
         header = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER if tp == 0 else settings.HEADER_CLASS_JURIDICAL_CUSTOMER
-
         context = {
             'config': {
                 'header': header
             },
-            'obj': obj
+            'obj': obj,
         }
         return render(request, self.template, context)
 
@@ -109,11 +108,13 @@ class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Crea
     form_class = IndividualCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_individualcustomer'
-    # success_url = reverse_lazy('customer:individual:view')
-    back_url = reverse_lazy('customer:individualcustomer:view')
     title = settings.TITLE_CREATE_INDIVIDUAL_CUSTOMER
     subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
     header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
+
+    @staticmethod
+    def get_back_url():
+        return reverse_lazy('customer:individualcustomer:view')
 
 
 class IndividualCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -164,11 +165,13 @@ class JuridicalCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = JuridicalCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_juridicalcustomer'
-    # success_url = reverse_lazy('customer:juridical:view')
-    back_url = reverse_lazy('customer:juridicalcustomer:view')
     title = settings.TITLE_CREATE_JURIDICAL_CUSTOMER
     subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
     header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+
+    @staticmethod
+    def get_back_url():
+        return reverse_lazy('customer:juridicalcustomer:view')
 
 
 class JuridicalCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):

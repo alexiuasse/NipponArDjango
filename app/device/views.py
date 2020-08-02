@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 10:41.
+#  Last modified 02/08/2020 13:29.
 from typing import Dict, Any
 
 from customer.models import JuridicalCustomer, IndividualCustomer
@@ -93,6 +93,9 @@ class DeviceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     header_class = HEADER_CLASS_DEVICE
 
     def get_success_url(self):
+        return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
+
+    def get_back_url(self):
         return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
 
     def form_valid(self, form):

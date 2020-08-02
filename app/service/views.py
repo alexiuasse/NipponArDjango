@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 11:27.
+#  Last modified 02/08/2020 13:31.
 from typing import Dict, Any
 
 from customer.models import IndividualCustomer, JuridicalCustomer
@@ -102,6 +102,10 @@ class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
     header_class = HEADER_CLASS_ORDER_OF_SERVICE
 
     def get_success_url(self):
+        return reverse_lazy('device:profile',
+                            kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'pk': self.kwargs['dev']})
+
+    def get_back_url(self):
         return reverse_lazy('device:profile',
                             kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'pk': self.kwargs['dev']})
 

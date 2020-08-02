@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 14:52.
+  ~ Last modified 02/08/2020 13:29.
   -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
@@ -13,7 +13,7 @@
                 <div class="card-header {% if view.header_class %} {{view.header_class}} {% else %} card-header-primary {% endif %}">
                     <h4 class="card-title">
                         <span>
-                            <a href="{% if object %} {{object.get_absolute_url}} {% else %} {{view.back_url}} {% endif %}"
+                            <a href="{% if object %} {{object.get_absolute_url}} {% else %} {{view.get_back_url}} {% endif %}"
                                rel="tooltip" title="Voltar" type="button">
                                 <i class="material-icons">arrow_back</i>
                             </a>
