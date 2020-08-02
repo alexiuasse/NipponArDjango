@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 13:06.
+#  Last modified 02/08/2020 12:00.
 
 from datetime import datetime
 
@@ -21,6 +21,7 @@ class Device(BaseModel):
     model = models.ForeignKey("config.Model", verbose_name="Modelo", on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey("config.Type", verbose_name="Tipo", on_delete=models.SET_NULL, null=True)
     capacity = models.ForeignKey("config.Capacity", verbose_name="Capacidade", on_delete=models.SET_NULL, null=True)
+    order_of_services = models.ManyToManyField("service.OrderOfService", verbose_name="Ordem de Serviços", blank=True)
 
     def __str__(self):
         return self.patrimony
@@ -49,6 +50,10 @@ class Device(BaseModel):
         cpk, ctp = self.get_cpk_ctp_customer()
         return reverse('customer:profile', kwargs={'pk': cpk, 'tp': ctp})
 
+    def get_new_service_url(self):
+        cpk, ctp = self.get_cpk_ctp_customer()
+        return reverse('service:create', kwargs={'cpk': cpk, 'ctp': ctp, 'dev': self.pk})
+
     def get_full_name(self):
         return "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity)
 
@@ -62,3 +67,12 @@ class Device(BaseModel):
             'Localização': self.location,
             'Observação': self.observation,
         }
+
+    def get_new_services(self):
+        return self.order_of_services.filter(status=0)
+
+    def get_in_progress_services(self):
+        return self.order_of_services.filter(status=1)
+
+    def get_finished_services(self):
+        return self.order_of_services.filter(status=2)

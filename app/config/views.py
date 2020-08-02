@@ -1,13 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 15:23.
+#  Last modified 01/08/2020 13:29.
 from typing import Dict, Any
 
 from django.conf import settings
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django_filters.views import FilterView
@@ -38,7 +37,7 @@ class Config(LoginRequiredMixin, View):
                     'icon': 'settings',
                 }
             },
-            'Assistência Técnica': {
+            'Equipamento': {
                 'config': {
                     'header': settings.HEADER_CLASS_CONFIG_TECHNICAL,
                 },
@@ -67,6 +66,32 @@ class Config(LoginRequiredMixin, View):
                     'name': "Capacidades",
                     'link': reverse_lazy('config:capacity:view'),
                     'badge_text': Capacity.objects.count(),
+                    'badge_class': 'badge-success',
+                    'icon': 'settings',
+                },
+                'device_parts': {
+                    'name': "Peças",
+                    'link': reverse_lazy('config:deviceparts:view'),
+                    'badge_text': DeviceParts.objects.count(),
+                    'badge_class': 'badge-success',
+                    'icon': 'settings',
+                },
+            },
+            'Ordem de Serviço': {
+                'config': {
+                    'header': settings.HEADER_CLASS_CONFIG_TECHNICAL,
+                },
+                'status_service': {
+                    'name': "Status do Serviço",
+                    'link': reverse_lazy('config:statusservice:view'),
+                    'badge_text': StatusService.objects.count(),
+                    'badge_class': 'badge-success',
+                    'icon': 'settings',
+                },
+                'type_of_service': {
+                    'name': "Tipo de Serviço",
+                    'link': reverse_lazy('config:typeofservice:view'),
+                    'badge_text': TypeOfService.objects.count(),
                     'badge_class': 'badge-success',
                     'icon': 'settings',
                 },
@@ -360,6 +385,177 @@ class CityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('config:city:view')
     title = settings.TITLE_DEL_CONFIG_CITY
     subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+    def get_context_data(self, **kwargs):
+        context: Dict[str, Any] = super().get_context_data(**kwargs)
+        collector = NestedObjects(using='default')  # or specific database
+        collector.collect([context['object']])
+        to_delete = collector.nested()
+        context['extra_object'] = to_delete
+        return context
+
+
+########################################################################################################################
+
+class TypeOfServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
+    model = TypeOfService
+    table_class = TypeOfServiceTable
+    filterset_class = TypeOfServiceFilter
+    paginator_class = LazyPaginator
+    permission_required = 'config.view_typeofservice'
+    template_name = 'base/view.html'
+    title = settings.TITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    new = reverse_lazy('config:typeofservice:create')
+    back_url = reverse_lazy('config:index')
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class TypeOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = TypeOfService
+    form_class = TypeOfServiceForm
+    template_name = 'base/form.html'
+    permission_required = 'config.create_typeofservice'
+    # success_url = reverse_lazy('config:city:view')
+    back_url = reverse_lazy('config:typeofservice:view')
+    title = settings.TITLE_CREATE_CONFIG_TYPE_OF_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class TypeOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = TypeOfService
+    form_class = TypeOfServiceForm
+    template_name = 'base/form.html'
+    permission_required = 'config.edit_typeofservice'
+    success_url = reverse_lazy('config:typeofservice:view')
+    title = settings.TITLE_EDIT_CONFIG_TYPE_OF_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class TypeOfServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    model = TypeOfService
+    template_name = "base/confirm_delete.html"
+    permission_required = 'config.del_typeofservice'
+    success_url = reverse_lazy('config:typeofservice:view')
+    title = settings.TITLE_DEL_CONFIG_TYPE_OF_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+    def get_context_data(self, **kwargs):
+        context: Dict[str, Any] = super().get_context_data(**kwargs)
+        collector = NestedObjects(using='default')  # or specific database
+        collector.collect([context['object']])
+        to_delete = collector.nested()
+        context['extra_object'] = to_delete
+        return context
+
+
+########################################################################################################################
+
+class StatusServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
+    model = StatusService
+    table_class = StatusServiceTable
+    filterset_class = StatusServiceFilter
+    paginator_class = LazyPaginator
+    permission_required = 'config.view_statuservice'
+    template_name = 'base/view.html'
+    title = settings.TITLE_VIEW_CONFIG_STATUS_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    new = reverse_lazy('config:statusservice:create')
+    back_url = reverse_lazy('config:index')
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class StatusServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = StatusService
+    form_class = StatusServiceForm
+    template_name = 'base/form.html'
+    permission_required = 'config.create_statuservice'
+    # success_url = reverse_lazy('config:city:view')
+    back_url = reverse_lazy('config:statusservice:view')
+    title = settings.TITLE_CREATE_CONFIG_STATUS_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class StatusServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = StatusService
+    form_class = StatusServiceForm
+    template_name = 'base/form.html'
+    permission_required = 'config.edit_statuservice'
+    success_url = reverse_lazy('config:statusservice:view')
+    title = settings.TITLE_EDIT_CONFIG_STATUS_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class StatusServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    model = StatusService
+    template_name = "base/confirm_delete.html"
+    permission_required = 'config.del_statusservice'
+    success_url = reverse_lazy('config:statusservice:view')
+    title = settings.TITLE_DEL_CONFIG_STATUS_SERVICE
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+    def get_context_data(self, **kwargs):
+        context: Dict[str, Any] = super().get_context_data(**kwargs)
+        collector = NestedObjects(using='default')  # or specific database
+        collector.collect([context['object']])
+        to_delete = collector.nested()
+        context['extra_object'] = to_delete
+        return context
+
+
+########################################################################################################################
+
+class DevicePartsView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
+    model = DeviceParts
+    table_class = DevicePartsTable
+    filterset_class = DevicePartsFilter
+    paginator_class = LazyPaginator
+    permission_required = 'config.view_deviceparts'
+    template_name = 'base/view.html'
+    title = settings.TITLE_VIEW_CONFIG_DEVICE_PARTS
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    new = reverse_lazy('config:deviceparts:create')
+    back_url = reverse_lazy('config:index')
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class DevicePartsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = DeviceParts
+    form_class = DevicePartsForm
+    template_name = 'base/form.html'
+    permission_required = 'config.create_deviceparts'
+    # success_url = reverse_lazy('config:city:view')
+    back_url = reverse_lazy('config:deviceparts:view')
+    title = settings.TITLE_CREATE_CONFIG_DEVICE_PARTS
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class DevicePartsEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = DeviceParts
+    form_class = DevicePartsForm
+    template_name = 'base/form.html'
+    permission_required = 'config.edit_deviceparts'
+    success_url = reverse_lazy('config:deviceparts:view')
+    title = settings.TITLE_EDIT_CONFIG_DEVICE_PARTS
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+
+
+class DevicePartsDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    model = DeviceParts
+    template_name = "base/confirm_delete.html"
+    permission_required = 'config.del_deviceparts'
+    success_url = reverse_lazy('config:deviceparts:view')
+    title = settings.TITLE_DEL_CONFIG_DEVICE_PARTS
+    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
     header_class = settings.HEADER_CLASS_CONFIG_GENERAL
 
     def get_context_data(self, **kwargs):

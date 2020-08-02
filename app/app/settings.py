@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 11:46.
+#  Last modified 02/08/2020 10:07.
 
 import os
 
@@ -67,6 +67,24 @@ TITLE_CREATE_CONFIG_CITY = "Nova Cidade"
 TITLE_EDIT_CONFIG_CITY = "Editar Cidade"
 TITLE_DEL_CONFIG_CITY = "Deletar Cidade"
 SUBTITLE_VIEW_CONFIG_CITY = "Configuração de cidades"
+# CONFIG TYPE OF SERVICE CUSTOMIZATION
+TITLE_VIEW_CONFIG_TYPE_OF_SERVICE = "Tipo de Serviço"
+TITLE_CREATE_CONFIG_TYPE_OF_SERVICE = "Novo Tipo de Serviço"
+TITLE_EDIT_CONFIG_TYPE_OF_SERVICE = "Editar Tipo de Serviço"
+TITLE_DEL_CONFIG_TYPE_OF_SERVICE = "Deletar Tipo de Serviço"
+SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE = "Configuração de tipos de serviços"
+# CONFIG STATUS SERVICE CUSTOMIZATION
+TITLE_VIEW_CONFIG_STATUS_SERVICE = "Status do Serviço"
+TITLE_CREATE_CONFIG_STATUS_SERVICE = "Novo Status do Serviço"
+TITLE_EDIT_CONFIG_STATUS_SERVICE = "Editar Status do Serviço"
+TITLE_DEL_CONFIG_STATUS_SERVICE = "Deletar Status do Serviço"
+SUBTITLE_VIEW_CONFIG_STATUS_SERVICE = "Configuração de status de serviço"
+# CONFIG DEVICE PARTS CUSTOMIZATION
+TITLE_VIEW_CONFIG_DEVICE_PARTS = "Peças"
+TITLE_CREATE_CONFIG_DEVICE_PARTS = "Nova Peça"
+TITLE_EDIT_CONFIG_DEVICE_PARTS = "Editar Peça"
+TITLE_DEL_CONFIG_DEVICE_PARTS = "Deletar Peça"
+SUBTITLE_VIEW_CONFIG_DEVICE_PARTS = "Configuração de peças"
 # CUSTOMER APP CUSTOMIZATION
 # CUSTOMER
 TITLE_VIEW_CUSTOMER = "Clientes"
@@ -85,13 +103,6 @@ TITLE_EDIT_JURIDICAL_CUSTOMER = "Editar Cliente - Pessoa Jurídica"
 TITLE_DEL_JURIDICAL_CUSTOMER = "Deletar Cliente - Pessoa Jurídica"
 SUBTITLE_JURIDICAL_CUSTOMER = "Configuração de clientes"
 HEADER_CLASS_JURIDICAL_CUSTOMER = "card-header-danger"
-# DEVICE
-TITLE_VIEW_DEVICE = "Equipamentos"
-TITLE_CREATE_DEVICE = "Novo Equipamento"
-TITLE_EDIT_DEVICE = "Editar Equipamento"
-TITLE_DEL_DEVICE = "Deletar Equipamento"
-SUBTITLE_DEVICE = "Configuração de equipamentos"
-HEADER_CLASS_DEVICE = "card-header-rose"  # class of card header, basically just change the color
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -118,6 +129,7 @@ INSTALLED_APPS = [
     'customer',
     'config',
     'device',
+    'service',
 ]
 
 MIDDLEWARE = [

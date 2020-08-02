@@ -1,10 +1,10 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 14:45.
+#  Last modified 01/08/2020 13:29.
 
 from base.models import BaseModel
 from django.db import models
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 
 class BaseConfigModel(BaseModel):
@@ -37,4 +37,16 @@ class Capacity(BaseConfigModel):
 
 
 class City(BaseConfigModel):
+    pass
+
+
+class TypeOfService(BaseConfigModel):
+    pass
+
+
+class StatusService(BaseConfigModel):
+    pass
+
+
+class DeviceParts(BaseConfigModel):
     pass

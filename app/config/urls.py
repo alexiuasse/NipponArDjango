@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 14:42.
+#  Last modified 02/08/2020 12:00.
 
 from django.urls import path, include
 
@@ -38,6 +38,24 @@ city_patterns = ([
                      path('<int:pk>/edit/', CityEdit.as_view(), name='edit'),
                      path('<int:pk>/del', CityDel.as_view(), name='delete'),
                  ], 'city')
+type_of_service_patterns = ([
+                                path('', TypeOfServiceView.as_view(), name='view'),
+                                path('create/', TypeOfServiceCreate.as_view(), name='create'),
+                                path('<int:pk>/edit/', TypeOfServiceEdit.as_view(), name='edit'),
+                                path('<int:pk>/del', TypeOfServiceDel.as_view(), name='delete'),
+                            ], 'typeofservice')
+status_service_patterns = ([
+                               path('', StatusServiceView.as_view(), name='view'),
+                               path('create/', StatusServiceCreate.as_view(), name='create'),
+                               path('<int:pk>/edit/', StatusServiceEdit.as_view(), name='edit'),
+                               path('<int:pk>/del', StatusServiceDel.as_view(), name='delete'),
+                           ], 'statusservice')
+device_parts_patterns = ([
+                             path('', DevicePartsView.as_view(), name='view'),
+                             path('create/', DevicePartsCreate.as_view(), name='create'),
+                             path('<int:pk>/edit/', DevicePartsEdit.as_view(), name='edit'),
+                             path('<int:pk>/del', DevicePartsDel.as_view(), name='delete'),
+                         ], 'deviceparts')
 urlpatterns = [
     path('', Config.as_view(), name='index'),
     path('brand/', include(brand_patterns)),
@@ -45,4 +63,7 @@ urlpatterns = [
     path('type/', include(type_patterns)),
     path('capacity/', include(capacity_patterns)),
     path('city/', include(city_patterns)),
+    path('typeofservice/', include(type_of_service_patterns)),
+    path('statusservice/', include(status_service_patterns)),
+    path('deviceparts/', include(device_parts_patterns)),
 ]

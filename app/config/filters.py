@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 22/07/2020 17:26.
+#  Last modified 01/08/2020 13:29.
 
 from django_filters import FilterSet
 
@@ -34,4 +34,22 @@ class CapacityFilter(FilterSet):
 class CityFilter(FilterSet):
     class Meta:
         model = City
+        fields = {'name': ['icontains'], }
+
+
+class TypeOfServiceFilter(FilterSet):
+    class Meta:
+        model = TypeOfService
+        fields = {'name': ['icontains'], }
+
+
+class StatusServiceFilter(FilterSet):
+    class Meta:
+        model = StatusService
+        fields = {'name': ['icontains'], }
+
+
+class DevicePartsFilter(FilterSet):
+    class Meta:
+        model = DeviceParts
         fields = {'name': ['icontains'], }

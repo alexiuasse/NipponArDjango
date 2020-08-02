@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 13:04.
+  ~ Last modified 02/08/2020 11:54.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -51,21 +51,120 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card">
-                                <div class="card-header">
-                                    <h6>Dados de Serviços</h6>
+                                <div class="card-header card-header-tabs card-header-primary">
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <span class="nav-tabs-title">Serviços:</span>
+                                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#new">
+                                                        Novos
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#inProgress">
+                                                        Em Andamento
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#finished">
+                                                        Finalizado
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{obj.get_new_service_url}}" rel="tooltip"
+                                                       title="Nova Ordem de Serviço" type="button">
+                                                        <i class="material-icons">add</i>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
-                                    <!-- Lista de todos os serviços anexados ao equipamento com um badge mostrando o status do serviço -->
-                                    <div class="list-group">
-                                        {% for v in customer.devices.all %}
-                                        <a class="list-group-item list-group-item-action"
-                                           href="{{v.get_absolute_url}}">
-                                            <i class="material-icons mr-2">ac_unit</i>
-                                            {{v}}
-                                            <!-- Numero de ordens de serviços -->
-                                            <span class="badge badge-success">2</span>
-                                        </a>
-                                        {% endfor %}
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="new">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for v in obj.get_new_services %}
+                                                <tr>
+                                                    <td>{{v}}
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <a class="btn btn-primary btn-link btn-sm"
+                                                           href="{{v.get_edit_url}}"
+                                                           rel="tooltip" title="Editar"
+                                                           type="button">
+                                                            <i class="material-icons">edit</i>
+                                                        </a>
+                                                        <a class="btn btn-danger btn-link btn-sm"
+                                                           href="{{v.get_delete_url}}"
+                                                           rel="tooltip" title="Deletar"
+                                                           type="button">
+                                                            <i class="material-icons">close</i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane" id="inProgress">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for v in obj.get_in_progress_services %}
+                                                <tr>
+                                                    <td>{{v}}
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <a class="btn btn-primary btn-link btn-sm"
+                                                           href="{{v.get_edit_url}}"
+                                                           rel="tooltip" title="Editar"
+                                                           type="button">
+                                                            <i class="material-icons">edit</i>
+                                                        </a>
+                                                        <a class="btn btn-danger btn-link btn-sm"
+                                                           href="{{v.get_delete_url}}"
+                                                           rel="tooltip" title="Deletar"
+                                                           type="button">
+                                                            <i class="material-icons">close</i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane" id="finished">
+                                            <table class="table">
+                                                <tbody>
+                                                {% for v in obj.get_finished_services %}
+                                                <tr>
+                                                    <td>{{v}}
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <a class="btn btn-primary btn-link btn-sm"
+                                                           href="{{v.get_edit_url}}"
+                                                           rel="tooltip" title="Editar"
+                                                           type="button">
+                                                            <i class="material-icons">edit</i>
+                                                        </a>
+                                                        <a class="btn btn-danger btn-link btn-sm"
+                                                           href="{{v.get_delete_url}}"
+                                                           rel="tooltip" title="Deletar"
+                                                           type="button">
+                                                            <i class="material-icons">close</i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

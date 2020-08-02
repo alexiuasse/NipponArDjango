@@ -1,10 +1,9 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 10:56.
+#  Last modified 02/08/2020 10:41.
 from typing import Dict, Any
 
 from customer.models import JuridicalCustomer, IndividualCustomer
-from django.conf import settings
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -15,6 +14,7 @@ from django_filters.views import FilterView
 from django_tables2.paginators import LazyPaginator
 from django_tables2.views import SingleTableMixin
 
+from .conf import *
 from .filters import *
 from .forms import *
 from .tables import *
@@ -22,11 +22,11 @@ from .tables import *
 
 class DeviceProfile(LoginRequiredMixin, View):
     template = 'device/profile.html'
-    title = settings.TITLE_VIEW_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
+    title = TITLE_VIEW_DEVICE
+    subtitle = SUBTITLE_DEVICE
 
     def get(self, request, cpk, ctp, pk):
-        header = settings.HEADER_CLASS_DEVICE
+        header = HEADER_CLASS_DEVICE
 
         context = {
             'config': {
@@ -41,14 +41,14 @@ class DeviceProfile(LoginRequiredMixin, View):
 
 class DeviceIndex(LoginRequiredMixin, View):
     template = 'device/view.html'
-    title = settings.TITLE_VIEW_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
+    title = TITLE_VIEW_DEVICE
+    subtitle = SUBTITLE_DEVICE
 
     def get(self, request):
         links = {
             'Equipamentos': {
                 'config': {
-                    'header': settings.HEADER_CLASS_DEVICE,
+                    'header': HEADER_CLASS_DEVICE,
                 },
                 'Equipamentos': {
                     'name': "Equipamentos",
@@ -76,11 +76,11 @@ class DeviceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, 
     paginator_class = LazyPaginator
     permission_required = 'device.view_device'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
+    title = TITLE_VIEW_DEVICE
+    subtitle = SUBTITLE_DEVICE
     new = reverse_lazy('device:index')
     # new = reverse_lazy('device:create')
-    header_class = settings.HEADER_CLASS_DEVICE
+    header_class = HEADER_CLASS_DEVICE
 
 
 class DeviceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -88,9 +88,9 @@ class DeviceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.create_device'
-    title = settings.TITLE_CREATE_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
-    header_class = settings.HEADER_CLASS_DEVICE
+    title = TITLE_CREATE_DEVICE
+    subtitle = SUBTITLE_DEVICE
+    header_class = HEADER_CLASS_DEVICE
 
     def get_success_url(self):
         return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})
@@ -109,9 +109,9 @@ class DeviceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = DeviceForm
     template_name = 'base/form.html'
     permission_required = 'device.edit_device'
-    title = settings.TITLE_EDIT_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
-    header_class = settings.HEADER_CLASS_DEVICE
+    title = TITLE_EDIT_DEVICE
+    subtitle = SUBTITLE_DEVICE
+    header_class = HEADER_CLASS_DEVICE
 
     def get_delete_url(self):
         return reverse_lazy('device:delete',
@@ -125,9 +125,9 @@ class DeviceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Device
     template_name = "base/confirm_delete.html"
     permission_required = 'device.del_device'
-    title = settings.TITLE_DEL_DEVICE
-    subtitle = settings.SUBTITLE_DEVICE
-    header_class = settings.HEADER_CLASS_DEVICE
+    title = TITLE_DEL_DEVICE
+    subtitle = SUBTITLE_DEVICE
+    header_class = HEADER_CLASS_DEVICE
 
     def get_success_url(self):
         return reverse_lazy('customer:profile', kwargs={'pk': self.kwargs['cpk'], 'tp': self.kwargs['ctp']})

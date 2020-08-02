@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 02/08/2020 12:00.
+  ~ Last modified 02/08/2020 10:54.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -16,48 +16,29 @@
                                 <i class="material-icons">arrow_back</i>
                             </a>
                         </span>
-                        {{obj.name}}
+                        {{obj.get_full_name}}
                         <span>
-                            <a href="{% url obj.get_edit_url pk=obj.pk %}" rel="tooltip" title="Editar"
-                               type="button">
+                            <a href="{{obj.get_edit_url}}" rel="tooltip" title="Editar" type="button">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <a href="{% url obj.get_delete_url pk=obj.pk %}" rel="tooltip" title="Deletar"
-                               type="button">
+                            <a href="{{obj.get_delete_url}}" rel="tooltip" title="Deletar" type="button">
                                 <i class="material-icons">delete_forever</i>
                             </a>
                         </span>
                     </h4>
-                    <p class="card-category">{{obj.address_line}}</p>
+                    <p class="card-category">Cliente {{obj.get_customer}}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>Dados Pessoais</h6>
+                                    <h6>Dados do Equipamento</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-striped">
-                                            {% for k, v in obj.get_personal_to_dict.items %}
-                                            <tr>
-                                                <td>{{k}}</td>
-                                                <td>{{v}}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6>Dados de Endereço</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped">
-                                            {% for k, v in obj.get_address_to_dict.items %}
+                                            {% for k, v in obj.get_dict_data.items %}
                                             <tr>
                                                 <td>{{k}}</td>
                                                 <td>{{v}}</td>
@@ -71,24 +52,18 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>
-                                        Equipamentos
-                                        <a href="{% url 'device:create' cpk=obj.pk ctp=obj.type %}" rel="tooltip"
-                                           title="Novo Equipamento" type="button">
-                                            <i class="material-icons">add</i>
-                                        </a>
-                                    </h6>
+                                    <h6>Dados de Serviços</h6>
                                 </div>
                                 <div class="card-body">
-                                    <!-- Trocar por uma table com filter -->
+                                    <!-- Lista de todos os serviços anexados ao equipamento com um badge mostrando o status do serviço -->
                                     <div class="list-group">
-                                        {% for v in obj.devices.all %}
+                                        {% for v in customer.devices.all %}
                                         <a class="list-group-item list-group-item-action"
                                            href="{{v.get_absolute_url}}">
                                             <i class="material-icons mr-2">ac_unit</i>
-                                            {{v.get_full_name}}
+                                            {{v}}
                                             <!-- Numero de ordens de serviços -->
-                                            <span class="badge badge-success">{{v.order_of_services.count}}</span>
+                                            <span class="badge badge-success">2</span>
                                         </a>
                                         {% endfor %}
                                     </div>
