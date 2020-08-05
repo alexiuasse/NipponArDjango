@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 12:00.
+#  Last modified 05/08/2020 19:00.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -39,6 +39,7 @@ class OrderOfServiceForm(forms.ModelForm):
                     ),
                     Div(
                         Row(
+                            Field('scheduled', wrapper_class='col-md-12'),
                             Field('defect', wrapper_class='col-md-12'),
                             Field('observation', wrapper_class='col-md-12'),
                         ),
@@ -69,4 +70,4 @@ class OrderOfServiceForm(forms.ModelForm):
         }
         fields = ['type_of_service', 'status',
                   'parts', 'start_date', 'end_date',
-                  'defect', 'observation', ]
+                  'defect', 'observation', 'scheduled']

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 04/08/2020 09:05.
+#  Last modified 05/08/2020 18:05.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -19,6 +19,7 @@ class OrderOfService(BaseModel):
     end_date = models.DateField("data de término", blank=True, null=True)
     defect = models.TextField("defeito", blank=True)
     observation = models.TextField("observação", blank=True)
+    scheduled = models.BooleanField("agendado", default=False)
 
     def __str__(self):
         return "{}".format(self.type_of_service)
