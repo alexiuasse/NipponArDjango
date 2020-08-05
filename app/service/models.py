@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 05/08/2020 18:05.
+#  Last modified 05/08/2020 19:02.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -54,6 +54,7 @@ class OrderOfService(BaseModel):
         return {
             'Tipo de Serviço': "{}".format(self.type_of_service),
             'Status': self.status,
+            'Agendado': "Sim" if self.scheduled else "Não",
             'Peças': self.parts,
             'Data de Início': self.start_date,
             'Data de Término': self.end_date,
