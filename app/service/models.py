@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 12:00.
+#  Last modified 04/08/2020 09:05.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -13,7 +13,7 @@ from .enums import ServiceStatusEnum
 class OrderOfService(BaseModel):
     type_of_service = models.ForeignKey("config.TypeOfService", verbose_name="Tipo de Serviço",
                                         on_delete=models.SET_NULL, null=True)
-    status = models.IntegerField("Status", choices=ServiceStatusEnum.choices(), default=0)
+    status = models.ForeignKey("config.StatusService", verbose_name="Status", on_delete=models.PROTECT)
     parts = models.ManyToManyField("config.DeviceParts", verbose_name="Peças", blank=True)
     start_date = models.DateField("data de início", default=datetime.today)
     end_date = models.DateField("data de término", blank=True, null=True)
@@ -47,7 +47,7 @@ class OrderOfService(BaseModel):
         return reverse('device:profile', kwargs={'cpk': cpk, 'ctp': ctp, 'pk': device.pk})
 
     def get_full_name(self):
-        return "{}".format(self.type_of_service)
+        return "{} {}".format(self.type_of_service, self.start_date.strftime("%d/%m/%Y"))
 
     def get_dict_data(self):
         return {

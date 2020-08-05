@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 01/08/2020 13:29.
+#  Last modified 05/08/2020 17:01.
 from django.utils.html import format_html
 from django_tables2 import tables, Column, TemplateColumn
 
@@ -100,7 +100,7 @@ class StatusServiceTable(tables.Table):
         model = StatusService
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['name']
+        fields = ['name', 'badge_class']
 
 
 class DevicePartsTable(tables.Table):

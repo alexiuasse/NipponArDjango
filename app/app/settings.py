@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 10:07.
+#  Last modified 04/08/2020 08:43.
 
 import os
 
@@ -203,7 +203,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 TIME_ZONE = "America/Sao_Paulo"
-DATE_INPUT_FORMATS = ['%d-%m-%Y']
+# DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 # Login redirect
 LOGIN_URL = "/login/"

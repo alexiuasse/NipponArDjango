@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 01/08/2020 13:29.
+#  Last modified 05/08/2020 17:01.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Row, Field
@@ -15,7 +15,8 @@ from .models import *
 class BaseConfigForm(forms.ModelForm):
     layout = Layout(
         Row(
-            Field('name', wrapper_class='col-md'),
+            Field('name', wrapper_class='col-md-12'),
+            Field('badge_class', wrapper_class='col-md-12'),
         ),
     )
 
@@ -23,6 +24,7 @@ class BaseConfigForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.disable_csrf = True
         self.helper = FormHelper()
+        self.helper.form_tag = False
         self.helper.layout = self.layout
         self.helper.form_class = 'form-control'
         self.helper.label_class = 'bmd-label-floating'
@@ -67,7 +69,7 @@ class TypeOfServiceForm(BaseConfigForm):
 class StatusServiceForm(BaseConfigForm):
     class Meta:
         model = StatusService
-        fields = ['name']
+        fields = ['name', 'badge_class']
 
 
 class DevicePartsForm(BaseConfigForm):

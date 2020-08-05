@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 12:00.
+#  Last modified 04/08/2020 09:05.
 
 from datetime import datetime
 
@@ -68,11 +68,15 @@ class Device(BaseModel):
             'Observação': self.observation,
         }
 
-    def get_new_services(self):
-        return self.order_of_services.filter(status=0)
-
-    def get_in_progress_services(self):
-        return self.order_of_services.filter(status=1)
-
-    def get_finished_services(self):
-        return self.order_of_services.filter(status=2)
+    def get_service_sorted_by_entry_date(self):
+        retDict = {}
+        for s in self.order_of_services.all().order_by('-start_date'):
+            m_y = "{}/{}".format(s.start_date.month, s.start_date.year)
+            if m_y in retDict:
+                retDict[m_y]['services'].append(s)
+            else:
+                retDict[m_y] = {}
+                retDict[m_y]['services'] = []
+                retDict[m_y]['services'].append(s)
+        print(retDict)
+        return retDict

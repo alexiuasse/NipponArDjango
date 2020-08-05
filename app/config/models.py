@@ -1,10 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 01/08/2020 13:29.
+#  Last modified 05/08/2020 16:58.
 
 from base.models import BaseModel
 from django.db import models
 from django.urls import reverse_lazy
+
+from .enums import StatusBadgeEnum
 
 
 class BaseConfigModel(BaseModel):
@@ -45,7 +47,7 @@ class TypeOfService(BaseConfigModel):
 
 
 class StatusService(BaseConfigModel):
-    pass
+    badge_class = models.CharField("cor", choices=StatusBadgeEnum.choices(), blank=True, max_length=20)
 
 
 class DeviceParts(BaseConfigModel):
