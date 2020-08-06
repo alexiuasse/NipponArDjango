@@ -2360,8 +2360,8 @@ pre code {
   opacity: 1;
 }
 
-select.form-control:not([size]):not([multiple]) {
-  height: calc(2.4375rem + 2px);
+select.form-control[size], select.form-control[multiple] {
+  height: auto;
 }
 
 select.form-control:focus::-ms-value {
