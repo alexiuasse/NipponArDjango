@@ -1,9 +1,9 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 13:31.
+#  Last modified 06/08/2020 09:28.
 from typing import Dict, Any
 
-from customer.models import IndividualCustomer, JuridicalCustomer
+from device.models import Device
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -18,7 +18,6 @@ from .conf import *
 from .filters import *
 from .forms import *
 from .tables import *
-from device.models import Device
 
 
 class OrderOfServiceProfile(LoginRequiredMixin, View):

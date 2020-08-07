@@ -1,9 +1,8 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 13:30.
+#  Last modified 06/08/2020 09:24.
 from typing import Dict, Any
 
-from django.conf import settings
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -14,6 +13,7 @@ from django_filters.views import FilterView
 from django_tables2.paginators import LazyPaginator
 from django_tables2.views import SingleTableMixin
 
+from .conf import *
 from .filters import *
 from .forms import *
 from .tables import *
@@ -24,7 +24,7 @@ class CustomerProfile(LoginRequiredMixin, View):
 
     def get(self, request, pk, tp):
         obj = IndividualCustomer.objects.get(pk=pk) if tp == 0 else JuridicalCustomer.objects.get(pk=pk)
-        header = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER if tp == 0 else settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+        header = HEADER_CLASS_INDIVIDUAL_CUSTOMER if tp == 0 else HEADER_CLASS_JURIDICAL_CUSTOMER
         context = {
             'config': {
                 'header': header
@@ -36,14 +36,14 @@ class CustomerProfile(LoginRequiredMixin, View):
 
 class Customer(LoginRequiredMixin, View):
     template = 'customer/view.html'
-    title = settings.TITLE_VIEW_CUSTOMER
-    subtitle = settings.SUBTITLE_VIEW_CUSTOMER
+    title = TITLE_VIEW_CUSTOMER
+    subtitle = SUBTITLE_VIEW_CUSTOMER
 
     def get(self, request):
         links = {
             'Pessoas Físicas': {
                 'config': {
-                    'header': settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER,
+                    'header': HEADER_CLASS_INDIVIDUAL_CUSTOMER,
                 },
                 'Pessoa Física': {
                     'name': "Pessoa Física",
@@ -62,7 +62,7 @@ class Customer(LoginRequiredMixin, View):
             },
             'Pessoas Jurídicas': {
                 'config': {
-                    'header': settings.HEADER_CLASS_JURIDICAL_CUSTOMER,
+                    'header': HEADER_CLASS_JURIDICAL_CUSTOMER,
                 },
                 'Pessoa Jurídica': {
                     'name': "Pessoa Jurídica",
@@ -96,11 +96,11 @@ class IndividualCustomerView(LoginRequiredMixin, PermissionRequiredMixin, Single
     paginator_class = LazyPaginator
     permission_required = 'customer.view_individualcustomer'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_INDIVIDUAL_CUSTOMER
-    subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
+    title = TITLE_VIEW_INDIVIDUAL_CUSTOMER
+    subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER
     new = reverse_lazy('customer:individualcustomer:create')
     back_url = reverse_lazy('customer:index')
-    header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
+    header_class = HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
 
 class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -108,9 +108,9 @@ class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Crea
     form_class = IndividualCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_individualcustomer'
-    title = settings.TITLE_CREATE_INDIVIDUAL_CUSTOMER
-    subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
+    title = TITLE_CREATE_INDIVIDUAL_CUSTOMER
+    subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER
+    header_class = HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
     @staticmethod
     def get_back_url():
@@ -122,9 +122,9 @@ class IndividualCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, Update
     form_class = IndividualCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.edit_individualcustomer'
-    title = settings.TITLE_EDIT_INDIVIDUAL_CUSTOMER
-    subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
+    title = TITLE_EDIT_INDIVIDUAL_CUSTOMER
+    subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER
+    header_class = HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
 
 class IndividualCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -132,9 +132,9 @@ class IndividualCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteV
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_individualcustomer'
     success_url = reverse_lazy('customer:individualcustomer:view')
-    title = settings.TITLE_DEL_INDIVIDUAL_CUSTOMER
-    subtitle = settings.SUBTITLE_INDIVIDUAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_INDIVIDUAL_CUSTOMER
+    title = TITLE_DEL_INDIVIDUAL_CUSTOMER
+    subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER
+    header_class = HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -153,11 +153,11 @@ class JuridicalCustomerView(LoginRequiredMixin, PermissionRequiredMixin, SingleT
     paginator_class = LazyPaginator
     permission_required = 'customer.view_juridicalcustomer'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_JURIDICAL_CUSTOMER
-    subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
+    title = TITLE_VIEW_JURIDICAL_CUSTOMER
+    subtitle = SUBTITLE_JURIDICAL_CUSTOMER
     new = reverse_lazy('customer:juridicalcustomer:create')
     back_url = reverse_lazy('customer:index')
-    header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+    header_class = HEADER_CLASS_JURIDICAL_CUSTOMER
 
 
 class JuridicalCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -165,9 +165,9 @@ class JuridicalCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = JuridicalCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.create_juridicalcustomer'
-    title = settings.TITLE_CREATE_JURIDICAL_CUSTOMER
-    subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+    title = TITLE_CREATE_JURIDICAL_CUSTOMER
+    subtitle = SUBTITLE_JURIDICAL_CUSTOMER
+    header_class = HEADER_CLASS_JURIDICAL_CUSTOMER
 
     @staticmethod
     def get_back_url():
@@ -179,9 +179,9 @@ class JuridicalCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateV
     form_class = JuridicalCustomerForm
     template_name = 'base/form.html'
     permission_required = 'customer.edit_juridicalcustomer'
-    title = settings.TITLE_EDIT_JURIDICAL_CUSTOMER
-    subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+    title = TITLE_EDIT_JURIDICAL_CUSTOMER
+    subtitle = SUBTITLE_JURIDICAL_CUSTOMER
+    header_class = HEADER_CLASS_JURIDICAL_CUSTOMER
 
 
 class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -189,9 +189,9 @@ class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteVi
     template_name = "base/confirm_delete.html"
     permission_required = 'customer.del_juridicalcustomer'
     success_url = reverse_lazy('customer:juridicalcustomer:view')
-    title = settings.TITLE_DEL_JURIDICAL_CUSTOMER
-    subtitle = settings.SUBTITLE_JURIDICAL_CUSTOMER
-    header_class = settings.HEADER_CLASS_JURIDICAL_CUSTOMER
+    title = TITLE_DEL_JURIDICAL_CUSTOMER
+    subtitle = SUBTITLE_JURIDICAL_CUSTOMER
+    header_class = HEADER_CLASS_JURIDICAL_CUSTOMER
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)

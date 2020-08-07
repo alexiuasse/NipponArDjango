@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 13:06.
+#  Last modified 06/08/2020 11:09.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -40,8 +40,8 @@ class DeviceForm(forms.ModelForm):
                     ),
                     Div(
                         Row(
-                            Field('entry_date', wrapper_class='col-md-12'),
-                            Field('departure_date', wrapper_class='col-md-12'),
+                            # Field('entry_date', wrapper_class='col-md-12'),
+                            # Field('departure_date', wrapper_class='col-md-12'),
                             Field('location', wrapper_class='col-md-12'),
                             Field('observation', wrapper_class='col-md-12'),
                         ),
@@ -66,10 +66,9 @@ class DeviceForm(forms.ModelForm):
 
     class Meta:
         model = Device
-        widgets = {
-            'entry_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
-            'departure_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
-        }
-        fields = ['identifier', 'patrimony', 'entry_date',
-                  'departure_date', 'observation', 'location',
+        # widgets = {
+        #     'entry_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+        #     'departure_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+        # }
+        fields = ['identifier', 'patrimony', 'observation', 'location',
                   'brand', 'model', 'type', 'capacity', ]

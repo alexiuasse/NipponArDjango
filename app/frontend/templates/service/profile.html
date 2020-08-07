@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 02/08/2020 10:54.
+  ~ Last modified 06/08/2020 11:00.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -26,14 +26,21 @@
                             </a>
                         </span>
                     </h4>
-                    <p class="card-category">Cliente {{obj.get_customer}}</p>
+                    <p class="card-category">{{obj.get_category_name}}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        {% if obj.scheduled %}
+                        <div class="col-md-12">
+                            <div class="alert alert-primary">
+                                <span>Serviço está agendado para {{obj.start_date}}</span>
+                            </div>
+                        </div>
+                        {% endif %}
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>Dados do Equipamento</h6>
+                                    <h6>Dados do Serviço</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -41,7 +48,7 @@
                                             {% for k, v in obj.get_dict_data.items %}
                                             <tr>
                                                 <td>{{k}}</td>
-                                                <td>{{v}}</td>
+                                                <td>{{v|default_if_none:""}}</td>
                                             </tr>
                                             {% endfor %}
                                         </table>
@@ -52,20 +59,18 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>Dados de Serviços</h6>
+                                    <h6>Peças Trocadas</h6>
                                 </div>
                                 <div class="card-body">
-                                    <!-- Lista de todos os serviços anexados ao equipamento com um badge mostrando o status do serviço -->
-                                    <div class="list-group">
-                                        {% for v in customer.devices.all %}
-                                        <a class="list-group-item list-group-item-action"
-                                           href="{{v.get_absolute_url}}">
-                                            <i class="material-icons mr-2">ac_unit</i>
-                                            {{v}}
-                                            <!-- Numero de ordens de serviços -->
-                                            <span class="badge badge-success">2</span>
-                                        </a>
-                                        {% endfor %}
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            {% for v in obj.parts.all %}
+                                            <tr>
+                                                <td>{{v}}</td>
+                                                <td>{{v.quantity}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
                                     </div>
                                 </div>
                             </div>

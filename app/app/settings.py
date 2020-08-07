@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 04/08/2020 08:43.
+#  Last modified 07/08/2020 12:40.
 
 import os
 
@@ -28,82 +28,10 @@ SECRET_KEY = 'xj7o!^3d43#@0f9*ac#x(me59xtz*1y_2fggoamvpz$_c))!1x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.18.16']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.103']
 
-# CUSTOMIZATION DEFINITIONS
 # GENERAL
 NAME_OF_ENTERPRISE = "Nippon Ar"
-# CONFIG CUSTOMIZATION
-HEADER_CLASS_CONFIG_GENERAL = "card-header-primary"
-HEADER_CLASS_CONFIG_TECHNICAL = "card-header-primary"
-HEADER_CLASS_CONFIG_FINANTIAL = "card-header-primary"
-# CONFIG BRAND CUSTOMIZATION
-TITLE_VIEW_CONFIG_BRAND = "Marcas"
-TITLE_CREATE_CONFIG_BRAND = "Nova Marca"
-TITLE_EDIT_CONFIG_BRAND = "Editar Marca"
-TITLE_DEL_CONFIG_BRAND = "Deletar Marca"
-SUBTITLE_VIEW_CONFIG_BRAND = "Configuração de marcas"
-# CONFIG CAPACITY CUSTOMIZATION
-TITLE_VIEW_CONFIG_CAPACITY = "Capacidades"
-TITLE_CREATE_CONFIG_CAPACITY = "Nova Capacidade"
-TITLE_EDIT_CONFIG_CAPACITY = "Editar Capacidade"
-TITLE_DEL_CONFIG_CAPACITY = "Deletar Capacidade"
-SUBTITLE_VIEW_CONFIG_CAPACITY = "Configuração de capacidades"
-# CONFIG MODEL CUSTOMIZATION
-TITLE_VIEW_CONFIG_MODEL = "Modelos"
-TITLE_CREATE_CONFIG_MODEL = "Novo Modelo"
-TITLE_EDIT_CONFIG_MODEL = "Editar Modelo"
-TITLE_DEL_CONFIG_MODEL = "Deletar Modelo"
-SUBTITLE_VIEW_CONFIG_MODEL = "Configuração de modelos"
-# CONFIG TYPE CUSTOMIZATION
-TITLE_VIEW_CONFIG_TYPE = "Tipos"
-TITLE_CREATE_CONFIG_TYPE = "Novo Tipo"
-TITLE_EDIT_CONFIG_TYPE = "Editar Tipo"
-TITLE_DEL_CONFIG_TYPE = "Deletar Tipo"
-SUBTITLE_VIEW_CONFIG_TYPE = "Configuração de tipos"
-# CONFIG CITY CUSTOMIZATION
-TITLE_VIEW_CONFIG_CITY = "Cidades"
-TITLE_CREATE_CONFIG_CITY = "Nova Cidade"
-TITLE_EDIT_CONFIG_CITY = "Editar Cidade"
-TITLE_DEL_CONFIG_CITY = "Deletar Cidade"
-SUBTITLE_VIEW_CONFIG_CITY = "Configuração de cidades"
-# CONFIG TYPE OF SERVICE CUSTOMIZATION
-TITLE_VIEW_CONFIG_TYPE_OF_SERVICE = "Tipo de Serviço"
-TITLE_CREATE_CONFIG_TYPE_OF_SERVICE = "Novo Tipo de Serviço"
-TITLE_EDIT_CONFIG_TYPE_OF_SERVICE = "Editar Tipo de Serviço"
-TITLE_DEL_CONFIG_TYPE_OF_SERVICE = "Deletar Tipo de Serviço"
-SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE = "Configuração de tipos de serviços"
-# CONFIG STATUS SERVICE CUSTOMIZATION
-TITLE_VIEW_CONFIG_STATUS_SERVICE = "Status do Serviço"
-TITLE_CREATE_CONFIG_STATUS_SERVICE = "Novo Status do Serviço"
-TITLE_EDIT_CONFIG_STATUS_SERVICE = "Editar Status do Serviço"
-TITLE_DEL_CONFIG_STATUS_SERVICE = "Deletar Status do Serviço"
-SUBTITLE_VIEW_CONFIG_STATUS_SERVICE = "Configuração de status de serviço"
-# CONFIG DEVICE PARTS CUSTOMIZATION
-TITLE_VIEW_CONFIG_DEVICE_PARTS = "Peças"
-TITLE_CREATE_CONFIG_DEVICE_PARTS = "Nova Peça"
-TITLE_EDIT_CONFIG_DEVICE_PARTS = "Editar Peça"
-TITLE_DEL_CONFIG_DEVICE_PARTS = "Deletar Peça"
-SUBTITLE_VIEW_CONFIG_DEVICE_PARTS = "Configuração de peças"
-# CUSTOMER APP CUSTOMIZATION
-# CUSTOMER
-TITLE_VIEW_CUSTOMER = "Clientes"
-SUBTITLE_VIEW_CUSTOMER = "Manejamento de clientes"
-# INDIVIDUAL CUSTOMER
-TITLE_VIEW_INDIVIDUAL_CUSTOMER = "Cliente - Pessoa Física"
-TITLE_CREATE_INDIVIDUAL_CUSTOMER = "Novo Cliente - Pessoa Física"
-TITLE_EDIT_INDIVIDUAL_CUSTOMER = "Editar Cliente - Pessoa Física"
-TITLE_DEL_INDIVIDUAL_CUSTOMER = "Deletar Cliente - Pessoa Física"
-SUBTITLE_INDIVIDUAL_CUSTOMER = "Configuração de clientes"
-HEADER_CLASS_INDIVIDUAL_CUSTOMER = "card-header-rose"  # class of card header, basically just change the color
-# JURIDICAL CUSTOMER
-TITLE_VIEW_JURIDICAL_CUSTOMER = "Cliente - Pessoa Jurídica"
-TITLE_CREATE_JURIDICAL_CUSTOMER = "Novo Cliente - Pessoa Jurídica"
-TITLE_EDIT_JURIDICAL_CUSTOMER = "Editar Cliente - Pessoa Jurídica"
-TITLE_DEL_JURIDICAL_CUSTOMER = "Deletar Cliente - Pessoa Jurídica"
-SUBTITLE_JURIDICAL_CUSTOMER = "Configuração de clientes"
-HEADER_CLASS_JURIDICAL_CUSTOMER = "card-header-danger"
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
 DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"

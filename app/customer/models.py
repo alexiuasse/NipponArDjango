@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 14:34.
+#  Last modified 06/08/2020 09:31.
 
 from base.models import BaseModel
 from django.db import models
@@ -49,6 +49,9 @@ class Customer(BaseModel):
             'Celular': self.phone_2,
             'E-mail': self.email,
         }
+
+    def get_category_name(self):
+        return "{}".format(self.address_line)
 
     def get_address_to_dict(self):
         return {

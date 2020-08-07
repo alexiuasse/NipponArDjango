@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 02/08/2020 12:33.
+  ~ Last modified 06/08/2020 09:31.
   -->
 {% extends 'base.html' %}
 {% load render_table from django_tables2 %}
@@ -30,7 +30,7 @@
                             </a>
                         </span>
                     </h4>
-                    <p class="card-category">{{obj.address_line}}</p>
+                    <p class="card-category">{{obj.get_category_name}}</p>
                 </div>
                 <div class="card-body">
                     <div class="row">

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 04/08/2020 09:05.
+#  Last modified 06/08/2020 11:09.
 
 from datetime import datetime
 
@@ -13,8 +13,8 @@ class Device(BaseModel):
     name = models.CharField("nome", max_length=128, blank=True)
     identifier = models.CharField("identificador", max_length=128, blank=True)
     patrimony = models.CharField("patrimônio", max_length=128, blank=True)
-    entry_date = models.DateField("data de entrada", default=datetime.today, blank=True)
-    departure_date = models.DateField("data de saída", blank=True, null=True)
+    # entry_date = models.DateField("data de entrada", default=datetime.today, blank=True)
+    # departure_date = models.DateField("data de saída", blank=True, null=True)
     observation = models.TextField("observações", blank=True)
     location = models.TextField("localização", blank=True)
     brand = models.ForeignKey("config.Brand", verbose_name="Marca", on_delete=models.SET_NULL, null=True)
@@ -57,13 +57,16 @@ class Device(BaseModel):
     def get_full_name(self):
         return "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity)
 
+    def get_category_name(self):
+        return "Cliente {}".format(self.get_customer())
+
     def get_dict_data(self):
         return {
             'Nome': "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity),
             'Identificador': self.identifier,
             'Patrimônio': self.patrimony,
-            'Data de Entrada': self.entry_date,
-            'Data de Saída': self.departure_date,
+            # 'Data de Entrada': self.entry_date,
+            # 'Data de Saída': self.departure_date,
             'Localização': self.location,
             'Observação': self.observation,
         }

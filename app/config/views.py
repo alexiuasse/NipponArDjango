@@ -1,9 +1,8 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 01/08/2020 13:29.
+#  Last modified 06/08/2020 09:25.
 from typing import Dict, Any
 
-from django.conf import settings
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -13,6 +12,7 @@ from django_filters.views import FilterView
 from django_tables2.paginators import LazyPaginator
 from django_tables2.views import SingleTableMixin
 
+from .conf import *
 from .filters import *
 from .forms import *
 from .tables import *
@@ -27,7 +27,7 @@ class Config(LoginRequiredMixin, View):
         links = {
             'Geral': {
                 'config': {
-                    'header': settings.HEADER_CLASS_CONFIG_GENERAL,
+                    'header': HEADER_CLASS_CONFIG_GENERAL,
                 },
                 'city': {
                     'name': "Cidades",
@@ -39,7 +39,7 @@ class Config(LoginRequiredMixin, View):
             },
             'Equipamento': {
                 'config': {
-                    'header': settings.HEADER_CLASS_CONFIG_TECHNICAL,
+                    'header': HEADER_CLASS_CONFIG_TECHNICAL,
                 },
                 'brand': {
                     'name': "Marcas",
@@ -79,7 +79,7 @@ class Config(LoginRequiredMixin, View):
             },
             'Ordem de Serviço': {
                 'config': {
-                    'header': settings.HEADER_CLASS_CONFIG_TECHNICAL,
+                    'header': HEADER_CLASS_CONFIG_TECHNICAL,
                 },
                 'status_service': {
                     'name': "Status do Serviço",
@@ -98,7 +98,7 @@ class Config(LoginRequiredMixin, View):
             },
             'Financeiro': {
                 'config': {
-                    'header': settings.HEADER_CLASS_CONFIG_FINANTIAL,
+                    'header': HEADER_CLASS_CONFIG_FINANTIAL,
                 },
             },
         }
@@ -119,11 +119,11 @@ class BrandView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     paginator_class = LazyPaginator
     permission_required = 'config.view_brand'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_BRAND
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
+    title = TITLE_VIEW_CONFIG_BRAND
+    subtitle = SUBTITLE_VIEW_CONFIG_BRAND
     new = reverse_lazy('config:brand:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -133,9 +133,9 @@ class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_brand'
     # success_url = reverse_lazy('config:brand:view')
     back_url = reverse_lazy('config:brand:view')
-    title = settings.TITLE_CREATE_CONFIG_BRAND
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_CREATE_CONFIG_BRAND
+    subtitle = SUBTITLE_VIEW_CONFIG_BRAND
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -144,9 +144,9 @@ class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'base/form.html'
     permission_required = 'config.edit_brand'
     success_url = reverse_lazy('config:brand:view')
-    title = settings.TITLE_EDIT_CONFIG_BRAND
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_EDIT_CONFIG_BRAND
+    subtitle = SUBTITLE_VIEW_CONFIG_BRAND
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -154,9 +154,9 @@ class BrandDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_brand'
     success_url = reverse_lazy('config:brand:view')
-    title = settings.TITLE_DEL_CONFIG_BRAND
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_BRAND
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_DEL_CONFIG_BRAND
+    subtitle = SUBTITLE_VIEW_CONFIG_BRAND
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -176,11 +176,11 @@ class CapacityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin
     paginator_class = LazyPaginator
     permission_required = 'config.view_capacity'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_CAPACITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
+    title = TITLE_VIEW_CONFIG_CAPACITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CAPACITY
     new = reverse_lazy('config:capacity:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class CapacityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -190,9 +190,9 @@ class CapacityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_capacity'
     # success_url = reverse_lazy('config:capacity:view')
     back_url = reverse_lazy('config:capacity:view')
-    title = settings.TITLE_CREATE_CONFIG_CAPACITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_CREATE_CONFIG_CAPACITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CAPACITY
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class CapacityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -202,9 +202,9 @@ class CapacityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = 'config.edit_capacity'
     # success_url = reverse_lazy('config:capacity:view')
     back_url = reverse_lazy('config:capacity:view')
-    title = settings.TITLE_EDIT_CONFIG_CAPACITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_EDIT_CONFIG_CAPACITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CAPACITY
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class CapacityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -212,9 +212,9 @@ class CapacityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_capacity'
     success_url = reverse_lazy('config:capacity:view')
-    title = settings.TITLE_DEL_CONFIG_CAPACITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CAPACITY
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_DEL_CONFIG_CAPACITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CAPACITY
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -234,11 +234,11 @@ class ModelView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, F
     paginator_class = LazyPaginator
     permission_required = 'config.view_model'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_MODEL
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
+    title = TITLE_VIEW_CONFIG_MODEL
+    subtitle = SUBTITLE_VIEW_CONFIG_MODEL
     new = reverse_lazy('config:model:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -248,9 +248,9 @@ class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_model'
     # success_url = reverse_lazy('config:model:view')
     back_url = reverse_lazy('config:model:view')
-    title = settings.TITLE_CREATE_CONFIG_MODEL
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_CREATE_CONFIG_MODEL
+    subtitle = SUBTITLE_VIEW_CONFIG_MODEL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -259,9 +259,9 @@ class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'base/form.html'
     permission_required = 'config.edit_model'
     success_url = reverse_lazy('config:model:view')
-    title = settings.TITLE_EDIT_CONFIG_MODEL
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_EDIT_CONFIG_MODEL
+    subtitle = SUBTITLE_VIEW_CONFIG_MODEL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class ModelDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -269,9 +269,9 @@ class ModelDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
     success_url = reverse_lazy('config:model:view')
-    title = settings.TITLE_DEL_CONFIG_MODEL
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_MODEL
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_DEL_CONFIG_MODEL
+    subtitle = SUBTITLE_VIEW_CONFIG_MODEL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -291,11 +291,11 @@ class TypeView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     paginator_class = LazyPaginator
     permission_required = 'config.view_type'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_TYPE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
+    title = TITLE_VIEW_CONFIG_TYPE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE
     new = reverse_lazy('config:type:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -305,9 +305,9 @@ class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_model'
     # success_url = reverse_lazy('config:type:view')
     back_url = reverse_lazy('config:type:view')
-    title = settings.TITLE_CREATE_CONFIG_TYPE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_CREATE_CONFIG_TYPE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -316,9 +316,9 @@ class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'base/form.html'
     permission_required = 'config.edit_model'
     success_url = reverse_lazy('config:type:view')
-    title = settings.TITLE_EDIT_CONFIG_TYPE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_EDIT_CONFIG_TYPE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
 
 class TypeDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -326,9 +326,9 @@ class TypeDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_model'
     success_url = reverse_lazy('config:type:view')
-    title = settings.TITLE_DEL_CONFIG_TYPE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE
-    header_class = settings.HEADER_CLASS_CONFIG_TECHNICAL
+    title = TITLE_DEL_CONFIG_TYPE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE
+    header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -348,11 +348,11 @@ class CityView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, Fi
     paginator_class = LazyPaginator
     permission_required = 'config.view_city'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_CITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
+    title = TITLE_VIEW_CONFIG_CITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CITY
     new = reverse_lazy('config:city:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -362,9 +362,9 @@ class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'config.create_city'
     # success_url = reverse_lazy('config:city:view')
     back_url = reverse_lazy('config:city:view')
-    title = settings.TITLE_CREATE_CONFIG_CITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_CREATE_CONFIG_CITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CITY
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -373,9 +373,9 @@ class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'base/form.html'
     permission_required = 'config.edit_city'
     success_url = reverse_lazy('config:city:view')
-    title = settings.TITLE_EDIT_CONFIG_CITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_EDIT_CONFIG_CITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CITY
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class CityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -383,9 +383,9 @@ class CityDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_city'
     success_url = reverse_lazy('config:city:view')
-    title = settings.TITLE_DEL_CONFIG_CITY
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_CITY
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_DEL_CONFIG_CITY
+    subtitle = SUBTITLE_VIEW_CONFIG_CITY
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -405,11 +405,11 @@ class TypeOfServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTable
     paginator_class = LazyPaginator
     permission_required = 'config.view_typeofservice'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_TYPE_OF_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    title = TITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
     new = reverse_lazy('config:typeofservice:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class TypeOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -419,9 +419,9 @@ class TypeOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
     permission_required = 'config.create_typeofservice'
     # success_url = reverse_lazy('config:city:view')
     back_url = reverse_lazy('config:typeofservice:view')
-    title = settings.TITLE_CREATE_CONFIG_TYPE_OF_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_CREATE_CONFIG_TYPE_OF_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class TypeOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -430,9 +430,9 @@ class TypeOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     template_name = 'base/form.html'
     permission_required = 'config.edit_typeofservice'
     success_url = reverse_lazy('config:typeofservice:view')
-    title = settings.TITLE_EDIT_CONFIG_TYPE_OF_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_EDIT_CONFIG_TYPE_OF_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class TypeOfServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -440,9 +440,9 @@ class TypeOfServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_typeofservice'
     success_url = reverse_lazy('config:typeofservice:view')
-    title = settings.TITLE_DEL_CONFIG_TYPE_OF_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_DEL_CONFIG_TYPE_OF_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -462,11 +462,11 @@ class StatusServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTable
     paginator_class = LazyPaginator
     permission_required = 'config.view_statuservice'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_STATUS_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    title = TITLE_VIEW_CONFIG_STATUS_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
     new = reverse_lazy('config:statusservice:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class StatusServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -476,9 +476,9 @@ class StatusServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
     permission_required = 'config.create_statuservice'
     # success_url = reverse_lazy('config:city:view')
     back_url = reverse_lazy('config:statusservice:view')
-    title = settings.TITLE_CREATE_CONFIG_STATUS_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_CREATE_CONFIG_STATUS_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class StatusServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -487,9 +487,9 @@ class StatusServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     template_name = 'base/form.html'
     permission_required = 'config.edit_statuservice'
     success_url = reverse_lazy('config:statusservice:view')
-    title = settings.TITLE_EDIT_CONFIG_STATUS_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_EDIT_CONFIG_STATUS_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class StatusServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -497,9 +497,9 @@ class StatusServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_statusservice'
     success_url = reverse_lazy('config:statusservice:view')
-    title = settings.TITLE_DEL_CONFIG_STATUS_SERVICE
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_DEL_CONFIG_STATUS_SERVICE
+    subtitle = SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)
@@ -519,11 +519,11 @@ class DevicePartsView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMi
     paginator_class = LazyPaginator
     permission_required = 'config.view_deviceparts'
     template_name = 'base/view.html'
-    title = settings.TITLE_VIEW_CONFIG_DEVICE_PARTS
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    title = TITLE_VIEW_CONFIG_DEVICE_PARTS
+    subtitle = SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
     new = reverse_lazy('config:deviceparts:create')
     back_url = reverse_lazy('config:index')
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class DevicePartsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -533,9 +533,9 @@ class DevicePartsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     permission_required = 'config.create_deviceparts'
     # success_url = reverse_lazy('config:city:view')
     back_url = reverse_lazy('config:deviceparts:view')
-    title = settings.TITLE_CREATE_CONFIG_DEVICE_PARTS
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_CREATE_CONFIG_DEVICE_PARTS
+    subtitle = SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class DevicePartsEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -544,9 +544,9 @@ class DevicePartsEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'base/form.html'
     permission_required = 'config.edit_deviceparts'
     success_url = reverse_lazy('config:deviceparts:view')
-    title = settings.TITLE_EDIT_CONFIG_DEVICE_PARTS
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_EDIT_CONFIG_DEVICE_PARTS
+    subtitle = SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
 
 class DevicePartsDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
@@ -554,9 +554,9 @@ class DevicePartsDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     template_name = "base/confirm_delete.html"
     permission_required = 'config.del_deviceparts'
     success_url = reverse_lazy('config:deviceparts:view')
-    title = settings.TITLE_DEL_CONFIG_DEVICE_PARTS
-    subtitle = settings.SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
-    header_class = settings.HEADER_CLASS_CONFIG_GENERAL
+    title = TITLE_DEL_CONFIG_DEVICE_PARTS
+    subtitle = SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
+    header_class = HEADER_CLASS_CONFIG_GENERAL
 
     def get_context_data(self, **kwargs):
         context: Dict[str, Any] = super().get_context_data(**kwargs)

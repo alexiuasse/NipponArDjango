@@ -1,20 +1,23 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 05/08/2020 19:02.
+#  Last modified 06/08/2020 11:05.
 from datetime import datetime
 
 from base.models import BaseModel
 from django.db import models
 from django.urls import reverse
 
-from .enums import ServiceStatusEnum
+
+class PartsExchanged(BaseModel):
+    part = models.ForeignKey("config.DeviceParts", verbose_name="Peça", on_delete=models.PROTECT)
+    quantity = models.IntegerField(default=1)
 
 
 class OrderOfService(BaseModel):
     type_of_service = models.ForeignKey("config.TypeOfService", verbose_name="Tipo de Serviço",
                                         on_delete=models.SET_NULL, null=True)
     status = models.ForeignKey("config.StatusService", verbose_name="Status", on_delete=models.PROTECT)
-    parts = models.ManyToManyField("config.DeviceParts", verbose_name="Peças", blank=True)
+    parts = models.ManyToManyField("service.PartsExchanged", verbose_name="Peças", blank=True)
     start_date = models.DateField("data de início", default=datetime.today)
     end_date = models.DateField("data de término", blank=True, null=True)
     defect = models.TextField("defeito", blank=True)
@@ -50,12 +53,15 @@ class OrderOfService(BaseModel):
     def get_full_name(self):
         return "{} {}".format(self.type_of_service, self.start_date.strftime("%d/%m/%Y"))
 
+    def get_category_name(self):
+        return "{}".format(self.get_device().get_full_name())
+
     def get_dict_data(self):
         return {
             'Tipo de Serviço': "{}".format(self.type_of_service),
             'Status': self.status,
             'Agendado': "Sim" if self.scheduled else "Não",
-            'Peças': self.parts,
+            'Peças': ", ".join([n.name for n in self.parts.all()]),
             'Data de Início': self.start_date,
             'Data de Término': self.end_date,
             'Defeito': self.defect,
