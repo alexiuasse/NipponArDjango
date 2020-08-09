@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 06/08/2020 11:09.
+#  Last modified 09/08/2020 10:18.
 
 from datetime import datetime
 
@@ -73,7 +73,7 @@ class Device(BaseModel):
 
     def get_service_sorted_by_entry_date(self):
         retDict = {}
-        for s in self.order_of_services.all().order_by('-start_date'):
+        for s in self.order_of_services.all().order_by('-start_date', '-id'):
             m_y = "{}/{}".format(s.start_date.month, s.start_date.year)
             if m_y in retDict:
                 retDict[m_y]['services'].append(s)
@@ -81,5 +81,5 @@ class Device(BaseModel):
                 retDict[m_y] = {}
                 retDict[m_y]['services'] = []
                 retDict[m_y]['services'].append(s)
-        print(retDict)
+        # print(retDict)
         return retDict

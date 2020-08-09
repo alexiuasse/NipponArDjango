@@ -13513,7 +13513,7 @@ input::placeholder {
 }
 
 label {
-  color: #AAAAAA;
+  color: #303030 !important;
 }
 
 .radio label,
@@ -19760,4 +19760,4 @@ Copyright (c) 2015 Daniel Eden
     }
 }
 
-/*# sourceMappingURL=dashboard-free.css.map */
+/*# sourceMappingURL=material-dashboard.css.map */

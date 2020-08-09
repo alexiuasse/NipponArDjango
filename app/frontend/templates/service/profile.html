@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 06/08/2020 11:00.
+  ~ Last modified 08/08/2020 21:51.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -64,10 +64,12 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-hover table-striped">
-                                            {% for v in obj.parts.all %}
+                                            {% for v in obj.partsexchanged_set.all %}
                                             <tr>
-                                                <td>{{v}}</td>
-                                                <td>{{v.quantity}}</td>
+                                                <td>
+                                                    <span class="badge badge-success mr-2">{{v.quantity}}x</span>
+                                                    {{v.part.name}}
+                                                </td>
                                             </tr>
                                             {% endfor %}
                                         </table>

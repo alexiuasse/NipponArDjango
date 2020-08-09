@@ -1,11 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 06/08/2020 09:28.
+#  Last modified 09/08/2020 10:50.
 from typing import Dict, Any
 
 from device.models import Device
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -94,11 +95,17 @@ class OrderOfServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTabl
 class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = OrderOfService
     form_class = OrderOfServiceForm
-    template_name = 'base/form.html'
+    template_name = 'service/form.html'
     permission_required = 'service.create_orderofservice'
     title = TITLE_CREATE_ORDER_OF_SERVICE
     subtitle = SUBTITLE_ORDER_OF_SERVICE
     header_class = HEADER_CLASS_ORDER_OF_SERVICE
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderOfServiceCreate, self).get_context_data()
+        context['formSet'] = PartsExchangedFormSet(self.request.POST or None, queryset=PartsExchanged.objects.none())
+        context['formSetHelper'] = PartsExchangedNewFormSetHelper()
+        return context
 
     def get_success_url(self):
         return reverse_lazy('device:profile',
@@ -110,6 +117,22 @@ class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
 
     def form_valid(self, form):
         response = super(OrderOfServiceCreate, self).form_valid(form)
+        formSet = self.get_context_data()['formSet']
+        if formSet.is_valid():
+            for form in formSet:
+                if form.is_valid():
+                    try:
+                        f = form.save(commit=False)
+                        f.order_of_service = self.object
+                        f.save()
+                    except Exception:
+                        continue
+                else:
+                    print(form.errors)
+        else:
+            print(formSet.errors)
+            self.object = None
+            return self.render_to_response(self.get_context_data())
         if self.object:
             Device.objects.get(pk=self.kwargs['dev']).order_of_services.add(self.object)
         return response
@@ -118,7 +141,7 @@ class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
 class OrderOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = OrderOfService
     form_class = OrderOfServiceForm
-    template_name = 'base/form.html'
+    template_name = 'service/form.html'
     permission_required = 'service.edit_orderofservice'
     title = TITLE_EDIT_ORDER_OF_SERVICE
     subtitle = SUBTITLE_ORDER_OF_SERVICE
@@ -130,7 +153,32 @@ class OrderOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
                                     'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
-        return super(OrderOfServiceEdit, self).get_context_data(**kwargs)
+        context = super(OrderOfServiceEdit, self).get_context_data(**kwargs)
+        parts = self.object.partsexchanged_set.all()
+        formSet = PartsExchangedFormSet(self.request.POST or None, queryset=parts)
+        formSet.extra = 0 if parts.count() > 0 else 1
+        context['formSet'] = formSet
+        context['formSetHelper'] = PartsExchangedEditFormSetHelper()
+        return context
+
+    def form_valid(self, form):
+        response = super(OrderOfServiceEdit, self).form_valid(form)
+        formSet = self.get_context_data()['formSet']
+        if formSet.is_valid():
+            for form in formSet:
+                if not form['DELETE'].value():
+                    if form.is_valid():
+                        try:
+                            f = form.save(commit=False)
+                            f.order_of_service = self.object
+                            f.save()
+                        except Exception:
+                            continue
+            formSet.save()
+        else:
+            print("FORMSET ERROR {}".format(formSet.errors))
+            return self.render_to_response(self.get_context_data())
+        return response
 
 
 class OrderOfServiceDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
