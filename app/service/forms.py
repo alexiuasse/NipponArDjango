@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 11:09.
+#  Last modified 09/08/2020 11:38.
 from crispy_forms.bootstrap import FieldWithButtons, StrictButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field, Column
@@ -22,7 +22,6 @@ class OrderOfServiceForm(forms.ModelForm):
             Field('end_date', wrapper_class='col-lg-6'),
             Field('defect', wrapper_class='col-md-12'),
             Field('observation', wrapper_class='col-md-12'),
-            css_class='form-row',
         ),
     )
 
@@ -63,8 +62,9 @@ class PartsExchangedNewFormSetHelper(FormHelper):
                     'remover'
                     '</button>'
                 ),
-                Field('id')
-            ),
+                Field('id'),
+                css_class="form-clone-row"
+            )
         )
 
 
@@ -86,7 +86,8 @@ class PartsExchangedEditFormSetHelper(FormHelper):
                 ),
                 Field('DELETE', wrapper_class='col-md-6'),
                 Field('id'),
-            ),
+                css_class="form-clone-row"
+            )
         )
 
 

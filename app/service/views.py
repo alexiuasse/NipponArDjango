@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 10:50.
+#  Last modified 09/08/2020 11:39.
 from typing import Dict, Any
 
 from device.models import Device
@@ -108,8 +108,13 @@ class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
         return context
 
     def get_success_url(self):
-        return reverse_lazy('device:profile',
-                            kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'pk': self.kwargs['dev']})
+        if self.object:
+            return reverse('service:profile',
+                           kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'dev': self.kwargs['dev'],
+                                   'pk': self.object.pk})
+        else:
+            return reverse_lazy('device:profile',
+                                kwargs={'cpk': self.kwargs['cpk'], 'ctp': self.kwargs['ctp'], 'pk': self.kwargs['dev']})
 
     def get_back_url(self):
         return reverse_lazy('device:profile',
@@ -127,12 +132,13 @@ class OrderOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
                         f.save()
                     except Exception:
                         continue
-                else:
-                    print(form.errors)
-        else:
-            print(formSet.errors)
-            self.object = None
-            return self.render_to_response(self.get_context_data())
+        #         else:
+        #             print(form.errors)
+        # else:
+        #     for form in formSet:
+        #         print(form.errors)
+        #     self.object = None
+        #     return self.render_to_response(self.get_context_data())
         if self.object:
             Device.objects.get(pk=self.kwargs['dev']).order_of_services.add(self.object)
         return response
@@ -176,7 +182,6 @@ class OrderOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
                             continue
             formSet.save()
         else:
-            print("FORMSET ERROR {}".format(formSet.errors))
             return self.render_to_response(self.get_context_data())
         return response
 
