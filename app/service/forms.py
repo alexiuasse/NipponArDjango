@@ -1,55 +1,28 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 05/08/2020 19:00.
+#  Last modified 09/08/2020 11:09.
+from crispy_forms.bootstrap import FieldWithButtons, StrictButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, HTML, Row, Div, Field
+from crispy_forms.layout import Layout, HTML, Row, Div, Field, Column
 from django import forms
+from django.forms import modelformset_factory
 
 from .models import *
 
 
 class OrderOfServiceForm(forms.ModelForm):
+    prefix = "orderOfService"
+
     layout = Layout(
-        Div(
-            Div(
-                Div(
-                    Div(
-                        HTML('<h6 class="card-title">Descrição do Equipamento</h6>'),
-                        css_class='card-header'
-                    ),
-                    Div(
-                        Row(
-                            Field('type_of_service', wrapper_class='col-md-12'),
-                            Field('status', wrapper_class='col-md-12'),
-                            Field('parts', wrapper_class='col-md-12'),
-                            Field('start_date', wrapper_class='col-md-12'),
-                            Field('end_date', wrapper_class='col-md-12'),
-                        ),
-                        css_class='card-body'
-                    ),
-                    css_class='card'
-                ),
-                css_class='col-md-6'
-            ),
-            Div(
-                Div(
-                    Div(
-                        HTML('<h6 class="card-title">Dados do Equipamento</h6>'),
-                        css_class='card-header'
-                    ),
-                    Div(
-                        Row(
-                            Field('scheduled', wrapper_class='col-md-12'),
-                            Field('defect', wrapper_class='col-md-12'),
-                            Field('observation', wrapper_class='col-md-12'),
-                        ),
-                        css_class='card-body'
-                    ),
-                    css_class='card'
-                ),
-                css_class='col-md-6'
-            ),
-            css_class="row"
+        Row(
+            Field('type_of_service', wrapper_class='col-md-9'),
+            Field('scheduled', wrapper_class='col-md-3 text-center mx-auto my-3'),
+            Field('status', wrapper_class='col-md-12'),
+            Field('start_date', wrapper_class='col-lg-6'),
+            Field('end_date', wrapper_class='col-lg-6'),
+            Field('defect', wrapper_class='col-md-12'),
+            Field('observation', wrapper_class='col-md-12'),
+            css_class='form-row',
         ),
     )
 
@@ -67,7 +40,59 @@ class OrderOfServiceForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
             'end_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+            'defect': forms.Textarea(attrs={"rows": 4}),
+            'observation': forms.Textarea(attrs={"rows": 4}),
         }
-        fields = ['type_of_service', 'status',
-                  'parts', 'start_date', 'end_date',
+        fields = ['type_of_service', 'status', 'start_date', 'end_date',
                   'defect', 'observation', 'scheduled']
+
+
+class PartsExchangedNewFormSetHelper(FormHelper):
+    prefix = "partsFormSet"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.disable_csrf = True
+        self.form_tag = False
+        self.layout = Layout(
+            Row(
+                Field('part', wrapper_class='col-md-12'),
+                Field('quantity', wrapper_class='col-md-12'),
+                HTML(
+                    '<button class="btn btn-sm btn-danger remove-form-row">'
+                    'remover'
+                    '</button>'
+                ),
+                Field('id')
+            ),
+        )
+
+
+class PartsExchangedEditFormSetHelper(FormHelper):
+    prefix = "partsFormSet"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.disable_csrf = True
+        self.form_tag = False
+        self.layout = Layout(
+            Row(
+                Field('part', wrapper_class='col-md-12'),
+                Field('quantity', wrapper_class='col-md-12'),
+                HTML(
+                    '<button class="btn btn-sm btn-danger remove-form-row">'
+                    'remover'
+                    '</button>'
+                ),
+                Field('DELETE', wrapper_class='col-md-6'),
+                Field('id'),
+            ),
+        )
+
+
+PartsExchangedFormSet = modelformset_factory(
+    PartsExchanged,
+    fields='__all__',
+    extra=1,
+    can_delete=True
+)
