@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 06/08/2020 09:29.
+  ~ Last modified 09/08/2020 22:07.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -33,11 +33,11 @@
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>Dados do Equipamento</h6>
+                                    <h6 class="card-title">Dados do Equipamento</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-striped">
+                                        <table class="table table-hover">
                                             {% for k, v in obj.get_dict_data.items %}
                                             <tr>
                                                 <td>{{k}}</td>
@@ -49,35 +49,68 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h6>
-                                        Serviços
+                                    <h6 class="card-title">
+                                        Ordem de Serviços
                                         <a href="{{obj.get_new_service_url}}" rel="tooltip"
                                            title="Nova Ordem de Serviço" type="button">
-                                            <i class="material-icons">add</i>
+                                            <i class="material-icons">library_add</i>
                                             <div class="ripple-container"></div>
                                         </a>
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    {% for k,v in obj.get_service_sorted_by_entry_date.items %}
-                                    <h6 class="ml-2">{{k}}</h6>
-                                    <div class="list-group">
-                                        {% for kk,vv in v.items %}
-                                        {% for s in vv %}
-                                        <a class="list-group-item list-group-item-action"
-                                           href="{{s.get_absolute_url}}">
-                                            <!--                                            <i class="material-icons mr-2">build</i>-->
-                                            {{s.get_full_name}}
-                                            <!-- Numero de ordens de serviços -->
-                                            <span class="badge {{s.status.badge_class}}">{{s.status}}</span>
-                                        </a>
-                                        {% endfor %}
+                                    <div class="row">
+                                        {% for k,v in obj.get_service_sorted_by_entry_date.items %}
+                                        <div class="col-md-6">
+                                            <div class="card card-plain">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Mês/Ano {{k}}</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Serviço</th>
+                                                                <th>Data</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {% for kk,vv in v.items %}
+
+                                                            {% for s in vv %}
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="{{s.get_absolute_url}}">
+                                                                        {{s.type_of_service}}
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    {{s.date|date:"SHORT_DATE_FORMAT"}}
+                                                                    {% if s.scheduled %}
+                                                                    <i class="material-icons">calendar_today</i>
+                                                                    {% endif %}
+                                                                </td>
+                                                                <td>
+                                                                    <span class="badge {{s.status.badge_class}}">{{s.status}}</span>
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                            {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         {% endfor %}
                                     </div>
-                                    {% endfor %}
                                 </div>
                             </div>
                         </div>

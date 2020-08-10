@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 08/08/2020 21:51.
+  ~ Last modified 09/08/2020 21:56.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -33,7 +33,7 @@
                         {% if obj.scheduled %}
                         <div class="col-md-12">
                             <div class="alert alert-primary">
-                                <span>Serviço está agendado para {{obj.start_date}}</span>
+                                <span>Serviço está agendado para {{obj.date}}</span>
                             </div>
                         </div>
                         {% endif %}

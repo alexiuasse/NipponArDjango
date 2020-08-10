@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 11:38.
+#  Last modified 09/08/2020 21:24.
 from crispy_forms.bootstrap import FieldWithButtons, StrictButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field, Column
@@ -18,8 +18,9 @@ class OrderOfServiceForm(forms.ModelForm):
             Field('type_of_service', wrapper_class='col-md-9'),
             Field('scheduled', wrapper_class='col-md-3 text-center mx-auto my-3'),
             Field('status', wrapper_class='col-md-12'),
-            Field('start_date', wrapper_class='col-lg-6'),
-            Field('end_date', wrapper_class='col-lg-6'),
+            # Field('start_date', wrapper_class='col-lg-6'),
+            # Field('end_date', wrapper_class='col-lg-6'),
+            Field('date', wrapper_class='col-md-12'),
             Field('defect', wrapper_class='col-md-12'),
             Field('observation', wrapper_class='col-md-12'),
         ),
@@ -37,12 +38,11 @@ class OrderOfServiceForm(forms.ModelForm):
     class Meta:
         model = OrderOfService
         widgets = {
-            'start_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
-            'end_date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
+            'date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
             'defect': forms.Textarea(attrs={"rows": 4}),
             'observation': forms.Textarea(attrs={"rows": 4}),
         }
-        fields = ['type_of_service', 'status', 'start_date', 'end_date',
+        fields = ['type_of_service', 'status', 'date',
                   'defect', 'observation', 'scheduled']
 
 

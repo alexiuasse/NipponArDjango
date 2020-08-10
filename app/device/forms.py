@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 06/08/2020 11:09.
+#  Last modified 09/08/2020 21:52.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -14,10 +14,6 @@ class DeviceForm(forms.ModelForm):
             Div(
                 Div(
                     Div(
-                        HTML('<h6 class="card-title">Descrição do Equipamento</h6>'),
-                        css_class='card-header'
-                    ),
-                    Div(
                         Row(
                             Field('identifier', wrapper_class='col-md-12'),
                             Field('patrimony', wrapper_class='col-md-12'),
@@ -28,16 +24,12 @@ class DeviceForm(forms.ModelForm):
                         ),
                         css_class='card-body'
                     ),
-                    css_class='card'
+                    css_class='card card-plain'
                 ),
                 css_class='col-md-6'
             ),
             Div(
                 Div(
-                    Div(
-                        HTML('<h6 class="card-title">Dados do Equipamento</h6>'),
-                        css_class='card-header'
-                    ),
                     Div(
                         Row(
                             # Field('entry_date', wrapper_class='col-md-12'),
@@ -47,7 +39,7 @@ class DeviceForm(forms.ModelForm):
                         ),
                         css_class='card-body'
                     ),
-                    css_class='card'
+                    css_class='card card-plain'
                 ),
                 css_class='col-md-6'
             ),

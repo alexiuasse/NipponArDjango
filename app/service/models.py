@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 10:11.
+#  Last modified 09/08/2020 21:25.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -20,8 +20,9 @@ class OrderOfService(BaseModel):
                                         on_delete=models.SET_NULL, null=True)
     status = models.ForeignKey("config.StatusService", verbose_name="Status", on_delete=models.PROTECT)
     # parts = models.ManyToManyField("service.PartsExchanged", verbose_name="Peças", blank=True)
-    start_date = models.DateField("data de início", default=datetime.today)
-    end_date = models.DateField("data de término", blank=True, null=True)
+    # start_date = models.DateField("data de início", default=datetime.today)
+    # end_date = models.DateField("data de término", blank=True, null=True)
+    date = models.DateField("Data", default=datetime.today)
     defect = models.TextField("defeito", blank=True)
     observation = models.TextField("observação", blank=True)
     scheduled = models.BooleanField("agendado", default=False)
@@ -53,7 +54,7 @@ class OrderOfService(BaseModel):
         return reverse('device:profile', kwargs={'cpk': cpk, 'ctp': ctp, 'pk': device.pk})
 
     def get_full_name(self):
-        return "{} {}".format(self.type_of_service, self.start_date.strftime("%d/%m/%Y"))
+        return "{} {}".format(self.type_of_service, self.date.strftime("%d/%m/%Y"))
 
     def get_category_name(self):
         return "{}".format(self.get_device().get_full_name())
@@ -64,8 +65,9 @@ class OrderOfService(BaseModel):
             'Status': self.status,
             'Agendado': "Sim" if self.scheduled else "Não",
             'Peças': ", ".join([n.part.name for n in self.partsexchanged_set.all()]),
-            'Data de Início': self.start_date,
-            'Data de Término': self.end_date,
+            # 'Data de Início': self.start_date,
+            # 'Data de Término': self.end_date,
+            'Data': self.date,
             'Defeito': self.defect,
             'Observação': self.observation,
         }

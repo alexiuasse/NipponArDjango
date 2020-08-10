@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 28/07/2020 19:28.
+#  Last modified 09/08/2020 21:53.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Row, Div, Field
 from django import forms
@@ -14,10 +14,10 @@ class IndividualCustomerForm(forms.ModelForm):
             # card for customer rows
             Div(
                 Div(
-                    Div(
-                        HTML('<h6 class="card-title">Dados do Cliente</h6>'),
-                        css_class='card-header'
-                    ),
+                    # Div(
+                    #     HTML('<h6 class="card-title">Dados do Cliente</h6>'),
+                    #     css_class='card-header'
+                    # ),
                     Div(
                         Row(
                             Field('name', wrapper_class='col-md-12'),
@@ -28,17 +28,17 @@ class IndividualCustomerForm(forms.ModelForm):
                         ),
                         css_class='card-body'
                     ),
-                    css_class='card'
+                    css_class='card card-plain'
                 ),
                 css_class='col-md-6'
             ),
             # card for address
             Div(
                 Div(
-                    Div(
-                        HTML('<h6 class="card-title">Endereço do Cliente</h6>'),
-                        css_class='card-header'
-                    ),
+                    # Div(
+                    #     HTML('<h6 class="card-title">Endereço do Cliente</h6>'),
+                    #     css_class='card-header'
+                    # ),
                     Div(
                         Row(
                             Field('street', wrapper_class='col-md-12'),
@@ -53,7 +53,7 @@ class IndividualCustomerForm(forms.ModelForm):
                         ),
                         css_class='card-body'
                     ),
-                    css_class='card'
+                    css_class='card card-plain'
                 ),
                 css_class='col-md-6'
             ),
