@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 07/08/2020 12:40.
+#  Last modified 10/08/2020 12:55.
 
 import os
 
@@ -31,6 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.103']
 
 # GENERAL
+VERSION = "1.0.0b"
 NAME_OF_ENTERPRISE = "Nippon Ar"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'
