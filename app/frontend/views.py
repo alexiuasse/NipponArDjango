@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 17/07/2020 13:13.
+#  Last modified 10/08/2020 12:04.
 
 import logging
 
@@ -10,6 +10,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
+
+from .utils import *
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +49,7 @@ class Dashboard(LoginRequiredMixin, View):
     template = 'dashboard.html'
 
     def get(self, request):
-        return render(request, self.template)
+        return render(request, self.template, context_dashboard())
 
 
 class Icons(LoginRequiredMixin, View):

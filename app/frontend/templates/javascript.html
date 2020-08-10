@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 17/07/2020 17:13.
+  ~ Last modified 10/08/2020 10:51.
   -->
 
 <!--   Core JS Files   -->
@@ -9,6 +9,7 @@
 <script src="/static/assets/js/core/popper.min.js"></script>
 <script src="/static/assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="/static/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
 <!-- Plugin for the momentJs DateTime  -->
 <script src="/static/assets/js/plugins/moment.min.js"></script>
 <!--  Plugin for Sweet Alert -->
@@ -30,7 +31,7 @@
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
 <script src="/static/assets/js/plugins/fullcalendar.min.js"></script>
 <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src="/static/assets/js/plugins/jquery-jvectormap.js"></script>
+<!--<script src="/static/assets/js/plugins/jquery-jvectormap.js"></script>-->
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="/static/assets/js/plugins/nouislider.min.js"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
@@ -38,7 +39,7 @@
 <!-- Library for adding dinamically elements -->
 <script src="/static/assets/js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
 <!-- Chartist JS -->
 <script src="/static/assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -46,7 +47,7 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="/static/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="/static/assets/demo/demo.js"></script>
+<!--<script src="/static/assets/demo/demo.js"></script>-->
 <script>
   $(document).ready(function() {
     $().ready(function() {
@@ -224,21 +225,4 @@
     md.initDashboardPageCharts();
 
   });
-</script>
-<script>
-  $(document).ready(function() {
-    $('.nav li').click(function(){
-      $('.nav li').removeClass('active');
-      $(this).addClass('active');
-    });
-    $(".dashboardClick").click(function () {$('#content').load("{% url 'dashboard' %}");});
-    $(".userClick").click(function () {$('#content').load("{% url 'user' %}");});
-    $(".iconsClick").click(function () {$('#content').load("{% url 'icons' %}");});
-    $(".tablesClick").click(function () {$('#content').load("{% url 'tables' %}");});
-    $(".typographyClick").click(function () {$('#content').load("{% url 'typography' %}");});
-    $(".mapsClick").click(function () {$('#content').load("{% url 'maps' %}");});
-    $(".notificationsClick").click(function () {$('#content').load("{% url 'notifications' %}");});
-    $(".configBrandClick").click(function () {$('#content').load("{% url 'config-brand' %}");});
-  });
-
 </script>

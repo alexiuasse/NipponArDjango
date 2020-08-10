@@ -1,10 +1,10 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 15:26.
+  ~ Last modified 10/08/2020 10:19.
   -->
 
-<div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
+<div class="sidebar" data-background-color="white" data-color="purple" data-image="/static/assets/img/sidebar-1.jpg">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -23,7 +23,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item {% if 'customer' in request.path  or 'device' in request.path %}active{% endif %}">
+            <li class="nav-item {% if 'customer' in request.path  or 'device' in request.path and 'config' not in request.path or 'service' in request.path and 'config' not in request.path %}active{% endif %}">
                 <a class="nav-link" href="{% url 'customer:index' %}">
                     <i class="material-icons">person</i>
                     <p>Clientes</p>

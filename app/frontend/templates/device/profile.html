@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 09/08/2020 22:07.
+  ~ Last modified 10/08/2020 10:15.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -98,7 +98,7 @@
                                                                     {% endif %}
                                                                 </td>
                                                                 <td>
-                                                                    <span class="badge {{s.status.badge_class}}">{{s.status}}</span>
+                                                                    <span class="badge badge-{{s.status.contextual}}">{{s.status}}</span>
                                                                 </td>
                                                             </tr>
                                                             {% endfor %}

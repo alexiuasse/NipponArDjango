@@ -1,16 +1,16 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 05/08/2020 17:03.
+#  Last modified 10/08/2020 10:14.
 from enum import Enum
 
 
-class StatusBadgeEnum(Enum):
-    VERDE = "badge-success"
-    AZUL = "badge-primary"
-    CIANO = "badge-info"
-    AMARELO = "badge-warning"
-    VERMELHO = "badge-danger"
-    CINZA = "badge-default"
+class ContextualEnum(Enum):
+    VERDE = "success"
+    AZUL = "primary"
+    CIANO = "info"
+    AMARELO = "warning"
+    VERMELHO = "danger"
+    CINZA = "default"
 
     @classmethod
     def choices(cls):
