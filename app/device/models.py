@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 21:27.
+#  Last modified 12/08/2020 14:48.
 
 from datetime import datetime
 
@@ -83,3 +83,11 @@ class Device(BaseModel):
                 retDict[m_y]['services'].append(s)
         # print(retDict)
         return retDict
+
+    # def get_html(self):
+    #     html = ""
+    #     for field in self._meta.get_fields():
+    #         if hasattr(field, 'verbose_name'):
+    #             html += "<p>{}: {}</p>".format(getattr(field, 'verbose_name').capitalize(),
+    #                                            getattr(self, field.attname))
+    #     return html

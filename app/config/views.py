@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 06/08/2020 09:25.
+#  Last modified 12/08/2020 17:43.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -33,8 +33,6 @@ class Config(LoginRequiredMixin, View):
                     'name': "Cidades",
                     'link': reverse_lazy('config:city:view'),
                     'badge_text': City.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 }
             },
             'Equipamento': {
@@ -45,36 +43,26 @@ class Config(LoginRequiredMixin, View):
                     'name': "Marcas",
                     'link': reverse_lazy('config:brand:view'),
                     'badge_text': Brand.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
                 'model': {
                     'name': "Modelos",
                     'link': reverse_lazy('config:model:view'),
                     'badge_text': Model.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
                 'type': {
                     'name': "Tipos",
                     'link': reverse_lazy('config:type:view'),
                     'badge_text': Type.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
                 'capacity': {
                     'name': "Capacidades",
                     'link': reverse_lazy('config:capacity:view'),
                     'badge_text': Capacity.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
                 'device_parts': {
                     'name': "Peças",
                     'link': reverse_lazy('config:deviceparts:view'),
                     'badge_text': DeviceParts.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
             },
             'Ordem de Serviço': {
@@ -85,15 +73,11 @@ class Config(LoginRequiredMixin, View):
                     'name': "Status do Serviço",
                     'link': reverse_lazy('config:statusservice:view'),
                     'badge_text': StatusService.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
                 'type_of_service': {
                     'name': "Tipo de Serviço",
                     'link': reverse_lazy('config:typeofservice:view'),
                     'badge_text': TypeOfService.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'settings',
                 },
             },
             'Financeiro': {

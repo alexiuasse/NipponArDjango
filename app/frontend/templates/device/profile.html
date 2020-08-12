@@ -1,123 +1,85 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 10/08/2020 10:15.
+  ~ Last modified 12/08/2020 18:09.
   -->
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md">
-            <div class="card card-plain">
-                <div class="card-header {{config.header}}">
-                    <h4 class="card-title">
-                        <span>
-                            <a href="{{obj.get_back_url}}" rel="tooltip" title="Voltar" type="button">
-                                <i class="material-icons">arrow_back</i>
-                            </a>
-                        </span>
-                        {{obj.get_full_name}}
-                        <span>
-                            <a href="{{obj.get_edit_url}}" rel="tooltip" title="Editar" type="button">
-                                <i class="material-icons">edit</i>
-                            </a>
-                            <a href="{{obj.get_delete_url}}" rel="tooltip" title="Deletar" type="button">
-                                <i class="material-icons">delete_forever</i>
-                            </a>
-                        </span>
-                    </h4>
-                    <p class="card-category">{{obj.get_category_name}}</p>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6 class="card-title">Dados do Equipamento</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            {% for k, v in obj.get_dict_data.items %}
-                                            <tr>
-                                                <td>{{k}}</td>
-                                                <td>{{v}}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6 class="card-title">
-                                        Ordem de Serviços
-                                        <a href="{{obj.get_new_service_url}}" rel="tooltip"
-                                           title="Nova Ordem de Serviço" type="button">
-                                            <i class="material-icons">library_add</i>
-                                            <div class="ripple-container"></div>
-                                        </a>
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        {% for k,v in obj.get_service_sorted_by_entry_date.items %}
-                                        <div class="col-md-6">
-                                            <div class="card card-plain">
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Mês/Ano {{k}}</h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-hover">
-                                                            <thead>
-                                                            <tr>
-                                                                <th>Serviço</th>
-                                                                <th>Data</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            {% for kk,vv in v.items %}
-
-                                                            {% for s in vv %}
-                                                            <tr>
-                                                                <td>
-                                                                    <a href="{{s.get_absolute_url}}">
-                                                                        {{s.type_of_service}}
-                                                                    </a>
-                                                                </td>
-                                                                <td>
-                                                                    {{s.date|date:"SHORT_DATE_FORMAT"}}
-                                                                    {% if s.scheduled %}
-                                                                    <i class="material-icons">calendar_today</i>
-                                                                    {% endif %}
-                                                                </td>
-                                                                <td>
-                                                                    <span class="badge badge-{{s.status.contextual}}">{{s.status}}</span>
-                                                                </td>
-                                                            </tr>
-                                                            {% endfor %}
-                                                            {% endfor %}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <h2 class="page-title">
+                    <a href="{{obj.get_back_url}}" rel="tooltip" title="Voltar" type="button">
+                        <span class="text-primary">{{ICON_ARROW_BACK|safe}}</span>
+                    </a>
+                    {{obj.get_full_name}}
+                    <a href="{{obj.get_edit_url}}" rel="tooltip" title="Editar" type="button">
+                        <span class="text-success">{{ICON_EDIT|safe}}</span>
+                    </a>
+                    <a href="{{obj.get_delete_url}}" rel="tooltip" title="Deletar" type="button">
+                        <span class="text-danger">{{ICON_DELETE|safe}}</span>
+                    </a>
+                </h2>
             </div>
         </div>
+    </div>
+    <div class="table-responsive mb-3">
+        <table class="table table-hover">
+            {% for k, v in obj.get_dict_data.items %}
+            <tr>
+                <td>{{k}}</td>
+                <td>{{v}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h3 class="mb-3">
+        Ordem de Serviços
+        <a href="{{obj.get_new_service_url}}" rel="tooltip"
+           title="Nova Ordem de Serviço" type="button">
+            <span class="text-info">{{ICON_ADD|safe}}</span>
+        </a>
+    </h3>
+    <div class="row">
+        {% for k,v in obj.get_service_sorted_by_entry_date.items %}
+        <div class="col-md-6">
+            <h4>Mês/Ano {{k}}</h4>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for kk,vv in v.items %}
+                    {% for s in vv %}
+                    <tr>
+                        <td>
+                            <a href="{{s.get_absolute_url}}">
+                                {{s.type_of_service}}
+                            </a>
+                        </td>
+                        <td>
+                            {{s.date|date:"SHORT_DATE_FORMAT"}}
+                            {% if s.scheduled %}
+                            <span class="text-warning">{{ICON_CALENDAR|safe}}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge bg-{{s.status.contextual}}">{{s.status}}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

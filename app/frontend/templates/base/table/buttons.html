@@ -1,16 +1,12 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 15:27.
+  ~ Last modified 12/08/2020 18:08.
   -->
 
-<a class="btn btn-primary btn-link btn-sm" href="{% url record.get_edit_url pk=record.id %}" rel="tooltip"
-   title="Editar"
-   type="button">
-    <i class="material-icons">edit</i>
+<a href="{{record.get_edit_url}}" rel="tooltip" title="Editar" >
+    <span class="text-success">{{ICON_EDIT|safe}}</span>
 </a>
-<a class="btn btn-danger btn-link btn-sm" href="{% url record.get_delete_url pk=record.id %}" rel="tooltip"
-   title="Deletar"
-   type="button">
-    <i class="material-icons">delete_forever</i>
+<a href="{{record.get_delete_url}}" rel="tooltip" title="Deletar">
+    <span class="text-danger">{{ICON_DELETE|safe}}</span>
 </a>

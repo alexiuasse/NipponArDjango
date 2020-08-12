@@ -9,10 +9,10 @@
   background: $white-color;
   width: 100%;
 
-    .card-category:not([class*="text-"]) {
+    .card-subtitle:not([class*="text-"]) {
         color: $gray-color;
     }
-    .card-category{
+    .card-subtitle{
         margin-top: 10px;
 
         .material-icons{
@@ -264,7 +264,7 @@
         }
         .author a,
         .stats,
-        .card-category,
+        .card-subtitle,
         .card-description{
             color: $white-transparent;
         }
@@ -297,7 +297,7 @@
         }
     }
 
-    .card-category-social{
+    .card-subtitle-social{
         .fa{
             font-size: 24px;
             position: relative;
@@ -364,7 +364,7 @@
       margin-bottom: 3px;
     }
 
-    .card-category{
+    .card-subtitle{
       margin: 0;
     }
 
@@ -410,7 +410,7 @@
   &.card-plain {
     .card-header {
       &.card-header-icon + .card-body .card-title,
-      &.card-header-icon + .card-body .card-category {
+      &.card-header-icon + .card-body .card-subtitle {
           margin-top: -20px;
       }
     }
@@ -446,7 +446,7 @@
       text-align: center;
     }
 
-    .card-category{
+    .card-subtitle{
       margin: 0;
     }
   }
@@ -469,7 +469,7 @@
       font-size: 12px;
       line-height: 22px;
 
-      .card-category{
+      .card-subtitle{
         padding-top: 7px;
         padding-bottom: 7px;
         margin: 0;
@@ -486,7 +486,7 @@
       margin: 0px 15px 0;
       padding: 0;
 
-      .card-title + .card-category{
+      .card-title + .card-subtitle{
         color: rgba(255, 255, 255, 0.8);
         a {
           color: $white-color;
@@ -526,7 +526,7 @@
         .card-title{
             color: $white-color;
         }
-        .card-category{
+        .card-subtitle{
             margin-bottom: 0;
             color: rgba($white-color, .62);
         }

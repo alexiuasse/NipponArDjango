@@ -1,45 +1,41 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 31/07/2020 13:39.
+  ~ Last modified 12/08/2020 18:08.
   -->
 {% extends 'base.html' %}
 {% load render_table from django_tables2 %}
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md">
-            <div class="card">
-                <div class="card-header {{view.header_class}}">
-                    <h4 class="card-title">
-                         <span>
-                            <a href="{{view.back_url}}" rel="tooltip" title="Voltar" type="button">
-                                <i class="material-icons">arrow_back</i>
-                            </a>
-                        </span>
-                        {{view.title}}
-                        <span>
-                            <a href="{{ view.new }}" rel="tooltip" title="Novo" type="button">
-                                <i class="material-icons">library_add</i>
-                            </a>
-                        </span>
-                    </h4>
-                    <p class="card-category">{{view.subtitle}}</p>
-                </div>
-                <div class="card-body">
-                    {% if filter %}
-                    <form action="" class="form form-inline" method="get">
-                        {% bootstrap_form filter.form show_label=False layout='inline' %}
-                        <button class="btn btn-primary btn-fab btn-fab-mini btn-round submit">
-                            <i class="material-icons">search</i>
-                        </button>
-                    </form>
-                    {% endif %}
-                    <div class="table-responsive">{% render_table table %}</div>
-                </div>
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <h2 class="page-title">
+                    <a href="{{view.back_url}}"
+                       rel="tooltip" title="Voltar" type="button">
+                        <span class="text-primary">{{ICON_ARROW_BACK|safe}}</span>
+                    </a>
+                    {{view.title}}
+                    <a href="{{ view.new }}" rel="tooltip" title="Novo" type="button">
+                        <span class="text-info">{{ICON_ADD|safe}}</span>
+                    </a>
+                </h2>
             </div>
         </div>
     </div>
+
+    {% if filter %}
+    <form action="" class="form form-inline" method="get">
+        {% bootstrap_form filter.form show_label=False layout='horizontal' %}
+        <button class="btn btn-primary btn-fab btn-fab-mini btn-round submit">
+            Pesquisar
+        </button>
+    </form>
+    {% endif %}
+    <div class="table-responsive mt-3">
+        {% render_table table %}
+    </div>
+
 </div>
 {% endblock %}

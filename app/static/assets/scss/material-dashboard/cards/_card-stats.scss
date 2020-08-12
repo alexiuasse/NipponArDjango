@@ -6,17 +6,17 @@
     }
 
     .card-icon + .card-title,
-    .card-icon + .card-category{
+    .card-icon + .card-subtitle{
       padding-top: 10px;
     }
 
     &.card-header-icon .card-title,
     &.card-header-text .card-title,
-    &.card-header-icon .card-category,
-    &.card-header-text .card-category {
+    &.card-header-icon .card-subtitle,
+    &.card-header-text .card-subtitle {
       margin: 0;
     }
-    .card-category {
+    .card-subtitle {
       margin-bottom: 0;
       margin-top: 0;
 

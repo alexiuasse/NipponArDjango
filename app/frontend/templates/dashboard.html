@@ -1,12 +1,67 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 10/08/2020 12:46.
+  ~ Last modified 12/08/2020 18:37.
   -->
 
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
+    {% include 'under_construction.html' %}
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <div class="page-pretitle">
+                    Resumo
+                </div>
+                <h2 class="page-title">
+                    {{ICON_DASHBOARD|safe}}
+                    Dashboard
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="subheader">Sales</div>
+                    <div class="ml-auto lh-1">
+                        <div class="dropdown">
+                            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted" data-toggle="dropdown"
+                               href="#">
+                                Last 7 days
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item active" href="#">Last 7 days</a>
+                                <a class="dropdown-item" href="#">Last 30 days</a>
+                                <a class="dropdown-item" href="#">Last 3 months</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h1 mb-3">75%</div>
+                <div class="d-flex mb-2">
+                    <div>Conversion rate</div>
+                    <div class="ml-auto">
+                      <span class="text-green d-inline-flex align-items-center lh-1">
+                        7% <svg class="icon ml-1" fill="none" height="24" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" stroke="none"/><polyline
+                              points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+                      </span>
+                    </div>
+                </div>
+                <div class="progress progress-sm">
+                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" class="progress-bar bg-blue"
+                         role="progressbar" style="width: 75%">
+                        <span class="sr-only">75% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         {% include 'under_construction.html' %}
         {% for k,v in status.items %}
@@ -16,7 +71,7 @@
                     <div class="card-icon">
                         <i class="material-icons">build</i>
                     </div>
-                    <p class="card-category text-{{v.obj.contextual}} font-weight-bold">{{v.name}}</p>
+                    <p class="card-subtitle text-{{v.obj.contextual}} font-weight-bold">{{v.name}}</p>
                     <h3 class="card-title">{{v.services}}</h3>
                 </div>
                 <div class="card-footer">
@@ -37,7 +92,7 @@
     <!--                </div>-->
     <!--                <div class="card-body">-->
     <!--                    <h4 class="card-title">Daily Sales</h4>-->
-    <!--                    <p class="card-category">-->
+    <!--                    <p class="card-subtitle">-->
     <!--                        <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today-->
     <!--                        sales.</p>-->
     <!--                </div>-->
@@ -55,7 +110,7 @@
     <!--                </div>-->
     <!--                <div class="card-body">-->
     <!--                    <h4 class="card-title">Email Subscriptions</h4>-->
-    <!--                    <p class="card-category">Last Campaign Performance</p>-->
+    <!--                    <p class="card-subtitle">Last Campaign Performance</p>-->
     <!--                </div>-->
     <!--                <div class="card-footer">-->
     <!--                    <div class="stats">-->
@@ -71,7 +126,7 @@
     <!--                </div>-->
     <!--                <div class="card-body">-->
     <!--                    <h4 class="card-title">Completed Tasks</h4>-->
-    <!--                    <p class="card-category">Last Campaign Performance</p>-->
+    <!--                    <p class="card-subtitle">Last Campaign Performance</p>-->
     <!--                </div>-->
     <!--                <div class="card-footer">-->
     <!--                    <div class="stats">-->
@@ -352,7 +407,7 @@
     <!--            <div class="card">-->
     <!--                <div class="card-header card-header-warning">-->
     <!--                    <h4 class="card-title">Employees Stats</h4>-->
-    <!--                    <p class="card-category">New employees on 15th September, 2016</p>-->
+    <!--                    <p class="card-subtitle">New employees on 15th September, 2016</p>-->
     <!--                </div>-->
     <!--                <div class="card-body table-responsive">-->
     <!--                    <table class="table table-hover">-->

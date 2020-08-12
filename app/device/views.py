@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 02/08/2020 13:29.
+#  Last modified 12/08/2020 14:49.
 from typing import Dict, Any
 
 from customer.models import JuridicalCustomer, IndividualCustomer
@@ -39,33 +39,33 @@ class DeviceProfile(LoginRequiredMixin, View):
         return render(request, self.template, context)
 
 
-class DeviceIndex(LoginRequiredMixin, View):
-    template = 'device/view.html'
-    title = TITLE_VIEW_DEVICE
-    subtitle = SUBTITLE_DEVICE
-
-    def get(self, request):
-        links = {
-            'Equipamentos': {
-                'config': {
-                    'header': HEADER_CLASS_DEVICE,
-                },
-                'Equipamentos': {
-                    'name': "Equipamentos",
-                    'link': reverse_lazy('device:view'),
-                    'badge_text': Device.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'person',
-                },
-
-            },
-        }
-        context = {
-            'title': self.title,
-            'subtitle': self.subtitle,
-            'links': links
-        }
-        return render(request, self.template, context)
+# class DeviceIndex(LoginRequiredMixin, View):
+#     template = 'device/view.html'
+#     title = TITLE_VIEW_DEVICE
+#     subtitle = SUBTITLE_DEVICE
+#
+#     def get(self, request):
+#         links = {
+#             'Equipamentos': {
+#                 'config': {
+#                     'header': HEADER_CLASS_DEVICE,
+#                 },
+#                 'Equipamentos': {
+#                     'name': "Equipamentos",
+#                     'link': reverse_lazy('device:view'),
+#                     'badge_text': Device.objects.count(),
+#                     'badge_class': 'badge-success',
+#                     'icon': 'person',
+#                 },
+#
+#             },
+#         }
+#         context = {
+#             'title': self.title,
+#             'subtitle': self.subtitle,
+#             'links': links
+#         }
+#         return render(request, self.template, context)
 
 
 ########################################################################################################################

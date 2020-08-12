@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 14:33.
+#  Last modified 12/08/2020 17:44.
 
 from django.conf import settings
 from django.db import models
@@ -33,11 +33,11 @@ class BaseModel(models.Model):
 
     @property
     def get_delete_url(self):
-        return '{}:{}:delete'.format(self._meta.app_label, self._meta.model_name)
+        return reverse('{}:{}:delete'.format(self._meta.app_label, self._meta.model_name), kwargs={'pk': self.pk})
 
     @property
     def get_edit_url(self):
-        return '{}:{}:edit'.format(self._meta.app_label, self._meta.model_name)
+        return reverse('{}:{}:edit'.format(self._meta.app_label, self._meta.model_name), kwargs={'pk': self.pk})
 
     @property
     def get_back_url(self):

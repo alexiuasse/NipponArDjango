@@ -17167,7 +17167,7 @@ html[dir="rtl"] .card.card-chart {
 }
 
 html[dir="rtl"] .card.card-chart .card-title,
-html[dir="rtl"] .card.card-chart .card-category {
+html[dir="rtl"] .card.card-chart .card-subtitle {
   text-align: right;
 }
 
@@ -17371,15 +17371,15 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.card .card-category:not([class*="text-"]) {
+.card .card-subtitle:not([class*="text-"]) {
   color: #999999;
 }
 
-.card .card-category {
+.card .card-subtitle {
   margin-top: 10px;
 }
 
-.card .card-category .material-icons {
+.card .card-subtitle .material-icons {
   position: relative;
   top: 8px;
   line-height: 0;
@@ -17622,11 +17622,11 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 
 .card [class*="card-header-"] .author a,
 .card [class*="card-header-"] .stats,
-.card [class*="card-header-"] .card-category,
+.card [class*="card-header-"] .card-subtitle,
 .card [class*="card-header-"] .card-description,
 .card[class*="bg-"] .author a,
 .card[class*="bg-"] .stats,
-.card[class*="bg-"] .card-category,
+.card[class*="bg-"] .card-subtitle,
 .card[class*="bg-"] .card-description {
   color: rgba(255, 255, 255, 0.8);
 }
@@ -17657,7 +17657,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   display: none;
 }
 
-.card .card-category-social .fa {
+.card .card-subtitle-social .fa {
   font-size: 24px;
   position: relative;
   margin-top: -4px;
@@ -17665,7 +17665,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   margin-right: 5px;
 }
 
-.card .card-category-social .material-icons {
+.card .card-subtitle-social .material-icons {
   position: relative;
   top: 5px;
 }
@@ -17724,7 +17724,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   margin-bottom: 3px;
 }
 
-.card .card-header .card-category {
+.card .card-header .card-subtitle {
   margin: 0;
 }
 
@@ -17768,7 +17768,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 }
 
 .card.card-plain .card-header.card-header-icon+.card-body .card-title,
-.card.card-plain .card-header.card-header-icon+.card-body .card-category {
+.card.card-plain .card-header.card-header-icon+.card-body .card-subtitle {
   margin-top: -20px;
 }
 
@@ -17802,7 +17802,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   text-align: center;
 }
 
-.card.card-chart .card-category {
+.card.card-chart .card-subtitle {
   margin: 0;
 }
 
@@ -17828,8 +17828,8 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   line-height: 22px;
 }
 
-.card .card-body+.card-footer .stats .card-category,
-.card .card-footer .stats .card-category {
+.card .card-body+.card-footer .stats .card-subtitle,
+.card .card-footer .stats .card-subtitle {
   padding-top: 7px;
   padding-bottom: 7px;
   margin: 0;
@@ -17848,11 +17848,11 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   position: relative;
 }
 
-.card [class*="card-header-"] .card-title+.card-category {
+.card [class*="card-header-"] .card-title+.card-subtitle {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.card [class*="card-header-"] .card-title+.card-category a {
+.card [class*="card-header-"] .card-title+.card-subtitle a {
   color: #fff;
 }
 
@@ -17887,7 +17887,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   color: #fff;
 }
 
-.card [class*="card-header-"] .ct-chart .card-category {
+.card [class*="card-header-"] .ct-chart .card-subtitle {
   margin-bottom: 0;
   color: rgba(255, 255, 255, 0.62);
 }
@@ -18030,23 +18030,23 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 }
 
 .card-stats .card-header .card-icon+.card-title,
-.card-stats .card-header .card-icon+.card-category {
+.card-stats .card-header .card-icon+.card-subtitle {
   padding-top: 10px;
 }
 
 .card-stats .card-header.card-header-icon .card-title,
 .card-stats .card-header.card-header-text .card-title,
-.card-stats .card-header.card-header-icon .card-category,
-.card-stats .card-header.card-header-text .card-category {
+.card-stats .card-header.card-header-icon .card-subtitle,
+.card-stats .card-header.card-header-text .card-subtitle {
   margin: 0;
 }
 
-.card-stats .card-header .card-category {
+.card-stats .card-header .card-subtitle {
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.card-stats .card-header .card-category:not([class*="text-"]) {
+.card-stats .card-header .card-subtitle:not([class*="text-"]) {
   color: #999999;
   font-size: 14px;
 }

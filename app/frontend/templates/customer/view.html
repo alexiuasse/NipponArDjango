@@ -1,35 +1,36 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 10/08/2020 12:47.
+  ~ Last modified 12/08/2020 18:10.
   -->
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
+    {% include 'under_construction.html' %}
     <div class="row">
-        {% include 'under_construction.html' %}
         {% for k,v in links.items %}
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header {{v.config.header}}">
-                    <h4 class="card-title">{{k}}</h4>
-                    <p class="card-category">{{view.subtitle}}</p>
-                </div>
-                <div class="card-body">
-                    <div class="list-group">
-                        {% for kk,vv in v.items %}
-                        {% if kk != 'config' %}
-                        <a class="list-group-item list-group-item-action" href="{{vv.link}}">
-                            <i class="material-icons mr-2">{{vv.icon}}</i>
-                            {{vv.name}}
-                            {% if vv.quantity != "" %}
-                            <span class="badge {{vv.badge_class}}">{{vv.badge_text}}</span>
-                            {% endif %}
-                        </a>
-                        {% endif %}
-                        {% endfor %}
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <h2 class="page-title">
+                            {{k}}
+                            <a href="{{view.new}}" rel="tooltip" title="Novo" type="button">
+                                <span class="text-info">{{ICON_ADD|safe}}</span>
+                            </a>
+                        </h2>
                     </div>
                 </div>
+            </div>
+            <div class="list-group">
+                {% for kk,vv in v.items %}
+                {% if kk != 'config' %}
+                <a class="list-group-item list-group-item-action" href="{{vv.link}}">
+                    {{vv.icon|safe}}
+                    {{vv.name}}
+                </a>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
         {% endfor %}

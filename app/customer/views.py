@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 06/08/2020 09:24.
+#  Last modified 12/08/2020 18:03.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -17,6 +17,7 @@ from .conf import *
 from .filters import *
 from .forms import *
 from .tables import *
+from frontend.icons import ICON_PERSON, ICON_NEW_PERSON
 
 
 class CustomerProfile(LoginRequiredMixin, View):
@@ -46,18 +47,16 @@ class Customer(LoginRequiredMixin, View):
                     'header': HEADER_CLASS_INDIVIDUAL_CUSTOMER,
                 },
                 'Pessoa Física': {
-                    'name': "Pessoa Física",
+                    'name': "Ver Todas Pessoas Físicas",
                     'link': reverse_lazy('customer:individualcustomer:view'),
-                    'badge_text': IndividualCustomer.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'person',
+                    'contextual': 'success',
+                    'icon': ICON_PERSON,
                 },
                 'Novo Cadastro': {
                     'name': "Novo Cadastro",
                     'link': reverse_lazy('customer:individualcustomer:create'),
-                    'badge_text': "Novo",
-                    'badge_class': 'badge-primary',
-                    'icon': 'add',
+                    'contextual': 'primary',
+                    'icon': ICON_NEW_PERSON,
                 },
             },
             'Pessoas Jurídicas': {
@@ -65,18 +64,16 @@ class Customer(LoginRequiredMixin, View):
                     'header': HEADER_CLASS_JURIDICAL_CUSTOMER,
                 },
                 'Pessoa Jurídica': {
-                    'name': "Pessoa Jurídica",
+                    'name': "Ver Todas Pessoas Jurídicas",
                     'link': reverse_lazy('customer:juridicalcustomer:view'),
-                    'badge_text': JuridicalCustomer.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'person',
+                    'contextual': 'success',
+                    'icon': ICON_PERSON,
                 },
                 'Novo Cadastro': {
                     'name': "Novo Cadastro",
                     'link': reverse_lazy('customer:juridicalcustomer:create'),
-                    'badge_text': "Novo",
-                    'badge_class': 'badge-primary',
-                    'icon': 'add',
+                    'contextual': 'primary',
+                    'icon': ICON_NEW_PERSON,
                 },
             },
         }
