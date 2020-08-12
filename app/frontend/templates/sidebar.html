@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 18:03.
+  ~ Last modified 12/08/2020 19:28.
   -->
 {% load static %}
 <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
@@ -101,7 +101,39 @@
                         <span class="nav-link-title">Configurações</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-target="#modal-logout" data-toggle="modal" href="#">
+                        {{ICON_SETTINGS|safe}}
+                        <span class="nav-link-title">Sair</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
 </aside>
+<div aria-hidden="true" class="modal modal-blur fade" id="modal-logout" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sair ?</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <svg class="icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" stroke="none"/>
+                        <line x1="18" x2="6" y1="6" y2="18"/>
+                        <line x1="6" x2="18" y1="6" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                Você quer sair do sistema ?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-white mr-auto" data-dismiss="modal" type="button">Fechar</button>
+                <a class="btn btn-primary" href="{% url 'logout' %}" type="button">Sim</a>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 13:50.
+  ~ Last modified 12/08/2020 19:15.
   -->
 
 <!DOCTYPE html>
@@ -35,6 +35,7 @@
     <!--  Block of links  -->
     {% block links %}{% endblock %}
 </head>
+{% block body_html %}
 <body class="antialiased">
 {% block sidebar %}{% include "sidebar.html" %}{% endblock %}
 <div class="page">
@@ -43,6 +44,7 @@
         {% block footer %}{% include "footer.html" %}{% endblock %}
     </div>
 </div>
+{% endblock %}
 <!-- Libs JS -->
 <script src="{% static 'dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'dist/libs/jquery/dist/jquery.slim.min.js' %}"></script>
