@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 17:43.
+#  Last modified 12/08/2020 20:04.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -121,6 +121,9 @@ class BrandCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     subtitle = SUBTITLE_VIEW_CONFIG_BRAND
     header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
+    def get_back_url(self):
+        return self.back_url
+
 
 class BrandEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Brand
@@ -177,6 +180,9 @@ class CapacityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     title = TITLE_CREATE_CONFIG_CAPACITY
     subtitle = SUBTITLE_VIEW_CONFIG_CAPACITY
     header_class = HEADER_CLASS_CONFIG_TECHNICAL
+
+    def get_back_url(self):
+        return self.back_url
 
 
 class CapacityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -236,6 +242,9 @@ class ModelCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     subtitle = SUBTITLE_VIEW_CONFIG_MODEL
     header_class = HEADER_CLASS_CONFIG_TECHNICAL
 
+    def get_back_url(self):
+        return self.back_url
+
 
 class ModelEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Model
@@ -292,6 +301,9 @@ class TypeCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     title = TITLE_CREATE_CONFIG_TYPE
     subtitle = SUBTITLE_VIEW_CONFIG_TYPE
     header_class = HEADER_CLASS_CONFIG_TECHNICAL
+
+    def get_back_url(self):
+        return self.back_url
 
 
 class TypeEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -350,6 +362,9 @@ class CityCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     subtitle = SUBTITLE_VIEW_CONFIG_CITY
     header_class = HEADER_CLASS_CONFIG_GENERAL
 
+    def get_back_url(self):
+        return self.back_url
+
 
 class CityEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = City
@@ -406,6 +421,9 @@ class TypeOfServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
     title = TITLE_CREATE_CONFIG_TYPE_OF_SERVICE
     subtitle = SUBTITLE_VIEW_CONFIG_TYPE_OF_SERVICE
     header_class = HEADER_CLASS_CONFIG_GENERAL
+
+    def get_back_url(self):
+        return self.back_url
 
 
 class TypeOfServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -464,6 +482,9 @@ class StatusServiceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateVie
     subtitle = SUBTITLE_VIEW_CONFIG_STATUS_SERVICE
     header_class = HEADER_CLASS_CONFIG_GENERAL
 
+    def get_back_url(self):
+        return self.back_url
+
 
 class StatusServiceEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = StatusService
@@ -520,6 +541,9 @@ class DevicePartsCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     title = TITLE_CREATE_CONFIG_DEVICE_PARTS
     subtitle = SUBTITLE_VIEW_CONFIG_DEVICE_PARTS
     header_class = HEADER_CLASS_CONFIG_GENERAL
+
+    def get_back_url(self):
+        return self.back_url
 
 
 class DevicePartsEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):

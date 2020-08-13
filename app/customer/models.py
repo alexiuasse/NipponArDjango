@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 15:38.
+#  Last modified 12/08/2020 19:52.
 
 from base.models import BaseModel
 from django.db import models
@@ -40,6 +40,9 @@ class Customer(BaseModel):
                                                                      self.apartment, self.block, self.city, self.state,
                                                                      self.cep)
         super(Customer, self).save(*args, **kwargs)
+
+    def get_new_device_url(self):
+        return reverse('device:create', kwargs={'cpk': self.pk, 'ctp': self.type})
 
     def get_full_name(self):
         return self.name

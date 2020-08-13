@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 21:25.
+#  Last modified 13/08/2020 13:13.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -19,9 +19,6 @@ class OrderOfService(BaseModel):
     type_of_service = models.ForeignKey("config.TypeOfService", verbose_name="Tipo de Serviço",
                                         on_delete=models.SET_NULL, null=True)
     status = models.ForeignKey("config.StatusService", verbose_name="Status", on_delete=models.PROTECT)
-    # parts = models.ManyToManyField("service.PartsExchanged", verbose_name="Peças", blank=True)
-    # start_date = models.DateField("data de início", default=datetime.today)
-    # end_date = models.DateField("data de término", blank=True, null=True)
     date = models.DateField("Data", default=datetime.today)
     defect = models.TextField("defeito", blank=True)
     observation = models.TextField("observação", blank=True)
