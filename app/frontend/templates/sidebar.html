@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 19:28.
+  ~ Last modified 14/08/2020 09:22.
   -->
 {% load static %}
 <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand navbar-brand-autodark" href=".">
-            <img alt="Tabler" class="navbar-brand-image" src="{% static 'logo-white.svg' %}">
+            <img alt="{{NAME_OF_ENTERPRISE}}" class="navbar-brand-image" src="{% static 'logo_logo.svg' %}">
         </a>
         <!-- Actions when on cellphone -->
         <div class="navbar-nav flex-row d-lg-none">
@@ -103,7 +103,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-target="#modal-logout" data-toggle="modal" href="#">
-                        {{ICON_SETTINGS|safe}}
+                        {{ICON_LOGOUT|safe}}
                         <span class="nav-link-title">Sair</span>
                     </a>
                 </li>

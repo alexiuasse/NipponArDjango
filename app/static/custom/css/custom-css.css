@@ -1,0 +1,5 @@
+bg-login {
+    background-image: url('{% static 'photos/f7f04e6a834b1959.jpg' %}');
+    background-size: cover;
+    background-position: top center;
+}

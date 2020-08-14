@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 18:07.
+#  Last modified 13/08/2020 15:19.
 
 from django.conf import settings  # import the settings file
 from .icons import *
@@ -11,6 +11,8 @@ def enterprise_name(request):
     return {
         'NAME_OF_ENTERPRISE': settings.NAME_OF_ENTERPRISE,
         'VERSION': settings.VERSION,
+        'ICON': ICON,
+        'ICON_LOGOUT': ICON_LOGOUT,
         'ICON_ARROW_BACK': ICON_ARROW_BACK,
         'ICON_DELETE': ICON_DELETE,
         'ICON_EDIT': ICON_EDIT,
