@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 13/08/2020 13:13.
+#  Last modified 14/08/2020 16:18.
 from datetime import datetime
 
 from base.models import BaseModel
@@ -26,6 +26,12 @@ class OrderOfService(BaseModel):
 
     def __str__(self):
         return "{}".format(self.type_of_service)
+
+    def get_device_name(self):
+        return self.device_set.all().first().get_full_name()
+
+    def get_customer_name(self):
+        return self.device_set.all().first().get_customer()
 
     def get_device(self):
         return self.device_set.all().first()
@@ -68,3 +74,6 @@ class OrderOfService(BaseModel):
             'Defeito': self.defect,
             'Observação': self.observation,
         }
+
+    def get_link_list_html(self):
+        return '<a href="{}" target="_blank">{}</a>'.format(self.get_absolute_url(), self)

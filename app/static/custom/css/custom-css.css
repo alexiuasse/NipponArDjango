@@ -1,5 +1,7 @@
-bg-login {
-    background-image: url('{% static 'photos/f7f04e6a834b1959.jpg' %}');
-    background-size: cover;
-    background-position: top center;
+.bg-login {
+    background: linear-gradient(-70deg, lightblue 30%, rgba(0, 0, 0, 0) 30%);
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(-70deg, lightblue 30%, rgba(0, 0, 0, 0) 30%);
 }

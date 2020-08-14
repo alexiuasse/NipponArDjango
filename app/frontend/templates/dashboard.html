@@ -1,194 +1,154 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 13/08/2020 14:50.
+  ~ Last modified 14/08/2020 19:56.
   -->
 
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid">
     {% include 'under_construction.html' %}
+    {% for k,v in page.items %}
     <div class="page-header">
         <div class="row align-items-center">
             <div class="col-auto">
                 <div class="page-pretitle">
-                    Resumo
+                    {{v.pre_title}}
                 </div>
                 <h2 class="page-title">
-                    {{ICON_DASHBOARD|safe}}
-                    Dashboard
+                    {{v.title.icon|safe}}
+                    {{v.title.text}}
                 </h2>
             </div>
         </div>
     </div>
     <div class="row row-deck row-cards">
+        {% for kk,vv in v.data.items %}
+        {% for kkk, vvv in vv.items %}
         <div class="col-sm-6 col-lg-3">
-            <div class="card">
+            <div class="card {{vvv.bg}}">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <div class="subheader">Sales</div>
-                        <div class="ml-auto lh-1">
-                            <div class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
-                                   data-toggle="dropdown"
-                                   href="#">
-                                    Last 7 days
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" href="#">Last 7 days</a>
-                                    <a class="dropdown-item" href="#">Last 30 days</a>
-                                    <a class="dropdown-item" href="#">Last 3 months</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h1 mb-3">75%</div>
-                    <div class="d-flex mb-2">
-                        <div>Conversion rate</div>
+                        <div class="subheader">{{vvv.subheader}}</div>
                         <div class="ml-auto">
-                      <span class="text-green d-inline-flex align-items-center lh-1">
-                        7% <svg class="icon ml-1" fill="none" height="24" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" stroke="none"/><polyline
-                              points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
-                      </span>
-                        </div>
-                    </div>
-                    <div class="progress progress-sm">
-                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" class="progress-bar bg-blue"
-                             role="progressbar" style="width: 75%">
-                            <span class="sr-only">75% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">Revenue</div>
-                        <div class="ml-auto lh-1">
-                            <div class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
-                                   data-toggle="dropdown" href="#">
-                                    Last 7 days
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" href="#">Last 7 days</a>
-                                    <a class="dropdown-item" href="#">Last 30 days</a>
-                                    <a class="dropdown-item" href="#">Last 3 months</a>
-                                </div>
-                            </div>
+                            {% for lk, lv in vvv.links.items %}
+                            <a class="text-{{lv.contextual}}" data-toggle="tooltip" href="{{lv.link}}"
+                               title="{{lk}}">{{lv.icon|safe}}</a>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="d-flex align-items-baseline">
-                        <div class="h1 mb-0 mr-2">$4,300</div>
-                        <div class="mr-auto">
-                      <span class="text-green d-inline-flex align-items-center lh-1">
-                        8% <svg class="icon ml-1" fill="none" height="24" stroke="currentColor"
-                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" stroke="none"/><polyline
-                              points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
-                      </span>
-                        </div>
+                        <div class="h2 mb-0 mr-2">{{vvv.header}}</div>
                     </div>
                 </div>
-                <div class="chart-sm" id="chart-revenue-bg"></div>
+                <div class="chart-sm" id="{{vvv.chart_id}}"></div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">New clients</div>
-                        <div class="ml-auto lh-1">
-                            <div class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
-                                   data-toggle="dropdown" href="#">
-                                    Last 7 days
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" href="#">Last 7 days</a>
-                                    <a class="dropdown-item" href="#">Last 30 days</a>
-                                    <a class="dropdown-item" href="#">Last 3 months</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-baseline">
-                        <div class="h1 mb-3 mr-2">6,782</div>
-                        <div class="mr-auto">
-                      <span class="text-yellow d-inline-flex align-items-center lh-1">
-                        0% <svg class="icon ml-1" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" stroke="none"/><line x1="5"
-                                                                                                                x2="19"
-                                                                                                                y1="12"
-                                                                                                                y2="12"/></svg>
-                      </span>
-                        </div>
-                    </div>
-                    <div class="chart-sm" id="chart-new-clients"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">Active users</div>
-                        <div class="ml-auto lh-1">
-                            <div class="dropdown">
-                                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
-                                   data-toggle="dropdown" href="#">
-                                    Last 7 days
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item active" href="#">Last 7 days</a>
-                                    <a class="dropdown-item" href="#">Last 30 days</a>
-                                    <a class="dropdown-item" href="#">Last 3 months</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-baseline">
-                        <div class="h1 mb-3 mr-2">2,986</div>
-                        <div class="mr-auto">
-                      <span class="text-green d-inline-flex align-items-center lh-1">
-                        4% <svg class="icon ml-1" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                                xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" stroke="none"/><polyline
-                              points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
-                      </span>
-                        </div>
-                    </div>
-                    <div class="chart-sm" id="chart-active-users"></div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+        {% endfor %}
     </div>
-
-    <!--    <div class="row">-->
-    <!--        {% for k,v in status.items %}-->
-    <!--        <div class="col-lg-3 col-md-6 col-sm-6">-->
-    <!--            <div class="card card-stats">-->
-    <!--                <div class="card-header card-header-{{v.obj.contextual}} card-header-icon">-->
-    <!--                    <div class="card-icon">-->
-    <!--                        <i class="material-icons">build</i>-->
-    <!--                    </div>-->
-    <!--                    <p class="card-subtitle text-{{v.obj.contextual}} font-weight-bold">{{v.name}}</p>-->
-    <!--                    <h3 class="card-title">{{v.services}}</h3>-->
-    <!--                </div>-->
-    <!--                <div class="card-footer">-->
-    <!--                    <div class="stats">-->
-    <!--                        <i class="material-icons text-danger">warning</i>-->
-    <!--                        <a href="javascript:;">Link to services...</a>-->
-    <!--                    </div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--        {% endfor %}-->
-    <!--    </div>-->
+    {% endfor %}
 </div>
+{% endblock %}
+{% block javascript %}
+{% for k,v in charts.items %}
+<script>
+  // @formatter:off
+  document.addEventListener("DOMContentLoaded", function () {
+    window.ApexCharts && (new ApexCharts(document.getElementById('{{k}}'), {
+        chart: {
+            defaultLocale: 'pt-br',
+            locales: [{
+                name: 'pt-br',
+                options: {
+                  months: [
+                      'Janeiro', 'Fevereiro', 'Março',
+                      'Abril', 'Maio', 'Junho',
+                      'Julho', 'Agosto', 'Setembro',
+                      'Outubro', 'Novembro', 'Dezembro'
+                  ],
+                  shortMonths: [
+                    'Jan', 'Fev', 'Mar',
+                    'Abr', 'Maio', 'Jun',
+                    'Jul', 'Ago', 'Set',
+                    'Out', 'Nov', 'Dez'
+                  ],
+                  days: ['Sábado', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Domingo'],
+                  shortDays: ['Sáb.', 'Seg.', 'Ter.', 'Qua.', 'Qui.', 'Sex.', 'Dom.'],
+                  toolbar: {
+                    download: 'Baixar SVG',
+                    selection: 'Selecionar',
+                    selectionZoom: 'Selecionar Zoom',
+                    zoomIn: 'Zoom In',
+                    zoomOut: 'Zoom Out',
+                    pan: 'Panning',
+                    reset: 'Resetar Zoom',
+                  }
+                }
+              }],
+            type: "{{v.type}}",
+            fontFamily: 'inherit',
+            height: 40.0,
+            sparkline: {
+                enabled: true
+            },
+            animations: {
+                enabled: false
+            },
+        },
+         plotOptions: {
+            bar: {
+                columnWidth: '50%',
+            }
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        fill: {
+            opacity: 1,
+        },
+        series: [{
+            name: "{{v.series_name}}",
+            //Autogenerated
+            data: {{v.data}}
+        }],
+        grid: {
+            strokeDashArray: 4,
+        },
+        xaxis: {
+            labels: {
+                padding: 0
+            },
+            tooltip: {
+                enabled: false
+            },
+            axisBorder: {
+                show: false,
+            },
+            type: 'datetime',
+        },
+        yaxis: {
+            labels: {
+                padding: 4
+            },
+        },
+        //Autogenerated
+        labels: {{v.label|safe}},
+        colors: ["{{v.color}}"],
+        legend: {
+            show: false,
+        },
+    })).render();
+  });
+  // @formatter:on
+
+
+
+
+
+
+
+
+</script>
+{% endfor %}
 {% endblock %}

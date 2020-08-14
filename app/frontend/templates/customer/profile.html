@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 19:52.
+  ~ Last modified 14/08/2020 19:54.
   -->
 {% extends 'base.html' %}
 {% load render_table from django_tables2 %}
@@ -26,7 +26,7 @@
             </div>
             <!-- Page title actions -->
             <div class="col-auto ml-auto d-print-none">
-                <a class="btn btn-primary ml-3 d-none d-sm-inline-block"
+                <a class="btn btn-sm btn-primary ml-3 d-none d-sm-inline-block"
                    href="{{obj.get_new_device_url}}">
                     {{ICON_ADD|safe}}
                     Novo Equipamento
@@ -69,20 +69,20 @@
             </h3>
             <div class="table-responsive mt-3">
                 <table class="table table-hover table-striped">
-                    {% for v in obj.devices.all %}
                     <thead>
                     <tr>
                         <th>Equipamento</th>
                         <th>Serviços</th>
                     </tr>
                     </thead>
+                    {% for v in obj.devices.all %}
                     <tr>
                         <td>
                             <a href="{{v.get_absolute_url}}">
                                 {{v.get_full_name}}
                             </a>
                         </td>
-                        <td>{{v.order_of_services.count}}</td>
+                        <td><span class="font-weight-bold">x{{v.order_of_services.count}}</span></td>
                     </tr>
                     {% endfor %}
                 </table>

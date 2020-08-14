@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 09/08/2020 11:39.
+#  Last modified 14/08/2020 17:01.
 from typing import Dict, Any
 
 from device.models import Device
@@ -13,7 +13,7 @@ from django.views import View
 from django.views.generic.edit import DeleteView, CreateView, UpdateView
 from django_filters.views import FilterView
 from django_tables2.paginators import LazyPaginator
-from django_tables2.views import SingleTableMixin
+from django_tables2.views import SingleTableMixin, SingleTableView
 
 from .conf import *
 from .filters import *
@@ -49,33 +49,26 @@ class OrderOfServiceProfile(LoginRequiredMixin, View):
         return render(request, self.template, context)
 
 
-class OrderOfServiceIndex(LoginRequiredMixin, View):
-    template = 'device/view.html'
+class OrderOfServiceIndex(LoginRequiredMixin, SingleTableView):
+    template_name = 'service/view.html'
     title = TITLE_VIEW_ORDER_OF_SERVICE
     subtitle = SUBTITLE_ORDER_OF_SERVICE
+    table_class = OrderOfServiceTable
+    paginator_class = LazyPaginator
 
-    def get(self, request):
-        links = {
-            'Equipamentos': {
-                'config': {
-                    'header': HEADER_CLASS_ORDER_OF_SERVICE,
-                },
-                'Equipamentos': {
-                    'name': "Equipamentos",
-                    'link': reverse_lazy('device:view'),
-                    'badge_text': OrderOfService.objects.count(),
-                    'badge_class': 'badge-success',
-                    'icon': 'person',
-                },
+    def get_queryset(self):
+        query = {'date__year': self.kwargs['year'], 'scheduled': self.kwargs['scheduled']}
+        if self.kwargs['status'] != 0:
+            query['status'] = self.kwargs['status']
+        if self.kwargs['day'] != 0:
+            query['date__day'] = self.kwargs['day']
+        if self.kwargs['month'] != 0:
+            query['date__month'] = self.kwargs['month']
+        return OrderOfService.objects.filter(**query).order_by('-date')
 
-            },
-        }
-        context = {
-            'title': self.title,
-            'subtitle': self.subtitle,
-            'links': links
-        }
-        return render(request, self.template, context)
+    @staticmethod
+    def get_back_url():
+        return reverse('dashboard')
 
 
 class OrderOfServiceView(LoginRequiredMixin, PermissionRequiredMixin, SingleTableMixin, FilterView):
