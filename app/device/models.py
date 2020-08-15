@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 14:48.
+#  Last modified 15/08/2020 15:55.
 
 from datetime import datetime
 
@@ -17,10 +17,11 @@ class Device(BaseModel):
     # departure_date = models.DateField("data de saída", blank=True, null=True)
     observation = models.TextField("observações", blank=True)
     location = models.TextField("localização", blank=True)
-    brand = models.ForeignKey("config.Brand", verbose_name="Marca", on_delete=models.SET_NULL, null=True)
-    model = models.ForeignKey("config.Model", verbose_name="Modelo", on_delete=models.SET_NULL, null=True)
-    type = models.ForeignKey("config.Type", verbose_name="Tipo", on_delete=models.SET_NULL, null=True)
-    capacity = models.ForeignKey("config.Capacity", verbose_name="Capacidade", on_delete=models.SET_NULL, null=True)
+    brand = models.ForeignKey("config.Brand", verbose_name="Marca", on_delete=models.SET_NULL, null=True, blank=True)
+    model = models.ForeignKey("config.Model", verbose_name="Modelo", on_delete=models.SET_NULL, null=True, blank=True)
+    type = models.ForeignKey("config.Type", verbose_name="Tipo", on_delete=models.SET_NULL, null=True, blank=True)
+    capacity = models.ForeignKey("config.Capacity", verbose_name="Capacidade", on_delete=models.SET_NULL, null=True,
+                                 blank=True)
     order_of_services = models.ManyToManyField("service.OrderOfService", verbose_name="Ordem de Serviços", blank=True)
 
     def __str__(self):

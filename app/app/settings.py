@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 10/08/2020 12:55.
+#  Last modified 15/08/2020 15:50.
 
 import os
 
@@ -26,12 +26,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xj7o!^3d43#@0f9*ac#x(me59xtz*1y_2fggoamvpz$_c))!1x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.103']
 
 # GENERAL
-VERSION = "1.0.0b"
+VERSION = "1.0.0"
 NAME_OF_ENTERPRISE = "Nippon Ar"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 AUTH_USER_MODEL = 'users.CustomUser'

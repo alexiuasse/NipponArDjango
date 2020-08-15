@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 10/08/2020 10:15.
+#  Last modified 15/08/2020 15:56.
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Row, Field
@@ -16,7 +16,6 @@ class BaseConfigForm(forms.ModelForm):
     layout = Layout(
         Row(
             Field('name', wrapper_class='col-md-12'),
-            Field('contextual', wrapper_class='col-md-12'),
         ),
     )
 
@@ -67,6 +66,13 @@ class TypeOfServiceForm(BaseConfigForm):
 
 
 class StatusServiceForm(BaseConfigForm):
+    layout = Layout(
+        Row(
+            Field('name', wrapper_class='col-md-12'),
+            Field('contextual', wrapper_class='col-md-12'),
+        ),
+    )
+
     class Meta:
         model = StatusService
         fields = ['name', 'contextual']
