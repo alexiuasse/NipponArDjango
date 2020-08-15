@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 18:08.
+  ~ Last modified 15/08/2020 15:03.
   -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
@@ -12,12 +12,12 @@
             <div class="col-auto">
                 <h2 class="page-title">
                     <a href="{% if object %} {{object.get_absolute_url}} {% else %} {{view.get_back_url}} {% endif %}"
-                       rel="tooltip" title="Voltar" type="button">
+                       rel="tooltip" title="Voltar">
                         <span class="text-primary">{{ICON_ARROW_BACK|safe}}</span>
                     </a>
                     {{view.title}}
                     {% if object %}
-                    <a href="{{ view.get_delete_url }}" rel="tooltip" title="Deletar" type="button">
+                    <a href="{{ view.get_delete_url }}" rel="tooltip" title="Deletar">
                         <span class="text-danger">{{ICON_DELETE|safe}}</span>
                     </a>
                     {% endif %}
@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <h3>
                     Peças Trocadas
-                    <a class="add-form-row" href="#" rel="tooltip" title="Nova Peça" type="button">
+                    <a class="add-form-row" href="#" rel="tooltip" title="Nova Peça">
                         <span class="text-info">{{ICON_ADD|safe}}</span>
                     </a>
                 </h3>

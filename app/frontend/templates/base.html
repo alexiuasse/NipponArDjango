@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 14/08/2020 21:27.
+  ~ Last modified 15/08/2020 15:28.
   -->
 
 <!DOCTYPE html>
@@ -46,7 +46,6 @@
         {% block footer %}{% include "footer.html" %}{% endblock %}
     </div>
 </div>
-{% endblock %}
 <!-- Libs JS -->
 <script src="{% static 'dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'dist/libs/jquery/dist/jquery.slim.min.js' %}"></script>
@@ -59,8 +58,8 @@
 
 <script>
   document.body.style.display = "block"
-
 </script>
 {% block javascript %}{% endblock %}
 </body>
+{% endblock %}
 </html>

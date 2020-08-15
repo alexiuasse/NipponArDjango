@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 10/08/2020 12:04.
+#  Last modified 15/08/2020 15:42.
 
 import logging
 
@@ -16,20 +16,33 @@ from .utils import *
 logger = logging.getLogger(__name__)
 
 
-# def error_400(request, exception):
-#     logger.error("Error 400: [%s]"%(exception))
-#     return render(request, '400.html', {}, status=400)
-#
-# def error_404(request, exception):
-#     logger.error("Error 404: [%s]"%(exception))
-#     return render(request, '404.html', {}, status=404)
-#
-# def error_403(request, exception):
-#     logger.error("Error 403: [%s]"%(exception))
-#     return render(request, '403.html', {}, status=403)
-#
-# def error_500(request):
-#     return render(request, '500.html', {}, status=500)
+def error_400(request, exception):
+    logger.error("Error 400: [%s]" % exception)
+    return render(request, '400.html', {}, status=400)
+
+
+def error_401(request, exception):
+    logger.error("Error 401: [%s]" % exception)
+    return render(request, '401.html', {}, status=401)
+
+
+def error_403(request, exception):
+    logger.error("Error 403: [%s]" % exception)
+    return render(request, '403.html', {}, status=403)
+
+
+def error_404(request, exception):
+    logger.error("Error 404: [%s]" % exception)
+    return render(request, '404.html', {}, status=404)
+
+
+def error_500(request):
+    return render(request, '500.html', {}, status=500)
+
+
+def error_503(request):
+    return render(request, '503.html', {}, status=503)
+
 
 class Index(LoginRequiredMixin, View):
     template = 'index.html'
@@ -50,48 +63,6 @@ class Dashboard(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, self.template, context_dashboard())
-
-
-class Icons(LoginRequiredMixin, View):
-    template = 'icons.html'
-
-    def get(self, request):
-        return render(request, self.template)
-
-
-class Tables(LoginRequiredMixin, View):
-    template = 'tables.html'
-
-    def get(self, request):
-        return render(request, self.template)
-
-
-class Typography(LoginRequiredMixin, View):
-    template = 'typography.html'
-
-    def get(self, request):
-        return render(request, self.template)
-
-
-class Maps(LoginRequiredMixin, View):
-    template = 'maps.html'
-
-    def get(self, request):
-        return render(request, self.template)
-
-
-class Notifications(LoginRequiredMixin, View):
-    template = 'notifications.html'
-
-    def get(self, request):
-        return render(request, self.template)
-
-
-class User(LoginRequiredMixin, View):
-    template = 'user.html'
-
-    def get(self, request):
-        return render(request, self.template)
 
 
 class Logout(View):

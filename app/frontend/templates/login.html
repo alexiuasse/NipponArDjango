@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 14/08/2020 21:29.
+  ~ Last modified 15/08/2020 15:46.
   -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
@@ -18,7 +18,7 @@
                         <!--                        <h2 class="page-title">-->
                         <!--                            {{NAME_OF_ENTERPRISE}}-->
                         <!--                        </h2>-->
-                        <img alt="{{NAME_OF_ENTERPRISE}}" class="navbar-brand-image" src="{% static 'logo_logo.svg' %}">
+                        <img alt="{{NAME_OF_ENTERPRISE}}" class="navbar-brand-image" src="{% static 'logo.svg' %}">
                     </div>
                 </div>
             </div>
@@ -49,5 +49,9 @@
         {% block footer %}{% include "footer.html" %}{% endblock %}
     </div>
 </div>
+<script>
+  document.body.style.display = "block"
+
+</script>
 </body>
 {% endblock %}

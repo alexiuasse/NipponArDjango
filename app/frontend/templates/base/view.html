@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 14/08/2020 19:53.
+  ~ Last modified 15/08/2020 15:00.
   -->
 {% extends 'base.html' %}
 {% load render_table from django_tables2 %}
@@ -12,12 +12,11 @@
         <div class="row align-items-center">
             <div class="col-auto">
                 <h2 class="page-title">
-                    <a href="{{view.back_url}}"
-                       rel="tooltip" title="Voltar" type="button">
+                    <a href="{{view.back_url}}" rel="tooltip" title="Voltar">
                         <span class="text-primary">{{ICON_ARROW_BACK|safe}}</span>
                     </a>
                     {{view.title}}
-                    <a href="{{ view.new }}" rel="tooltip" title="Novo" type="button">
+                    <a href="{{view.new}}" rel="tooltip" title="Novo">
                         <span class="text-info">{{ICON_ADD|safe}}</span>
                     </a>
                 </h2>

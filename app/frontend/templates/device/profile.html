@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 14/08/2020 19:54.
+  ~ Last modified 15/08/2020 15:02.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -10,14 +10,14 @@
         <div class="row align-items-center">
             <div class="col-auto">
                 <h2 class="page-title">
-                    <a href="{{obj.get_back_url}}" rel="tooltip" title="Voltar" type="button">
+                    <a href="{{obj.get_back_url}}" rel="tooltip" title="Voltar">
                         <span class="text-primary">{{ICON_ARROW_BACK|safe}}</span>
                     </a>
                     {{obj.get_full_name}}
-                    <a href="{{obj.get_edit_url}}" rel="tooltip" title="Editar" type="button">
+                    <a href="{{obj.get_edit_url}}" rel="tooltip" title="Editar">
                         <span class="text-success">{{ICON_EDIT|safe}}</span>
                     </a>
-                    <a href="{{obj.get_delete_url}}" rel="tooltip" title="Deletar" type="button">
+                    <a href="{{obj.get_delete_url}}" rel="tooltip" title="Deletar">
                         <span class="text-danger">{{ICON_DELETE|safe}}</span>
                     </a>
                 </h2>
@@ -43,8 +43,7 @@
     </div>
     <h3 class="mb-3">
         Ordem de Serviços
-        <a href="{{obj.get_new_service_url}}" rel="tooltip"
-           title="Nova Ordem de Serviço" type="button">
+        <a href="{{obj.get_new_service_url}}" rel="tooltip" title="Nova Ordem de Serviço">
             <span class="text-info">{{ICON_ADD|safe}}</span>
         </a>
     </h3>
