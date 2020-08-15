@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 14/08/2020 09:14.
+  ~ Last modified 14/08/2020 21:29.
   -->
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
@@ -15,19 +15,23 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <h2 class="page-title">
-                            {{NAME_OF_ENTERPRISE}}
-                        </h2>
+                        <!--                        <h2 class="page-title">-->
+                        <!--                            {{NAME_OF_ENTERPRISE}}-->
+                        <!--                        </h2>-->
+                        <img alt="{{NAME_OF_ENTERPRISE}}" class="navbar-brand-image" src="{% static 'logo_logo.svg' %}">
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="container-fluid">
             <div class="row ">
                 <div class="col-lg-3 col-md-3 ml-auto mr-auto">
                     <div class="card">
                         <div class="card-status-top {% if form.errors %} bg-danger {% else %} bg-primary {% endif %}"></div>
-                        <div class="card-header"><h3 class="card-title">Login</h3></div>
+                        <div class="card-header">
+                            <h3 class="card-title">Login</h3>
+                        </div>
                         <div class="card-body">
                             <form method="post">
                                 {% csrf_token %}

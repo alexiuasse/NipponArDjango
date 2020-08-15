@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 12/08/2020 17:43.
+  ~ Last modified 14/08/2020 20:55.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -23,7 +23,7 @@
                 <a class="list-group-item list-group-item-action" href="{{vv.link}}">
                     {{ICON_SETTINGS|safe}}
                     {{vv.name}}
-                    <span class="badge bg-success">x{{vv.badge_text}}</span>
+                    <span class="badge bg-success">x{{vv.count}}</span>
                 </a>
                 {% endif %}
                 {% endfor %}

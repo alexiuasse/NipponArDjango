@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 20:04.
+#  Last modified 14/08/2020 20:55.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -32,7 +32,7 @@ class Config(LoginRequiredMixin, View):
                 'city': {
                     'name': "Cidades",
                     'link': reverse_lazy('config:city:view'),
-                    'badge_text': City.objects.count(),
+                    'count': City.objects.count(),
                 }
             },
             'Equipamento': {
@@ -42,27 +42,27 @@ class Config(LoginRequiredMixin, View):
                 'brand': {
                     'name': "Marcas",
                     'link': reverse_lazy('config:brand:view'),
-                    'badge_text': Brand.objects.count(),
+                    'count': Brand.objects.count(),
                 },
                 'model': {
                     'name': "Modelos",
                     'link': reverse_lazy('config:model:view'),
-                    'badge_text': Model.objects.count(),
+                    'count': Model.objects.count(),
                 },
                 'type': {
                     'name': "Tipos",
                     'link': reverse_lazy('config:type:view'),
-                    'badge_text': Type.objects.count(),
+                    'count': Type.objects.count(),
                 },
                 'capacity': {
                     'name': "Capacidades",
                     'link': reverse_lazy('config:capacity:view'),
-                    'badge_text': Capacity.objects.count(),
+                    'count': Capacity.objects.count(),
                 },
                 'device_parts': {
                     'name': "Peças",
                     'link': reverse_lazy('config:deviceparts:view'),
-                    'badge_text': DeviceParts.objects.count(),
+                    'count': DeviceParts.objects.count(),
                 },
             },
             'Ordem de Serviço': {
@@ -72,12 +72,12 @@ class Config(LoginRequiredMixin, View):
                 'status_service': {
                     'name': "Status do Serviço",
                     'link': reverse_lazy('config:statusservice:view'),
-                    'badge_text': StatusService.objects.count(),
+                    'count': StatusService.objects.count(),
                 },
                 'type_of_service': {
                     'name': "Tipo de Serviço",
                     'link': reverse_lazy('config:typeofservice:view'),
-                    'badge_text': TypeOfService.objects.count(),
+                    'count': TypeOfService.objects.count(),
                 },
             },
             'Financeiro': {
