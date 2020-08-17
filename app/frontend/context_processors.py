@@ -1,12 +1,12 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 14/08/2020 16:26.
+#  Last modified 17/08/2020 11:19.
 
 from django.conf import settings  # import the settings file
 from .icons import *
 
 
-def enterprise_name(request):
+def frontend_template_context(request):
     # return the value you want as a dictionnary. you may add multiple values in there.
     return {
         'NAME_OF_ENTERPRISE': settings.NAME_OF_ENTERPRISE,
