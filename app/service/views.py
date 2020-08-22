@@ -1,12 +1,11 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 14/08/2020 17:01.
+#  Last modified 19/08/2020 10:14.
 from typing import Dict, Any
 
 from device.models import Device
 from django.contrib.admin.utils import NestedObjects
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
@@ -27,21 +26,7 @@ class OrderOfServiceProfile(LoginRequiredMixin, View):
     subtitle = SUBTITLE_ORDER_OF_SERVICE
 
     def get(self, request, cpk, ctp, dev, pk):
-        """
-        
-        :param request: 
-        :param cpk: customer primary key
-        :param ctp: customer type
-        :param dev: device primary key
-        :param pk: primary key of object
-        :return: render of layout
-        """
-        header = HEADER_CLASS_ORDER_OF_SERVICE
-
         context = {
-            'config': {
-                'header': header
-            },
             'obj': OrderOfService.objects.get(pk=pk),
             'cpk': cpk,
             'ctp': ctp,

@@ -1,9 +1,8 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 15:00.
-from crispy_forms.bootstrap import FieldWithButtons, StrictButton
+#  Last modified 19/08/2020 10:09.
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, HTML, Row, Div, Field, Column
+from crispy_forms.layout import Layout, HTML, Row, Field
 from django import forms
 from django.forms import modelformset_factory
 

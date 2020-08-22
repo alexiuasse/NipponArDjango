@@ -1,8 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 15/08/2020 15:55.
-
-from datetime import datetime
+#  Last modified 21/08/2020 15:44.
 
 from base.models import BaseModel
 from django.db import models
@@ -13,8 +11,6 @@ class Device(BaseModel):
     name = models.CharField("nome", max_length=128, blank=True)
     identifier = models.CharField("identificador", max_length=128, blank=True)
     patrimony = models.CharField("patrimônio", max_length=128, blank=True)
-    # entry_date = models.DateField("data de entrada", default=datetime.today, blank=True)
-    # departure_date = models.DateField("data de saída", blank=True, null=True)
     observation = models.TextField("observações", blank=True)
     location = models.TextField("localização", blank=True)
     brand = models.ForeignKey("config.Brand", verbose_name="Marca", on_delete=models.SET_NULL, null=True, blank=True)
@@ -66,8 +62,6 @@ class Device(BaseModel):
             'Nome': "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity),
             'Identificador': self.identifier,
             'Patrimônio': self.patrimony,
-            # 'Data de Entrada': self.entry_date,
-            # 'Data de Saída': self.departure_date,
             'Localização': self.location,
             'Observação': self.observation,
         }
@@ -82,13 +76,4 @@ class Device(BaseModel):
                 retDict[m_y] = {}
                 retDict[m_y]['services'] = []
                 retDict[m_y]['services'].append(s)
-        # print(retDict)
         return retDict
-
-    # def get_html(self):
-    #     html = ""
-    #     for field in self._meta.get_fields():
-    #         if hasattr(field, 'verbose_name'):
-    #             html += "<p>{}: {}</p>".format(getattr(field, 'verbose_name').capitalize(),
-    #                                            getattr(self, field.attname))
-    #     return html

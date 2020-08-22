@@ -1,8 +1,8 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 15:40.
+#  Last modified 21/08/2020 15:44.
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, HTML, Row, Div, Field
+from crispy_forms.layout import Layout, Div, Field
 from django import forms
 
 from .models import *
