@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/08/2020 15:22.
+#  Last modified 24/08/2020 17:44.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -118,6 +118,7 @@ class IndividualCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, Update
     header_class = HEADER_CLASS_INDIVIDUAL_CUSTOMER
 
 
+# delete all services
 class IndividualCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = IndividualCustomer
     template_name = "base/confirm_delete.html"
@@ -175,6 +176,7 @@ class JuridicalCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateV
     header_class = HEADER_CLASS_JURIDICAL_CUSTOMER
 
 
+# delete all services
 class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = JuridicalCustomer
     template_name = "base/confirm_delete.html"
@@ -191,3 +193,4 @@ class JuridicalCustomerDel(PermissionRequiredMixin, LoginRequiredMixin, DeleteVi
         to_delete = collector.nested()
         context['extra_object'] = to_delete
         return context
+

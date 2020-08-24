@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 24/08/2020 15:30.
+#  Last modified 24/08/2020 17:45.
 
 from base.models import BaseModel
 from django.db import models
@@ -21,7 +21,7 @@ class Device(BaseModel):
     order_of_services = models.ManyToManyField("service.OrderOfService", verbose_name="Ordem de Serviços", blank=True)
 
     def __str__(self):
-        return self.patrimony
+        return self.get_full_name()
 
     def get_customer(self):
         return self.individualcustomer_set.all().first() if self.individualcustomer_set.all().first() \
