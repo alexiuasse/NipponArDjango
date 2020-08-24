@@ -1,7 +1,7 @@
 <!--
   ~ Created by Alex Matos Iuasse.
   ~ Copyright (c) 2020.  All rights reserved.
-  ~ Last modified 15/08/2020 15:02.
+  ~ Last modified 24/08/2020 15:38.
   -->
 {% extends 'base.html' %}
 {% block content %}
@@ -31,25 +31,30 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive mb-3">
-        <table class="table table-hover">
-            {% for k, v in obj.get_dict_data.items %}
-            <tr>
-                <td>{{k}}</td>
-                <td>{{v}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <h3 class="mb-3">
-        Ordem de Serviços
-        <a href="{{obj.get_new_service_url}}" rel="tooltip" title="Nova Ordem de Serviço">
-            <span class="text-info">{{ICON_ADD|safe}}</span>
-        </a>
-    </h3>
     <div class="row">
+        <h3>Informações</h3>
+        <div class="col-lg-6 col-md-12">
+            <div class="table-responsive mb-3">
+                <table class="table table-hover">
+                    {% for k, v in obj.get_dict_data.items %}
+                    <tr>
+                        <td>{{k}}</td>
+                        <td>{{v}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3 class="mb-3">
+            Ordem de Serviços
+            <a href="{{obj.get_new_service_url}}" rel="tooltip" title="Nova Ordem de Serviço">
+                <span class="text-info">{{ICON_ADD|safe}}</span>
+            </a>
+        </h3>
         {% for k,v in obj.get_service_sorted_by_entry_date.items %}
-        <div class="col-md-6">
+        <div class="col-lg-6 col-md-12">
             <h4>Mês/Ano {{k}}</h4>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -63,7 +68,7 @@
                     <tbody>
                     {% for kk,vv in v.items %}
                     {% for s in vv %}
-                    <tr>
+                    <tr onclick="window.location='{{s.get_absolute_url}}'">
                         <td>
                             <a href="{{s.get_absolute_url}}">
                                 {{s.type_of_service}}

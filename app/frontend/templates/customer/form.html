@@ -1,0 +1,43 @@
+<!--
+  ~ Created by Alex Matos Iuasse.
+  ~ Copyright (c) 2020.  All rights reserved.
+  ~ Last modified 24/08/2020 15:54.
+  -->
+
+{% extends '../base/form.html' %}
+{% load static %}
+{% block javascript %}
+<script src="{% static 'dist/libs/imask/dist/imask.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        var element = document.getElementById('id_cellphone');
+        var maskOptions = {
+          mask: '(00) 0 0000-0000'
+        };
+        var mask = IMask(element, maskOptions);
+
+        var element2 = document.getElementById('id_phone');
+        var maskOptions2 = {
+          mask: '(00) 0000-0000'
+        };
+        var mask2 = IMask(element2, maskOptions2);
+
+        var element3 = document.getElementById('id_cpf');
+        if (element3) {
+            var maskOptions3 = {
+              mask: '000.000.000-00'
+            };
+            var mask3 = IMask(element3, maskOptions3);
+        }
+
+        var element4 = document.getElementById('id_cnpj');
+        if (element4) {
+            var maskOptions4 = {
+              mask: '00.000.000/0000-00'
+            };
+            var mask4 = IMask(element4, maskOptions4);
+        }
+    });
+
+</script>
+{% endblock %}

@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 31/07/2020 13:53.
+#  Last modified 24/08/2020 15:11.
 from django.utils.html import format_html
 from django_tables2 import tables, Column, TemplateColumn
 
@@ -19,7 +19,7 @@ class IndividualCustomerTable(tables.Table):
         model = IndividualCustomer
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['name', 'phone_1', 'phone_2', 'address_line']
+        fields = ['name', 'phone', 'cellphone', 'address_line']
 
     @staticmethod
     def render_name(value):
@@ -37,7 +37,7 @@ class JuridicalCustomerTable(tables.Table):
         model = JuridicalCustomer
         attrs = {'class': 'table table-striped table-hover'}
         per_page = 10
-        fields = ['name', 'parent_company', 'phone_1', 'phone_2', 'address_line']
+        fields = ['name', 'parent_company', 'phone', 'cellphone', 'address_line']
 
     @staticmethod
     def render_name(value):

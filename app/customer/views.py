@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 18:03.
+#  Last modified 24/08/2020 15:22.
 from typing import Dict, Any
 
 from django.contrib.admin.utils import NestedObjects
@@ -43,9 +43,6 @@ class Customer(LoginRequiredMixin, View):
     def get(self, request):
         links = {
             'Pessoas Físicas': {
-                'config': {
-                    'header': HEADER_CLASS_INDIVIDUAL_CUSTOMER,
-                },
                 'Pessoa Física': {
                     'name': "Ver Todas Pessoas Físicas",
                     'link': reverse_lazy('customer:individualcustomer:view'),
@@ -60,9 +57,6 @@ class Customer(LoginRequiredMixin, View):
                 },
             },
             'Pessoas Jurídicas': {
-                'config': {
-                    'header': HEADER_CLASS_JURIDICAL_CUSTOMER,
-                },
                 'Pessoa Jurídica': {
                     'name': "Ver Todas Pessoas Jurídicas",
                     'link': reverse_lazy('customer:juridicalcustomer:view'),
@@ -103,7 +97,7 @@ class IndividualCustomerView(LoginRequiredMixin, PermissionRequiredMixin, Single
 class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = IndividualCustomer
     form_class = IndividualCustomerForm
-    template_name = 'base/form.html'
+    template_name = 'customer/form.html'
     permission_required = 'customer.create_individualcustomer'
     title = TITLE_CREATE_INDIVIDUAL_CUSTOMER
     subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER
@@ -117,7 +111,7 @@ class IndividualCustomerCreate(LoginRequiredMixin, PermissionRequiredMixin, Crea
 class IndividualCustomerEdit(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = IndividualCustomer
     form_class = IndividualCustomerForm
-    template_name = 'base/form.html'
+    template_name = 'customer/form.html'
     permission_required = 'customer.edit_individualcustomer'
     title = TITLE_EDIT_INDIVIDUAL_CUSTOMER
     subtitle = SUBTITLE_INDIVIDUAL_CUSTOMER

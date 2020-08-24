@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 19:52.
+#  Last modified 24/08/2020 15:11.
 
 from base.models import BaseModel
 from django.db import models
@@ -16,8 +16,8 @@ from .enums import StateEnum
 
 class Customer(BaseModel):
     email = models.EmailField(max_length=254, blank=True)
-    phone_1 = models.CharField("telefone", max_length=15, blank=True)
-    phone_2 = models.CharField("celular", max_length=15, blank=True)
+    phone = models.CharField("telefone", max_length=16, blank=True)
+    cellphone = models.CharField("celular", max_length=16, blank=True)
     street = models.CharField("Rua", max_length=128, blank=True)
     number = models.CharField("Número", max_length=10, blank=True)
     neighborhood = models.CharField("Bairro", max_length=128, blank=True)
@@ -51,8 +51,8 @@ class Customer(BaseModel):
         return {
             'Nome': self.name,
             'CPF' if hasattr(self, 'cpf') else 'CNPJ': self.cpf if hasattr(self, 'cpf') else self.cnpj,
-            'Telefone': self.phone_1,
-            'Celular': self.phone_2,
+            'Telefone': self.phone,
+            'Celular': self.cellphone,
             'E-mail': self.email,
         }
 

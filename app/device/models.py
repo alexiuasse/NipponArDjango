@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 21/08/2020 15:44.
+#  Last modified 24/08/2020 15:30.
 
 from base.models import BaseModel
 from django.db import models
@@ -52,14 +52,19 @@ class Device(BaseModel):
         return reverse('service:create', kwargs={'cpk': cpk, 'ctp': ctp, 'dev': self.pk})
 
     def get_full_name(self):
-        return "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity)
+        return "{} {} {} {} BTU".format(
+            self.type if self.type else "",
+            self.brand if self.brand else "",
+            self.model if self.model else "",
+            self.capacity if self.capacity else ""
+        )
 
     def get_category_name(self):
         return "Cliente {}".format(self.get_customer())
 
     def get_dict_data(self):
         return {
-            'Nome': "{} {} {} {} BTU".format(self.type, self.brand, self.model, self.capacity),
+            'Nome': self.get_full_name(),
             'Identificador': self.identifier,
             'Patrimônio': self.patrimony,
             'Localização': self.location,

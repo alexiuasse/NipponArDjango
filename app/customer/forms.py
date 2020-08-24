@@ -1,6 +1,6 @@
 #  Created by Alex Matos Iuasse.
 #  Copyright (c) 2020.  All rights reserved.
-#  Last modified 12/08/2020 15:20.
+#  Last modified 24/08/2020 15:11.
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field
 from django import forms
@@ -14,8 +14,8 @@ class IndividualCustomerForm(forms.ModelForm):
             Div(
                 Field('name', wrapper_class='col-md-12'),
                 Field('email', wrapper_class='col-md-12'),
-                Field('phone_1', wrapper_class='col-md-12'),
-                Field('phone_2', wrapper_class='col-md-12'),
+                Field('phone', wrapper_class='col-md-12'),
+                Field('cellphone', wrapper_class='col-md-12'),
                 Field('cpf', wrapper_class='col-md-12'),
                 css_class="col-md-6"
             ),
@@ -46,8 +46,8 @@ class IndividualCustomerForm(forms.ModelForm):
 
     class Meta:
         model = IndividualCustomer
-        fields = ['name', 'email', 'phone_1',
-                  'cpf', 'phone_2', 'street', 'number',
+        fields = ['name', 'email', 'phone',
+                  'cpf', 'cellphone', 'street', 'number',
                   'neighborhood', 'apartment', 'block',
                   'city', 'state', 'cep', 'address_line']
 
@@ -58,8 +58,8 @@ class JuridicalCustomerForm(forms.ModelForm):
             Div(
                 Field('name', wrapper_class='col-md-12'),
                 Field('email', wrapper_class='col-md-12'),
-                Field('phone_1', wrapper_class='col-md-12'),
-                Field('phone_2', wrapper_class='col-md-12'),
+                Field('phone', wrapper_class='col-md-12'),
+                Field('cellphone', wrapper_class='col-md-12'),
                 Field('cnpj', wrapper_class='col-md-12'),
                 Field('parent_company', wrapper_class='col-md-12'),
                 css_class='col-md-6'
@@ -91,9 +91,9 @@ class JuridicalCustomerForm(forms.ModelForm):
 
     class Meta:
         model = JuridicalCustomer
-        fields = ['name', 'email', 'phone_1',
+        fields = ['name', 'email', 'phone',
                   'cnpj',
-                  'phone_2', 'street', 'number',
+                  'cellphone', 'street', 'number',
                   'neighborhood', 'apartment', 'block',
                   'city', 'state', 'cep',
                   'address_line', 'parent_company']
